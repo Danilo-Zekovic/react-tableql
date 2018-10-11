@@ -1,0 +1,53 @@
+.tableql {
+  background-color: transparent;
+  width: 100%;
+  margin: 0.5rem 0;
+  text-align: left;
+  padding: 0 0.4rem
+}
+
+table {
+  border-collapse: collapse;
+  display: table;
+  border-spacing: 2px;
+  border-width: gray;
+}
+
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+.tableql thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+th {
+  text-align: inherit;
+  font-weight: bold;
+}
+
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+.tableql td, .tableql th {
+  padding: .75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6
+}
+
+td, th {
+  display: table-cell;
+  vertical-align: inherit;
+}
