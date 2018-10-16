@@ -5721,16 +5721,46 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// travers data to find the array of objects and return it
+var traversData = function traversData(data) {
+  for (var key in data) {
+    if (Array.isArray(data)) {
+      return data;
+    } else {
+      return traversData(data[key]);
+    }
+  }
+};
+
+var getHeaderLabels = function getHeaderLabels(data) {
+  var labels = [];
+  for (var key in data) {
+    if (!key.includes('__')) {
+      labels.push(key);
+    }
+  }
+
+  return labels;
+};
+
 var TableQL = function (_Component) {
   _inherits(TableQL, _Component);
 
   function TableQL(props) {
     _classCallCheck(this, TableQL);
 
-    return _possibleConstructorReturn(this, (TableQL.__proto__ || Object.getPrototypeOf(TableQL)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (TableQL.__proto__ || Object.getPrototypeOf(TableQL)).call(this, props));
+
+    _this.getUniqueKey = _this.getUniqueKey.bind(_this);
+    return _this;
   }
 
   _createClass(TableQL, [{
+    key: 'getUniqueKey',
+    value: function getUniqueKey() {
+      return new Date().getTime();
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -5756,7 +5786,15 @@ var TableQL = function (_Component) {
             '`Error while loading TableQL`'
           );
 
-          console.log(data.allFilms.films);
+          var displayData = traversData(data);
+
+          if (!displayData || displayData.length == 0) {
+            return _react2.default.createElement(
+              'p',
+              null,
+              '`No data found!`'
+            );
+          }
           return _react2.default.createElement(
             'table',
             { className: _this2.props.tableql ? _this2.props.tableql : 'tableql' },
@@ -5766,37 +5804,29 @@ var TableQL = function (_Component) {
               _react2.default.createElement(
                 'tr',
                 { className: _this2.props.theadtr },
-                _react2.default.createElement(
-                  'th',
-                  { className: _this2.props.theadth },
-                  'Title'
-                ),
-                _react2.default.createElement(
-                  'th',
-                  { className: _this2.props.theadth },
-                  'ID'
-                )
+                getHeaderLabels(displayData[0]).map(function (label) {
+                  return _react2.default.createElement(
+                    'th',
+                    { className: _this2.props.theadth, key: label },
+                    label
+                  );
+                })
               )
             ),
             _react2.default.createElement(
               'tbody',
               { className: _this2.props.tbody },
-              data.allFilms.films.map(function (_ref2) {
-                var title = _ref2.title,
-                    episodeID = _ref2.episodeID;
+              displayData.map(function (data) {
                 return _react2.default.createElement(
                   'tr',
-                  { key: title, className: _this2.props.tbodytr },
-                  _react2.default.createElement(
-                    'td',
-                    { className: _this2.props.tbodytd },
-                    title
-                  ),
-                  _react2.default.createElement(
-                    'td',
-                    { className: _this2.props.tbodytd },
-                    episodeID
-                  )
+                  { key: JSON.stringify(data), className: _this2.props.tbodytr },
+                  getHeaderLabels(displayData[0]).map(function (label) {
+                    return _react2.default.createElement(
+                      'td',
+                      { className: _this2.props.tbodytd, key: data[label] },
+                      data[label]
+                    );
+                  })
                 );
               })
             )
@@ -7775,7 +7805,7 @@ exports = module.exports = __webpack_require__(48)(false);
 
 
 // module
-exports.push([module.i, ".tableql {\n  background-color: transparent;\n  width: 100%;\n  margin: 0.5rem 0;\n  text-align: left;\n  padding: 0 0.4rem\n}\n\ntable {\n  border-collapse: collapse;\n  display: table;\n  border-spacing: 2px;\n  border-width: gray;\n}\n\nthead {\n  display: table-header-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.tableql thead th {\n  vertical-align: bottom;\n  border-bottom: 2px solid #dee2e6;\n}\n\ntr {\n  display: table-row;\n  vertical-align: inherit;\n  border-color: inherit;\n}\n\nth {\n  text-align: inherit;\n  font-weight: bold;\n}\n\ntbody {\n  display: table-row-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.tableql td, .tableql th {\n  padding: .75rem;\n  vertical-align: top;\n  border-top: 1px solid #dee2e6\n}\n\ntd, th {\n  display: table-cell;\n  vertical-align: inherit;\n}\n", ""]);
+exports.push([module.i, ".tableql {\n  background-color: transparent;\n  width: 100%;\n  margin: 0.5rem 0;\n  text-align: left;\n  padding: 0 0.4rem\n}\n\ntable {\n  border-collapse: collapse;\n  display: table;\n  border-spacing: 2px;\n  border-width: gray;\n}\n\nthead {\n  display: table-header-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.tableql thead th {\n  vertical-align: bottom;\n  border-bottom: 2px solid #dee2e6;\n}\n\ntr {\n  display: table-row;\n  vertical-align: inherit;\n  border-color: inherit;\n}\n\nth {\n  text-align: inherit;\n  font-weight: bold;\n}\n\ntbody {\n  display: table-row-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.tableql td, .tableql th {\n  padding: .69rem;\n  vertical-align: top;\n  border-top: 1px solid #dee2e6\n}\n\ntd, th {\n  display: table-cell;\n  vertical-align: inherit;\n}\n", ""]);
 
 // exports
 
