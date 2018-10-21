@@ -5721,28 +5721,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// travers data to find the array of objects and return it
-var traversData = function traversData(data) {
-  for (var key in data) {
-    if (Array.isArray(data)) {
-      return data;
-    } else {
-      return traversData(data[key]);
-    }
-  }
-};
-
-var getHeaderLabels = function getHeaderLabels(data) {
-  var labels = [];
-  for (var key in data) {
-    if (!key.includes('__')) {
-      labels.push(key);
-    }
-  }
-
-  return labels;
-};
-
 var TableQL = function (_Component) {
   _inherits(TableQL, _Component);
 
@@ -5751,7 +5729,15 @@ var TableQL = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (TableQL.__proto__ || Object.getPrototypeOf(TableQL)).call(this, props));
 
+    _this.state = {
+      debug: _this.props.debug || false,
+      labels: []
+    };
     _this.getUniqueKey = _this.getUniqueKey.bind(_this);
+    _this.traversData = _this.traversData.bind(_this);
+    _this.getHeaderLabels = _this.getHeaderLabels.bind(_this);
+
+    _this.log = _this.log.bind(_this);
     return _this;
   }
 
@@ -5760,11 +5746,53 @@ var TableQL = function (_Component) {
     value: function getUniqueKey() {
       return new Date().getTime();
     }
+
+    // travers data to find the array of objects and return it
+
+  }, {
+    key: 'traversData',
+    value: function traversData(data) {
+      this.log('Travers data called.');
+      for (var key in data) {
+        if (Array.isArray(data)) {
+          return data;
+        } else {
+          return this.traversData(data[key]);
+        }
+      }
+    }
+  }, {
+    key: 'getHeaderLabels',
+    value: function getHeaderLabels(data) {
+      this.log(' Get header labels.');
+      var labels = [];
+      for (var key in data) {
+        // exception to eliminate type holder
+        if (!key.includes('__')) {
+          labels.push(key);
+        }
+      }
+
+      return labels;
+    }
+
+    // when debug true log messages and data
+
+  }, {
+    key: 'log',
+    value: function log(tag) {
+      var load = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+      if (this.state.debug) {
+        console.log(tag, load);
+      }
+    }
   }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
+      this.log('Props: ', this.props);
       return _react2.default.createElement(
         _reactApollo.Query,
         {
@@ -5775,20 +5803,33 @@ var TableQL = function (_Component) {
               error = _ref.error,
               data = _ref.data;
 
-          if (loading) return _react2.default.createElement(
-            'p',
-            null,
-            '`Loading TableQL...`'
-          );
-          if (error) return _react2.default.createElement(
-            'p',
-            null,
-            '`Error while loading TableQL`'
-          );
+          if (loading) {
+            _this2.log('Loading: ', loading);
+            return _react2.default.createElement(
+              'p',
+              null,
+              '`Loading TableQL...`'
+            );
+          }
+          if (error) {
+            _this2.log('Error: ', loading);
+            return _react2.default.createElement(
+              'p',
+              null,
+              '`Error while loading TableQL`'
+            );
+          }
 
-          var displayData = traversData(data);
+          _this2.log('Data: ', data);
+
+          var displayData = _this2.traversData(data);
+          var dataKeys = _this2.getHeaderLabels(displayData[0]);
+
+          _this2.log('Data to be displayed (array): ', displayData);
+          _this2.log('Data keys: ', dataKeys);
 
           if (!displayData || displayData.length == 0) {
+            _this2.log('No data found!');
             return _react2.default.createElement(
               'p',
               null,
@@ -5804,7 +5845,7 @@ var TableQL = function (_Component) {
               _react2.default.createElement(
                 'tr',
                 { className: _this2.props.theadtr },
-                getHeaderLabels(displayData[0]).map(function (label) {
+                dataKeys.map(function (label) {
                   return _react2.default.createElement(
                     'th',
                     { className: _this2.props.theadth, key: label },
@@ -5820,7 +5861,7 @@ var TableQL = function (_Component) {
                 return _react2.default.createElement(
                   'tr',
                   { key: JSON.stringify(data), className: _this2.props.tbodytr },
-                  getHeaderLabels(displayData[0]).map(function (label) {
+                  dataKeys.map(function (label) {
                     return _react2.default.createElement(
                       'td',
                       { className: _this2.props.tbodytd, key: data[label] },
