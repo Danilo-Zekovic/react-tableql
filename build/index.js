@@ -5727,14 +5727,87 @@ var TableQL = function (_Component) {
   function TableQL(props) {
     _classCallCheck(this, TableQL);
 
-    return _possibleConstructorReturn(this, (TableQL.__proto__ || Object.getPrototypeOf(TableQL)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (TableQL.__proto__ || Object.getPrototypeOf(TableQL)).call(this, props));
+
+    _this.state = {
+      debug: _this.props.debug || false
+    };
+    _this.getUniqueKey = _this.getUniqueKey.bind(_this);
+    _this.traversData = _this.traversData.bind(_this);
+    _this.getHeaderLabels = _this.getHeaderLabels.bind(_this);
+    _this.formatLabel = _this.formatLabel.bind(_this);
+
+    _this.log = _this.log.bind(_this);
+    return _this;
   }
 
   _createClass(TableQL, [{
+    key: 'getUniqueKey',
+    value: function getUniqueKey() {
+      return new Date().getTime();
+    }
+
+    // travers data to find the array of objects and return it
+
+  }, {
+    key: 'traversData',
+    value: function traversData(data) {
+      this.log('Travers data called.');
+      for (var key in data) {
+        if (Array.isArray(data)) {
+          return data;
+        } else {
+          return this.traversData(data[key]);
+        }
+      }
+    }
+  }, {
+    key: 'getHeaderLabels',
+    value: function getHeaderLabels(data) {
+      this.log(' Get header labels.');
+      var labels = [];
+      for (var key in data) {
+        // exception to eliminate type holder
+        if (!key.includes('__')) {
+          labels.push(key);
+        }
+      }
+
+      return labels;
+    }
+  }, {
+    key: 'formatLabel',
+    value: function formatLabel(label) {
+      this.log('Format label called.');
+      // insert spaces inbetween words in camel case
+      var formatedLabel = label.replace(/([a-z\d])([A-Z])/g, '$1' + ' ' + '$2').replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + ' ' + '$2').replace(/([-,_,~,=,+])/g, ' '); // replace unwanted characters with spaces
+
+      // title case the label (make first letters of words capital)
+      formatedLabel = formatedLabel.split(' ');
+      for (var i = 0; i < formatedLabel.length; i++) {
+        formatedLabel[i] = formatedLabel[i].charAt(0).toUpperCase() + formatedLabel[i].slice(1);
+      }
+
+      return formatedLabel.join(' ');
+    }
+
+    // when debug true log messages and data
+
+  }, {
+    key: 'log',
+    value: function log(tag) {
+      var load = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+      if (this.state.debug) {
+        console.log(tag, load);
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
+      this.log('Props: ', this.props);
       return _react2.default.createElement(
         _reactApollo.Query,
         {
@@ -5745,18 +5818,40 @@ var TableQL = function (_Component) {
               error = _ref.error,
               data = _ref.data;
 
-          if (loading) return _react2.default.createElement(
-            'p',
-            null,
-            '`Loading TableQL...`'
-          );
-          if (error) return _react2.default.createElement(
-            'p',
-            null,
-            '`Error while loading TableQL`'
-          );
+          if (loading) {
+            _this2.log('Loading: ', loading);
+            return _react2.default.createElement(
+              'p',
+              null,
+              '`Loading TableQL...`'
+            );
+          }
+          if (error) {
+            _this2.log('Error: ', loading);
+            return _react2.default.createElement(
+              'p',
+              null,
+              '`Error while loading TableQL`'
+            );
+          }
 
-          console.log(data.allFilms.films);
+          _this2.log('Data: ', data);
+
+          var displayData = _this2.traversData(data);
+          var dataKeys = _this2.getHeaderLabels(displayData[0]);
+
+          _this2.log('Data to be displayed (array): ', displayData);
+          _this2.log('Data keys: ', dataKeys);
+
+          // TODO probably bad idea not to display empty table
+          if (!displayData || displayData.length == 0) {
+            _this2.log('No data found!');
+            return _react2.default.createElement(
+              'p',
+              null,
+              '`No data found!`'
+            );
+          }
           return _react2.default.createElement(
             'table',
             { className: _this2.props.tableql ? _this2.props.tableql : 'tableql' },
@@ -5766,37 +5861,29 @@ var TableQL = function (_Component) {
               _react2.default.createElement(
                 'tr',
                 { className: _this2.props.theadtr },
-                _react2.default.createElement(
-                  'th',
-                  { className: _this2.props.theadth },
-                  'Title'
-                ),
-                _react2.default.createElement(
-                  'th',
-                  { className: _this2.props.theadth },
-                  'ID'
-                )
+                dataKeys.map(function (label) {
+                  return _react2.default.createElement(
+                    'th',
+                    { className: _this2.props.theadth, key: label },
+                    _this2.formatLabel(label)
+                  );
+                })
               )
             ),
             _react2.default.createElement(
               'tbody',
               { className: _this2.props.tbody },
-              data.allFilms.films.map(function (_ref2) {
-                var title = _ref2.title,
-                    episodeID = _ref2.episodeID;
+              displayData.map(function (data) {
                 return _react2.default.createElement(
                   'tr',
-                  { key: title, className: _this2.props.tbodytr },
-                  _react2.default.createElement(
-                    'td',
-                    { className: _this2.props.tbodytd },
-                    title
-                  ),
-                  _react2.default.createElement(
-                    'td',
-                    { className: _this2.props.tbodytd },
-                    episodeID
-                  )
+                  { key: JSON.stringify(data), className: _this2.props.tbodytr },
+                  dataKeys.map(function (label) {
+                    return _react2.default.createElement(
+                      'td',
+                      { className: _this2.props.tbodytd, key: data[label] },
+                      data[label]
+                    );
+                  })
                 );
               })
             )
@@ -7775,7 +7862,7 @@ exports = module.exports = __webpack_require__(48)(false);
 
 
 // module
-exports.push([module.i, ".tableql {\n  background-color: transparent;\n  width: 100%;\n  margin: 0.5rem 0;\n  text-align: left;\n  padding: 0 0.4rem\n}\n\ntable {\n  border-collapse: collapse;\n  display: table;\n  border-spacing: 2px;\n  border-width: gray;\n}\n\nthead {\n  display: table-header-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.tableql thead th {\n  vertical-align: bottom;\n  border-bottom: 2px solid #dee2e6;\n}\n\ntr {\n  display: table-row;\n  vertical-align: inherit;\n  border-color: inherit;\n}\n\nth {\n  text-align: inherit;\n  font-weight: bold;\n}\n\ntbody {\n  display: table-row-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.tableql td, .tableql th {\n  padding: .75rem;\n  vertical-align: top;\n  border-top: 1px solid #dee2e6\n}\n\ntd, th {\n  display: table-cell;\n  vertical-align: inherit;\n}\n", ""]);
+exports.push([module.i, ".tableql {\n  background-color: transparent;\n  width: 100%;\n  margin: 0.5rem 0;\n  text-align: left;\n  padding: 0 0.4rem\n}\n\ntable {\n  border-collapse: collapse;\n  display: table;\n  border-spacing: 2px;\n  border-width: gray;\n}\n\nthead {\n  display: table-header-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.tableql thead th {\n  vertical-align: bottom;\n  border-bottom: 2px solid #dee2e6;\n}\n\ntr {\n  display: table-row;\n  vertical-align: inherit;\n  border-color: inherit;\n}\n\nth {\n  text-align: inherit;\n  font-weight: bold;\n}\n\ntbody {\n  display: table-row-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.tableql td, .tableql th {\n  padding: .69rem;\n  vertical-align: top;\n  border-top: 1px solid #dee2e6\n}\n\ntd, th {\n  display: table-cell;\n  vertical-align: inherit;\n}\n", ""]);
 
 // exports
 
