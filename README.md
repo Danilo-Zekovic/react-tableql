@@ -37,4 +37,10 @@ Example:
 ```      
 If no custom styling is passed component will use its own styling.     
 
-       
+
+## Debug Mode
+To enable debug mode pass ```true``` to component props:
+```
+<TableQL query={GET_ALL_FILMS} debug={true} />  
+```     
+This mode will enable logs that are part of the component and are disabled by default.
