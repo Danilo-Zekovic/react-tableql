@@ -6,9 +6,9 @@ display your data.
 If you have any suggestions please let me know or join the project.
 
 ## Dependencies    
-React
-GraphQL
-Apollo  
+React      
+GraphQL       
+Apollo        
 
 ## Queries   
 To pass the GraphQL query to the component, first create graphql-tag as follows:     
