@@ -7,11 +7,11 @@ class TableQL extends Component {
     super(props)
     this.state = {
       debug: this.props.debug || false,
-      labels: [],
     }
     this.getUniqueKey = this.getUniqueKey.bind(this)
     this.traversData = this.traversData.bind(this)
     this.getHeaderLabels = this.getHeaderLabels.bind(this)
+    this.formatLabel = this.formatLabel.bind(this)
 
     this.log = this.log.bind(this)
   }
@@ -45,6 +45,23 @@ class TableQL extends Component {
     return labels
   }
 
+  formatLabel(label) {
+    this.log('Format label called.')
+    // insert spaces inbetween words in camel case
+    let formatedLabel = label
+      .replace(/([a-z\d])([A-Z])/g, '$1' + ' ' + '$2')
+      .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + ' ' + '$2')
+      .replace(/([-,_,~,=,+])/g, ' ') // replace unwanted characters with spaces
+
+    // title case the label (make first letters of words capital)
+    formatedLabel = formatedLabel.split(' ')
+  	for (var i = 0; i < formatedLabel.length; i++) {
+  		formatedLabel[i] = formatedLabel[i].charAt(0).toUpperCase() + formatedLabel[i].slice(1)
+  	}
+
+    return formatedLabel.join(' ')
+  }
+
   // when debug true log messages and data
   log(tag, load = '') {
     if (this.state.debug) {
@@ -76,6 +93,7 @@ class TableQL extends Component {
           this.log('Data to be displayed (array): ', displayData)
           this.log('Data keys: ', dataKeys)
 
+          // TODO probably bad idea not to display empty table
           if (!displayData || displayData.length == 0) {
             this.log('No data found!')
             return <p>`No data found!`</p>
@@ -85,7 +103,7 @@ class TableQL extends Component {
               <thead className={this.props.thead}>
                 <tr className={this.props.theadtr}>
                   {dataKeys.map((label) => (
-                    <th className={this.props.theadth} key={label}>{label}</th>
+                    <th className={this.props.theadth} key={label}>{this.formatLabel(label)}</th>
                   ))}
                 </tr>
               </thead>

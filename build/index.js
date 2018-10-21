@@ -5730,12 +5730,12 @@ var TableQL = function (_Component) {
     var _this = _possibleConstructorReturn(this, (TableQL.__proto__ || Object.getPrototypeOf(TableQL)).call(this, props));
 
     _this.state = {
-      debug: _this.props.debug || false,
-      labels: []
+      debug: _this.props.debug || false
     };
     _this.getUniqueKey = _this.getUniqueKey.bind(_this);
     _this.traversData = _this.traversData.bind(_this);
     _this.getHeaderLabels = _this.getHeaderLabels.bind(_this);
+    _this.formatLabel = _this.formatLabel.bind(_this);
 
     _this.log = _this.log.bind(_this);
     return _this;
@@ -5774,6 +5774,21 @@ var TableQL = function (_Component) {
       }
 
       return labels;
+    }
+  }, {
+    key: 'formatLabel',
+    value: function formatLabel(label) {
+      this.log('Format label called.');
+      // insert spaces inbetween words in camel case
+      var formatedLabel = label.replace(/([a-z\d])([A-Z])/g, '$1' + ' ' + '$2').replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + ' ' + '$2').replace(/([-,_,~,=,+])/g, ' '); // replace unwanted characters with spaces
+
+      // title case the label (make first letters of words capital)
+      formatedLabel = formatedLabel.split(' ');
+      for (var i = 0; i < formatedLabel.length; i++) {
+        formatedLabel[i] = formatedLabel[i].charAt(0).toUpperCase() + formatedLabel[i].slice(1);
+      }
+
+      return formatedLabel.join(' ');
     }
 
     // when debug true log messages and data
@@ -5828,6 +5843,7 @@ var TableQL = function (_Component) {
           _this2.log('Data to be displayed (array): ', displayData);
           _this2.log('Data keys: ', dataKeys);
 
+          // TODO probably bad idea not to display empty table
           if (!displayData || displayData.length == 0) {
             _this2.log('No data found!');
             return _react2.default.createElement(
@@ -5849,7 +5865,7 @@ var TableQL = function (_Component) {
                   return _react2.default.createElement(
                     'th',
                     { className: _this2.props.theadth, key: label },
-                    label
+                    _this2.formatLabel(label)
                   );
                 })
               )
