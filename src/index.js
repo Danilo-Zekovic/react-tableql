@@ -8,16 +8,11 @@ class TableQL extends Component {
     this.state = {
       debug: this.props.debug || false,
     }
-    this.getUniqueKey = this.getUniqueKey.bind(this)
     this.traversData = this.traversData.bind(this)
     this.getHeaderLabels = this.getHeaderLabels.bind(this)
     this.formatLabel = this.formatLabel.bind(this)
 
     this.log = this.log.bind(this)
-  }
-
-  getUniqueKey() {
-    return new Date().getTime()
   }
 
   // travers data to find the array of objects and return it
@@ -74,15 +69,18 @@ class TableQL extends Component {
     return (
       <Query
       query={this.props.query}
+      variables={this.props.variables}
+      skip={this.props.skip}
+      pollInterval={this.props.pollInterval}
       >
-        {({ loading, error, data }) => {
+        {({ loading, error, data, startPolling, stopPolling }) => {
           if (loading) {
             this.log('Loading: ' , loading)
-            return <p>`Loading TableQL...`</p>
+            return <p>{`Loading TableQL...`}</p>
           }
           if (error) {
             this.log('Error: ' , loading)
-            return <p>`Error while loading TableQL`</p>
+            return <p>{ this.props.errorMessage || 'Error while loading TableQL' }</p>
           }
 
           this.log('Data: ', data)

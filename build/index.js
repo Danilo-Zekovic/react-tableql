@@ -5732,7 +5732,6 @@ var TableQL = function (_Component) {
     _this.state = {
       debug: _this.props.debug || false
     };
-    _this.getUniqueKey = _this.getUniqueKey.bind(_this);
     _this.traversData = _this.traversData.bind(_this);
     _this.getHeaderLabels = _this.getHeaderLabels.bind(_this);
     _this.formatLabel = _this.formatLabel.bind(_this);
@@ -5741,15 +5740,10 @@ var TableQL = function (_Component) {
     return _this;
   }
 
+  // travers data to find the array of objects and return it
+
+
   _createClass(TableQL, [{
-    key: 'getUniqueKey',
-    value: function getUniqueKey() {
-      return new Date().getTime();
-    }
-
-    // travers data to find the array of objects and return it
-
-  }, {
     key: 'traversData',
     value: function traversData(data) {
       this.log('Travers data called.');
@@ -5811,19 +5805,23 @@ var TableQL = function (_Component) {
       return _react2.default.createElement(
         _reactApollo.Query,
         {
-          query: this.props.query
+          query: this.props.query,
+          variables: this.props.variables,
+          skip: this.props.skip
         },
         function (_ref) {
           var loading = _ref.loading,
               error = _ref.error,
-              data = _ref.data;
+              data = _ref.data,
+              startPolling = _ref.startPolling,
+              stopPolling = _ref.stopPolling;
 
           if (loading) {
             _this2.log('Loading: ', loading);
             return _react2.default.createElement(
               'p',
               null,
-              '`Loading TableQL...`'
+              'Loading TableQL...'
             );
           }
           if (error) {
@@ -5831,7 +5829,7 @@ var TableQL = function (_Component) {
             return _react2.default.createElement(
               'p',
               null,
-              '`Error while loading TableQL`'
+              _this2.props.errorMessage || 'Error while loading TableQL'
             );
           }
 
