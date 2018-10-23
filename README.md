@@ -3,7 +3,31 @@ React table component that is integrated with Apollo and GraphQL. Simple way to
 display your data.
 
 ### NOTE: Work on this component is in progress. Please stay tuned for future changes upgrades
-If you have any suggestions please let me know or join the project.
+If you have any suggestions please let me know or join the project.   
+
+## Installing and Using react-tableql    
+First install it:    
+```
+npm install react-tableql
+```     
+Then import it into your React component:    
+```
+import TableQL from 'react-tableql'
+```   
+
+Component in which is TableQL used must be wrapped in Apollo Client:   
+```
+ReactDOM.render(
+  (
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  ),
+  document.getElementById('root')
+)
+```   
+For more information how to setup Apollo Client please visit their Get Started page:
+https://www.apollographql.com/docs/react/essentials/get-started.html   
 
 ## Dependencies    
 React      
@@ -23,13 +47,39 @@ const GET_ALL_FILMS = gql`
     }
   }
 `
-```     
-Then pass it as a query prop:
+```       
+Then pass it as a query prop:   
 ```
 <TableQL query={GET_ALL_FILMS} />  
+```  
+
+## Columns   
+
+Prop ```columns``` is very important when one wants to customize the columns.
+It is an array. The simplest usage for it is making the order of the columns, of
+course order can be made in query as well.
+
+Example of order:
 ```
+<TableQL
+  query={GET_ALL_FILMS}
+  columns={['episodeID', 'releaseDate', 'title']} />
+```  
+
+If you want to have a custom header label for the column use property `label`:
+Example of order:
+```
+<TableQL
+  query={GET_ALL_FILMS}
+  columns={[{id:'episodeID', label:'Episode Identification'}, 'releaseDate', 'title']} />
+```    
+When column is represented as object then `id` property is required, so that TableQL
+knows which value to grab.
 
 ## Apollo Options   
+
+Pass data as you would to Apollo client to following props that match Apollo Client
+props:  
 
 variables - pass the query variables as you would to Apollo client   
 skip -    
