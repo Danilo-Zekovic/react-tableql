@@ -29,6 +29,13 @@ Then pass it as a query prop:
 <TableQL query={GET_ALL_FILMS} />  
 ```
 
+## Apollo Options   
+
+variables - pass the query variables as you would to Apollo client   
+skip -    
+pollInterval -      
+
+
 ## Custom Styling   
 To add custom styling to the table create CSS class(es) and pass them as a
 string to the component props, as follows for the next parts of the table:    
