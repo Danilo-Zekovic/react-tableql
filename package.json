@@ -3,8 +3,21 @@
   "version": "0.0.1",
   "description": "React table component that is integrated with Apollo and GraphQL",
   "main": "build/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Danilo-Zekovic/react-tableql"
+  },
+  "keywords": [
+    "react",
+    "table",
+    "react-tableql",
+    "graphql",
+    "apollo",
+    "datagrid"
+  ],
   "peerDependencies": {
-    "react": "^16.5.2"
+    "react": "^15.x.x || ^16.x.x"
   },
   "dependencies": {
     "apollo-boost": "^0.1.16",
