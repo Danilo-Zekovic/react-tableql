@@ -11,6 +11,7 @@ class TableQL extends Component {
     this.traversData = this.traversData.bind(this)
     this.getHeaderLabels = this.getHeaderLabels.bind(this)
     this.formatLabel = this.formatLabel.bind(this)
+    this.getNodeValue = this.getNodeValue.bind(this)
 
     this.log = this.log.bind(this)
   }
@@ -57,6 +58,17 @@ class TableQL extends Component {
     return formatedLabel.join(' ')
   }
 
+  getNodeValue(column, data) {
+    let value = data // will hold the final return value
+    const keys = (column.id) ? column.id.split('.'):column.split('.')
+
+    keys.forEach((key) => {
+      value = value[key]
+    })
+
+    return String(value)
+  }
+
   // when debug true log messages and data
   log(tag, load = '') {
     if (this.state.debug) {
@@ -86,7 +98,7 @@ class TableQL extends Component {
           this.log('Data: ', data)
 
           let displayData = this.traversData(data)
-          let dataKeys = this.getHeaderLabels(displayData[0])
+          let dataKeys = this.props.columns || this.getHeaderLabels(displayData[0])
 
           this.log('Data to be displayed (array): ', displayData)
           this.log('Data keys: ', dataKeys)
@@ -94,22 +106,22 @@ class TableQL extends Component {
           // TODO probably bad idea not to display empty table
           if (!displayData || displayData.length == 0) {
             this.log('No data found!')
-            return <p>`No data found!`</p>
+            return <p>{`No data found!`}</p>
           }
           return (
             <table className={(this.props.tableql) ? this.props.tableql:'tableql'}>
               <thead className={this.props.thead}>
                 <tr className={this.props.theadtr}>
-                  {dataKeys.map((label) => (
-                    <th className={this.props.theadth} key={label}>{this.formatLabel(label)}</th>
+                  {dataKeys.map((column) => (
+                    <th className={this.props.theadth} key={column}>{(typeof column === 'string') ? this.formatLabel(column):column.label}</th>
                   ))}
                 </tr>
               </thead>
               <tbody className={this.props.tbody}>
                 { displayData.map((data) => (
                   <tr key={JSON.stringify(data)} className={this.props.tbodytr}>
-                    {dataKeys.map((label) => (
-                      <td className={this.props.tbodytd} key={data[label]}>{data[label]}</td>
+                    {dataKeys.map((column) => (
+                      <td className={this.props.tbodytd} key={column}>{this.getNodeValue(column, data)}</td>
                     ))}
                   </tr>
                 )) }

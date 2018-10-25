@@ -5735,6 +5735,7 @@ var TableQL = function (_Component) {
     _this.traversData = _this.traversData.bind(_this);
     _this.getHeaderLabels = _this.getHeaderLabels.bind(_this);
     _this.formatLabel = _this.formatLabel.bind(_this);
+    _this.getNodeValue = _this.getNodeValue.bind(_this);
 
     _this.log = _this.log.bind(_this);
     return _this;
@@ -5784,6 +5785,18 @@ var TableQL = function (_Component) {
 
       return formatedLabel.join(' ');
     }
+  }, {
+    key: 'getNodeValue',
+    value: function getNodeValue(column, data) {
+      var value = data; // will hold the final return value
+      var keys = column.id ? column.id.split('.') : column.split('.');
+
+      keys.forEach(function (key) {
+        value = value[key];
+      });
+
+      return String(value);
+    }
 
     // when debug true log messages and data
 
@@ -5807,7 +5820,8 @@ var TableQL = function (_Component) {
         {
           query: this.props.query,
           variables: this.props.variables,
-          skip: this.props.skip
+          skip: this.props.skip,
+          pollInterval: this.props.pollInterval
         },
         function (_ref) {
           var loading = _ref.loading,
@@ -5836,7 +5850,7 @@ var TableQL = function (_Component) {
           _this2.log('Data: ', data);
 
           var displayData = _this2.traversData(data);
-          var dataKeys = _this2.getHeaderLabels(displayData[0]);
+          var dataKeys = _this2.props.columns || _this2.getHeaderLabels(displayData[0]);
 
           _this2.log('Data to be displayed (array): ', displayData);
           _this2.log('Data keys: ', dataKeys);
@@ -5847,7 +5861,7 @@ var TableQL = function (_Component) {
             return _react2.default.createElement(
               'p',
               null,
-              '`No data found!`'
+              'No data found!'
             );
           }
           return _react2.default.createElement(
@@ -5859,11 +5873,11 @@ var TableQL = function (_Component) {
               _react2.default.createElement(
                 'tr',
                 { className: _this2.props.theadtr },
-                dataKeys.map(function (label) {
+                dataKeys.map(function (column) {
                   return _react2.default.createElement(
                     'th',
-                    { className: _this2.props.theadth, key: label },
-                    _this2.formatLabel(label)
+                    { className: _this2.props.theadth, key: column },
+                    typeof column === 'string' ? _this2.formatLabel(column) : column.label
                   );
                 })
               )
@@ -5875,11 +5889,11 @@ var TableQL = function (_Component) {
                 return _react2.default.createElement(
                   'tr',
                   { key: JSON.stringify(data), className: _this2.props.tbodytr },
-                  dataKeys.map(function (label) {
+                  dataKeys.map(function (column) {
                     return _react2.default.createElement(
                       'td',
-                      { className: _this2.props.tbodytd, key: data[label] },
-                      data[label]
+                      { className: _this2.props.tbodytd, key: column },
+                      _this2.getNodeValue(column, data)
                     );
                   })
                 );
