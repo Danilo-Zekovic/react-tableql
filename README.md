@@ -74,7 +74,9 @@ Example of order:
   columns={[{id:'episodeID', label:'Episode Identification'}, 'releaseDate', 'title']} />
 ```    
 When column is represented as object then `id` property is required, so that TableQL
-knows which value to grab.
+knows which value to grab.   
+If data that needs to be displayed is in nested object then `id` should be a chain
+of keys separated with periods, Ex. 'foo.bar.blah'.
 
 ## Apollo Options   
 

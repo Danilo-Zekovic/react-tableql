@@ -11,6 +11,7 @@ class TableQL extends Component {
     this.traversData = this.traversData.bind(this)
     this.getHeaderLabels = this.getHeaderLabels.bind(this)
     this.formatLabel = this.formatLabel.bind(this)
+    this.getNodeValue = this.getNodeValue.bind(this)
 
     this.log = this.log.bind(this)
   }
@@ -55,6 +56,17 @@ class TableQL extends Component {
   	}
 
     return formatedLabel.join(' ')
+  }
+
+  getNodeValue(column, data) {
+    let value = data // will hold the final return value
+    const keys = (column.id) ? column.id.split('.'):column.split('.')
+
+    keys.forEach((key) => {
+      value = value[key]
+    })
+
+    return String(value)
   }
 
   // when debug true log messages and data
@@ -109,7 +121,7 @@ class TableQL extends Component {
                 { displayData.map((data) => (
                   <tr key={JSON.stringify(data)} className={this.props.tbodytr}>
                     {dataKeys.map((column) => (
-                      <td className={this.props.tbodytd} key={column}>{(typeof column === 'string') ? data[column]:data[column.id]}</td>
+                      <td className={this.props.tbodytd} key={column}>{this.getNodeValue(column, data)}</td>
                     ))}
                   </tr>
                 )) }

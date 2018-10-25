@@ -5735,6 +5735,7 @@ var TableQL = function (_Component) {
     _this.traversData = _this.traversData.bind(_this);
     _this.getHeaderLabels = _this.getHeaderLabels.bind(_this);
     _this.formatLabel = _this.formatLabel.bind(_this);
+    _this.getNodeValue = _this.getNodeValue.bind(_this);
 
     _this.log = _this.log.bind(_this);
     return _this;
@@ -5783,6 +5784,18 @@ var TableQL = function (_Component) {
       }
 
       return formatedLabel.join(' ');
+    }
+  }, {
+    key: 'getNodeValue',
+    value: function getNodeValue(column, data) {
+      var value = data; // will hold the final return value
+      var keys = column.id ? column.id.split('.') : column.split('.');
+
+      keys.forEach(function (key) {
+        value = value[key];
+      });
+
+      return String(value);
     }
 
     // when debug true log messages and data
@@ -5880,7 +5893,7 @@ var TableQL = function (_Component) {
                     return _react2.default.createElement(
                       'td',
                       { className: _this2.props.tbodytd, key: column },
-                      typeof column === 'string' ? data[column] : data[column.id]
+                      _this2.getNodeValue(column, data)
                     );
                   })
                 );
