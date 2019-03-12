@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Query } from "react-apollo"
+import { Query } from 'react-apollo'
+import gql from 'graphql-tag'
+
 import './index.css'
 
 class TableQL extends Component {
@@ -12,6 +14,8 @@ class TableQL extends Component {
     this.getHeaderLabels = this.getHeaderLabels.bind(this)
     this.formatLabel = this.formatLabel.bind(this)
     this.getNodeValue = this.getNodeValue.bind(this)
+    this.renderTableRows = this.renderTableRows.bind(this)
+    this.renderTableHeader = this.renderTableHeader.bind(this)
 
     this.log = this.log.bind(this)
   }
@@ -32,7 +36,7 @@ class TableQL extends Component {
     this.log(' Get header labels.')
     let labels = []
     for (let key in data) {
-      // exception to eliminate type holder
+      // exception to eliminate meta fields
       if (!key.includes('__')) {
         labels.push(key)
       }
@@ -41,6 +45,9 @@ class TableQL extends Component {
     return labels
   }
 
+  /*
+    Formating passed string to be title case, where each word starts with a upper case letter
+  */
   formatLabel(label) {
     this.log('Format label called.')
     // insert spaces inbetween words in camel case
@@ -51,9 +58,7 @@ class TableQL extends Component {
 
     // title case the label (make first letters of words capital)
     formatedLabel = formatedLabel.split(' ')
-  	for (var i = 0; i < formatedLabel.length; i++) {
-  		formatedLabel[i] = formatedLabel[i].charAt(0).toUpperCase() + formatedLabel[i].slice(1)
-  	}
+    formatedLabel = formatedLabel.map((label) => label.charAt(0).toUpperCase() + label.slice(1))
 
     return formatedLabel.join(' ')
   }
@@ -69,6 +74,26 @@ class TableQL extends Component {
     return String(value)
   }
 
+  renderTableRows(displayData, dataKeys) {
+    return (
+      displayData.map((data) => (
+        <tr key={JSON.stringify(data)} className={this.props.tbodytr}>
+          {dataKeys.map((column, columnIndex) => (
+            <td className={this.props.tbodytd} key={`${column + columnIndex}`}>{this.getNodeValue(column, data)}</td>
+          ))}
+        </tr>
+      ))
+    )
+  }
+
+  renderTableHeader(dataKeys) {
+    return (
+      dataKeys.map((column, columnIndex) => (
+        <th className={this.props.theadth} key={`${column + columnIndex}`}>{(typeof column === 'string') ? this.formatLabel(column):column.label}</th>
+      ))
+    )
+  }
+
   // when debug true log messages and data
   log(tag, load = '') {
     if (this.state.debug) {
@@ -80,7 +105,7 @@ class TableQL extends Component {
     this.log('Props: ', this.props)
     return (
       <Query
-      query={this.props.query}
+      query={gql(this.props.query)}
       variables={this.props.variables}
       skip={this.props.skip}
       pollInterval={this.props.pollInterval}
@@ -112,19 +137,11 @@ class TableQL extends Component {
             <table className={(this.props.tableql) ? this.props.tableql:'tableql'}>
               <thead className={this.props.thead}>
                 <tr className={this.props.theadtr}>
-                  {dataKeys.map((column) => (
-                    <th className={this.props.theadth} key={column}>{(typeof column === 'string') ? this.formatLabel(column):column.label}</th>
-                  ))}
+                  {this.renderTableHeader(dataKeys)}
                 </tr>
               </thead>
               <tbody className={this.props.tbody}>
-                { displayData.map((data) => (
-                  <tr key={JSON.stringify(data)} className={this.props.tbodytr}>
-                    {dataKeys.map((column) => (
-                      <td className={this.props.tbodytd} key={column}>{this.getNodeValue(column, data)}</td>
-                    ))}
-                  </tr>
-                )) }
+                {this.renderTableRows(displayData, dataKeys)}
               </tbody>
             </table>
           )

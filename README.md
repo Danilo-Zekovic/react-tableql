@@ -29,15 +29,33 @@ ReactDOM.render(
 For more information how to setup Apollo Client please visit their Get Started page:
 https://www.apollographql.com/docs/react/essentials/get-started.html   
 
+#### Development   
+When doing development on the component on local machine follow next steps to make your
+time more productive:    
+Hot-reload     
+```
+npm start
+```      
+
+Linking react-tableql in local:    
+First run
+```
+npm link
+```
+inside the react-tableql directory, then in the project that you wish to test the component
+```
+npm link react-tableql
+```     
+
 ## Dependencies    
 React      
 GraphQL       
 Apollo        
 
 ## Queries   
-To pass the GraphQL query to the component, first create graphql-tag as follows:     
+To pass the GraphQL query to the component, all you have to do is create a string with backticks as follows:     
 ```
-const GET_ALL_FILMS = gql`
+const GET_ALL_FILMS = `
   {
     allFilms(first:7){
       films{
@@ -122,4 +140,9 @@ Passing the custom functions
 Cleanup of node packages      
 Improving the component    
 Better documentation and user manual      
-Tutorials        
+Tutorials       
+PropTypes   
+Special cases (value is an array, ...)    
+Column sorting
+Search
+Tests  
