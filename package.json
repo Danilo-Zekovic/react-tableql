@@ -1,7 +1,7 @@
 {
   "name": "react-tableql",
   "version": "0.0.2",
-  "description": "React table component that is integrated with Apollo and GraphQL",
+  "description": "React table component that is integrated with Apollo Client and GraphQL",
   "main": "build/index.js",
   "license": "MIT",
   "repository": {
