@@ -20,11 +20,11 @@
     "react": "^15.x.x || ^16.x.x"
   },
   "dependencies": {
-    "apollo-boost": "^0.1.16",
-    "graphql": "^14.0.2",
-    "react": "^16.5.2",
-    "react-apollo": "^2.2.4",
-    "webpack": "^2.6.1"
+    "apollo-boost": "^0.1.28",
+    "graphql": "^14.2.0",
+    "react": "^16.8.6",
+    "react-apollo": "^2.5.3",
+    "react-dom": "^16.8.6"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -36,13 +36,15 @@
     "email": "danilozeka93@gmail.com"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.24.1",
-    "babel-loader": "^7.0.0",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.5.1",
-    "css-loader": "^1.0.0",
-    "style-loader": "^0.23.1"
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/preset-env": "^7.4.2",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   }
 }
