@@ -98,212 +98,143 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(53);
 /* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_3__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 
 
 
+var TableQL = function TableQL(props) {
+  // travers data to find the array of objects and return it
+  var traversData = function traversData(data) {
+    log('Travers data called.');
 
-var TableQL =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(TableQL, _Component);
-
-  function TableQL(props) {
-    var _this;
-
-    _classCallCheck(this, TableQL);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(TableQL).call(this, props));
-    _this.state = {
-      debug: _this.props.debug || false
-    };
-    _this.traversData = _this.traversData.bind(_assertThisInitialized(_this));
-    _this.getHeaderLabels = _this.getHeaderLabels.bind(_assertThisInitialized(_this));
-    _this.formatLabel = _this.formatLabel.bind(_assertThisInitialized(_this));
-    _this.getNodeValue = _this.getNodeValue.bind(_assertThisInitialized(_this));
-    _this.renderTableRows = _this.renderTableRows.bind(_assertThisInitialized(_this));
-    _this.renderTableHeader = _this.renderTableHeader.bind(_assertThisInitialized(_this));
-    _this.log = _this.log.bind(_assertThisInitialized(_this));
-    return _this;
-  } // travers data to find the array of objects and return it
-
-
-  _createClass(TableQL, [{
-    key: "traversData",
-    value: function traversData(data) {
-      this.log('Travers data called.');
-
-      for (var key in data) {
-        if (Array.isArray(data)) {
-          return data;
-        } else {
-          return this.traversData(data[key]);
-        }
+    for (var key in data) {
+      if (Array.isArray(data)) {
+        return data;
+      } else {
+        return traversData(data[key]);
       }
     }
-  }, {
-    key: "getHeaderLabels",
-    value: function getHeaderLabels(data) {
-      this.log(' Get header labels.');
-      var labels = [];
+  };
 
-      for (var key in data) {
-        // exception to eliminate meta fields
-        if (!key.includes('__')) {
-          labels.push(key);
-        }
+  var getHeaderLabels = function getHeaderLabels(data) {
+    log(' Get header labels.');
+    var labels = [];
+
+    for (var key in data) {
+      // exception to eliminate meta fields
+      if (!key.includes('__')) {
+        labels.push(key);
       }
-
-      return labels;
     }
-    /*
-      Formating passed string to be title case, where each word starts with a upper case letter
-    */
 
-  }, {
-    key: "formatLabel",
-    value: function formatLabel(label) {
-      this.log('Format label called.'); // insert spaces inbetween words in camel case
+    return labels;
+  };
+  /*
+    Formating passed string to be title case, where each word starts with a upper case letter
+  */
 
-      var formatedLabel = label.replace(/([a-z\d])([A-Z])/g, '$1' + ' ' + '$2').replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + ' ' + '$2').replace(/([-,_,~,=,+])/g, ' '); // replace unwanted characters with spaces
-      // title case the label (make first letters of words capital)
 
-      formatedLabel = formatedLabel.split(' ');
-      formatedLabel = formatedLabel.map(function (label) {
-        return label.charAt(0).toUpperCase() + label.slice(1);
-      });
-      return formatedLabel.join(' ');
-    }
-  }, {
-    key: "getNodeValue",
-    value: function getNodeValue(column, data) {
-      var value = data; // will hold the final return value
+  var formatLabel = function formatLabel(label) {
+    log('Format label called.'); // insert spaces inbetween words in camel case
 
-      var keys = column.id ? column.id.split('.') : column.split('.');
-      keys.forEach(function (key) {
-        value = value[key];
-      });
-      return String(value);
-    }
-  }, {
-    key: "renderTableRows",
-    value: function renderTableRows(displayData, dataKeys) {
-      var _this2 = this;
+    var formatedLabel = label.replace(/([a-z\d])([A-Z])/g, '$1' + ' ' + '$2').replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + ' ' + '$2').replace(/([-,_,~,=,+])/g, ' '); // replace unwanted characters with spaces
+    // title case the label (make first letters of words capital)
 
-      return displayData.map(function (data) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-          key: JSON.stringify(data),
-          className: _this2.props.tbodytr
-        }, dataKeys.map(function (column, columnIndex) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-            className: _this2.props.tbodytd,
-            key: "".concat(column + columnIndex)
-          }, _this2.getNodeValue(column, data));
-        }));
-      });
-    }
-  }, {
-    key: "renderTableHeader",
-    value: function renderTableHeader(dataKeys) {
-      var _this3 = this;
+    formatedLabel = formatedLabel.split(' ');
+    formatedLabel = formatedLabel.map(function (label) {
+      return label.charAt(0).toUpperCase() + label.slice(1);
+    });
+    return formatedLabel.join(' ');
+  };
 
-      return dataKeys.map(function (column, columnIndex) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-          className: _this3.props.theadth,
+  var getNodeValue = function getNodeValue(column, data) {
+    var value = data; // will hold the final return value
+
+    var keys = column.id ? column.id.split('.') : column.split('.');
+    keys.forEach(function (key) {
+      value = value[key];
+    });
+    return String(value);
+  };
+
+  var renderTableRows = function renderTableRows(displayData, dataKeys) {
+    return displayData.map(function (data) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+        key: JSON.stringify(data),
+        className: props.tbodytr
+      }, dataKeys.map(function (column, columnIndex) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+          className: props.tbodytd,
           key: "".concat(column + columnIndex)
-        }, typeof column === 'string' ? _this3.formatLabel(column) : column.label);
-      });
-    } // when debug true log messages and data
+        }, getNodeValue(column, data));
+      }));
+    });
+  };
 
-  }, {
-    key: "log",
-    value: function log(tag) {
-      var load = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  var renderTableHeader = function renderTableHeader(dataKeys) {
+    return dataKeys.map(function (column, columnIndex) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+        className: props.theadth,
+        key: "".concat(column + columnIndex)
+      }, typeof column === 'string' ? formatLabel(column) : column.label);
+    });
+  }; // when debug true log messages and data
 
-      if (this.state.debug) {
-        console.log(tag, load);
-      }
+
+  var log = function log(tag) {
+    var load = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+    if (props.debug) {
+      console.log(tag, load);
     }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this4 = this;
+  };
 
-      this.log('Props: ', this.props);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_1__["Query"], {
-        query: graphql_tag__WEBPACK_IMPORTED_MODULE_2___default()(this.props.query),
-        variables: this.props.variables,
-        skip: this.props.skip,
-        pollInterval: this.props.pollInterval
-      }, function (_ref) {
-        var loading = _ref.loading,
-            error = _ref.error,
-            data = _ref.data,
-            startPolling = _ref.startPolling,
-            stopPolling = _ref.stopPolling;
+  log('Props: ', props);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_1__["Query"], {
+    query: graphql_tag__WEBPACK_IMPORTED_MODULE_2___default()(props.query),
+    variables: props.variables,
+    skip: props.skip,
+    pollInterval: props.pollInterval
+  }, function (_ref) {
+    var loading = _ref.loading,
+        error = _ref.error,
+        data = _ref.data,
+        startPolling = _ref.startPolling,
+        stopPolling = _ref.stopPolling;
 
-        if (loading) {
-          _this4.log('Loading: ', loading);
-
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Loading TableQL...");
-        }
-
-        if (error) {
-          _this4.log('Error: ', loading);
-
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, _this4.props.errorMessage || 'Error while loading TableQL');
-        }
-
-        _this4.log('Data: ', data);
-
-        var displayData = _this4.traversData(data);
-
-        var dataKeys = _this4.props.columns || _this4.getHeaderLabels(displayData[0]);
-
-        _this4.log('Data to be displayed (array): ', displayData);
-
-        _this4.log('Data keys: ', dataKeys); // TODO probably bad idea not to display empty table
-
-
-        if (!displayData || displayData.length == 0) {
-          _this4.log('No data found!');
-
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No data found!");
-        }
-
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-          className: _this4.props.tableql ? _this4.props.tableql : 'tableql'
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", {
-          className: _this4.props.thead
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-          className: _this4.props.theadtr
-        }, _this4.renderTableHeader(dataKeys))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", {
-          className: _this4.props.tbody
-        }, _this4.renderTableRows(displayData, dataKeys)));
-      });
+    if (loading) {
+      log('Loading: ', loading);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Loading TableQL...");
     }
-  }]);
 
-  return TableQL;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+    if (error) {
+      log('Error: ', loading);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.errorMessage || 'Error while loading TableQL');
+    }
+
+    log('Data: ', data);
+    var displayData = traversData(data);
+    var dataKeys = props.columns || getHeaderLabels(displayData[0]);
+    log('Data to be displayed (array): ', displayData);
+    log('Data keys: ', dataKeys); // TODO probably bad idea not to display empty table
+
+    if (!displayData || displayData.length == 0) {
+      log('No data found!');
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No data found!");
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+      className: props.tableql ? props.tableql : 'tableql'
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", {
+      className: props.thead
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+      className: props.theadtr
+    }, renderTableHeader(dataKeys))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", {
+      className: props.tbody
+    }, renderTableRows(displayData, dataKeys)));
+  });
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (TableQL);
 
@@ -339,8 +270,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ts_invariant__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(10);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(11);
-/* harmony import */ var apollo_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(12);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(12);
+/* harmony import */ var apollo_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(13);
 /* harmony import */ var lodash_isequal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(32);
 /* harmony import */ var lodash_isequal__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash_isequal__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(34);
@@ -353,8 +284,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ApolloContext = react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext
-    ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext(undefined)
+var ApolloContext = react__WEBPACK_IMPORTED_MODULE_0__["createContext"]
+    ? Object(react__WEBPACK_IMPORTED_MODULE_0__["createContext"])(undefined)
     : null;
 
 var ApolloConsumer = function (props, legacyContext) {
@@ -575,6 +506,7 @@ var Query = (function (_super) {
                 if (errors && errors.length > 0) {
                     error = new apollo_client__WEBPACK_IMPORTED_MODULE_4__["ApolloError"]({ graphQLErrors: errors });
                 }
+                var fetchPolicy = _this.queryObservable.options.fetchPolicy;
                 Object.assign(data, { loading: loading, networkStatus: networkStatus, error: error });
                 if (loading) {
                     Object.assign(data.data, _this.previousData, currentResult.data);
@@ -584,8 +516,11 @@ var Query = (function (_super) {
                         data: (_this.queryObservable.getLastResult() || {}).data,
                     });
                 }
+                else if (fetchPolicy === 'no-cache' &&
+                    Object.keys(currentResult.data).length === 0) {
+                    data.data = _this.previousData;
+                }
                 else {
-                    var fetchPolicy = _this.queryObservable.options.fetchPolicy;
                     var partialRefetch = _this.props.partialRefetch;
                     if (partialRefetch &&
                         Object.keys(currentResult.data).length === 0 &&
@@ -1090,8 +1025,8 @@ function withQuery(document, operationOptions) {
                     opts.variables = calculateVariablesFromProps(operation, props);
                 }
                 return (Object(react__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Query, Object(tslib__WEBPACK_IMPORTED_MODULE_3__["__assign"])({}, opts, { displayName: graphQLDisplayName, skip: shouldSkip, query: document, warnUnhandledError: true }), function (_a) {
-                    var _ = _a.client, data = _a.data, r = Object(tslib__WEBPACK_IMPORTED_MODULE_3__["__rest"])(_a, ["client", "data"]);
                     var _b, _c;
+                    var _ = _a.client, data = _a.data, r = Object(tslib__WEBPACK_IMPORTED_MODULE_3__["__rest"])(_a, ["client", "data"]);
                     if (operationOptions.withRef) {
                         _this.withRef = true;
                         props = Object.assign({}, props, {
@@ -1207,8 +1142,8 @@ function withSubscription(document, operationOptions) {
                     opts.variables = calculateVariablesFromProps(operation, props);
                 }
                 return (Object(react__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Subscription, Object(tslib__WEBPACK_IMPORTED_MODULE_3__["__assign"])({}, opts, { displayName: graphQLDisplayName, skip: shouldSkip, subscription: document, shouldResubscribe: this.state.resubscribe }), function (_a) {
-                    var data = _a.data, r = Object(tslib__WEBPACK_IMPORTED_MODULE_3__["__rest"])(_a, ["data"]);
                     var _b, _c;
+                    var data = _a.data, r = Object(tslib__WEBPACK_IMPORTED_MODULE_3__["__rest"])(_a, ["data"]);
                     if (operationOptions.withRef) {
                         _this.withRef = true;
                         props = Object.assign({}, props, {
@@ -2510,9 +2445,10 @@ module.exports = checkPropTypes;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InvariantError", function() { return InvariantError; });
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InvariantError", function() { return InvariantError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "invariant", function() { return invariant; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "process", function() { return processStub; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
 
 
 var genericMessage = "Invariant Violation";
@@ -2557,14 +2493,208 @@ function invariant(condition, message) {
     }
     invariant.error = error;
 })(invariant || (invariant = {}));
+// Code that uses ts-invariant with rollup-plugin-invariant may want to
+// import this process stub to avoid errors evaluating process.env.NODE_ENV.
+var processStub = typeof process === "object" ? process : { env: {} };
 var invariant$1 = invariant;
 
 /* harmony default export */ __webpack_exports__["default"] = (invariant$1);
 
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(11)))
 
 /***/ }),
 /* 11 */
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ }),
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2777,7 +2907,7 @@ function __importDefault(mod) {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2788,8 +2918,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isApolloError", function() { return isApolloError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApolloError", function() { return ApolloError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FetchType", function() { return FetchType; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11);
-/* harmony import */ var apollo_utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(13);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
+/* harmony import */ var apollo_utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(14);
 /* harmony import */ var apollo_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(20);
 /* harmony import */ var symbol_observable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(27);
 /* harmony import */ var ts_invariant__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(18);
@@ -5096,7 +5226,7 @@ var ApolloClient = (function () {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5157,7 +5287,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stripSymbols", function() { return stripSymbols; });
 /* harmony import */ var graphql_language_visitor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15);
 /* harmony import */ var ts_invariant__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(18);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(11);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(12);
 /* harmony import */ var fast_json_stable_stringify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(19);
 /* harmony import */ var fast_json_stable_stringify__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(fast_json_stable_stringify__WEBPACK_IMPORTED_MODULE_3__);
 
@@ -6104,197 +6234,7 @@ function stripSymbols(data) {
 
 //# sourceMappingURL=bundle.esm.js.map
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(14)))
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports) {
-
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(11)))
 
 /***/ }),
 /* 15 */
@@ -6909,7 +6849,7 @@ var nodejsCustomInspectSymbol = typeof Symbol === 'function' ? Symbol.for('nodej
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InvariantError", function() { return InvariantError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "invariant", function() { return invariant; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
 
 
 var genericMessage = "Invariant Violation";
@@ -7045,9 +6985,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Observable", function() { return zen_observable_ts__WEBPACK_IMPORTED_MODULE_0__["default"]; });
 
 /* harmony import */ var ts_invariant__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(24);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(11);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(12);
 /* harmony import */ var graphql_language_printer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(25);
-/* harmony import */ var apollo_utilities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(13);
+/* harmony import */ var apollo_utilities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(14);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getOperationName", function() { return apollo_utilities__WEBPACK_IMPORTED_MODULE_4__["getOperationName"]; });
 
 
@@ -7892,7 +7832,7 @@ if (hasSymbols()) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InvariantError", function() { return InvariantError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "invariant", function() { return invariant; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
 
 
 var genericMessage = "Invariant Violation";
@@ -8479,7 +8419,7 @@ function symbolObservablePonyfill(root) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DedupLink", function() { return DedupLink; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
 /* harmony import */ var apollo_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(20);
 
 
