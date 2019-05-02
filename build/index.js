@@ -98,21 +98,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(53);
 /* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(58);
+
 
 
 
 
 
 var TableQL = function TableQL(props) {
-  // travers data to find the array of objects and return it
-  var traversData = function traversData(data) {
-    log('Travers data called.');
+  // traverse data to find the array of objects and return it
+  var traverseData = function traverseData(data) {
+    log('Traverse data called.');
 
     for (var key in data) {
       if (Array.isArray(data)) {
         return data;
       } else {
-        return traversData(data[key]);
+        return traverseData(data[key]);
       }
     }
   };
@@ -136,7 +138,7 @@ var TableQL = function TableQL(props) {
 
 
   var formatLabel = function formatLabel(label) {
-    log('Format label called.'); // insert spaces inbetween words in camel case
+    log('Format label called.'); // insert spaces in between words in camel case
 
     var formatedLabel = label.replace(/([a-z\d])([A-Z])/g, '$1' + ' ' + '$2').replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + ' ' + '$2').replace(/([-,_,~,=,+])/g, ' '); // replace unwanted characters with spaces
     // title case the label (make first letters of words capital)
@@ -214,7 +216,7 @@ var TableQL = function TableQL(props) {
     }
 
     log('Data: ', data);
-    var displayData = traversData(data);
+    var displayData = traverseData(data);
     var dataKeys = props.columns || getHeaderLabels(displayData[0]);
     log('Data to be displayed (array): ', displayData);
     log('Data keys: ', dataKeys); // TODO probably bad idea not to display empty table
@@ -224,7 +226,7 @@ var TableQL = function TableQL(props) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No data found!");
     }
 
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
       className: props.tableql ? props.tableql : 'tableql'
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", {
       className: props.thead
@@ -232,7 +234,14 @@ var TableQL = function TableQL(props) {
       className: props.theadtr
     }, renderTableHeader(dataKeys))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", {
       className: props.tbody
-    }, renderTableRows(displayData, dataKeys)));
+    }, renderTableRows(displayData, dataKeys))), props.pagination && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pagination__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      totalRecords: 100,
+      pageLimit: 4,
+      pageNeighbors: 2,
+      onPageChanged: function onPageChanged() {
+        return console.log('on page change');
+      }
+    }));
   });
 };
 
@@ -17323,7 +17332,7 @@ if(false) {}
 
 exports = module.exports = __webpack_require__(55)(false);
 // Module
-exports.push([module.i, ".tableql {\n  background-color: transparent;\n  width: 100%;\n  margin: 0.5rem 0;\n  text-align: left;\n  padding: 0 0.4rem\n}\n\ntable {\n  border-collapse: collapse;\n  display: table;\n  border-spacing: 2px;\n  border-width: gray;\n}\n\nthead {\n  display: table-header-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.tableql thead th {\n  vertical-align: bottom;\n  border-bottom: 2px solid #dee2e6;\n}\n\ntr {\n  display: table-row;\n  vertical-align: inherit;\n  border-color: inherit;\n}\n\nth {\n  text-align: inherit;\n  font-weight: bold;\n}\n\ntbody {\n  display: table-row-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.tableql td, .tableql th {\n  padding: .69rem;\n  vertical-align: top;\n  border-top: 1px solid #dee2e6\n}\n\ntd, th {\n  display: table-cell;\n  vertical-align: inherit;\n}\n", ""]);
+exports.push([module.i, ".tableql {\n  background-color: transparent;\n  width: 100%;\n  margin: 0.5rem 0;\n  text-align: left;\n  padding: 0 0.4rem;\n}\n\ntable {\n  border-collapse: collapse;\n  display: table;\n  border-spacing: 2px;\n  border-width: gray;\n}\n\nthead {\n  display: table-header-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.tableql thead th {\n  vertical-align: bottom;\n  border-bottom: 2px solid #dee2e6;\n}\n\ntr {\n  display: table-row;\n  vertical-align: inherit;\n  border-color: inherit;\n}\n\nth {\n  text-align: inherit;\n  font-weight: bold;\n}\n\ntbody {\n  display: table-row-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.tableql td,\n.tableql th {\n  padding: 0.69rem;\n  vertical-align: top;\n  border-top: 1px solid #dee2e6;\n}\n\ntd,\nth {\n  display: table-cell;\n  vertical-align: inherit;\n}\n\n/* PAGINATION */\n.PaginationContainer {\n  display: flex;\n  justify-content: center;\n}\n\n.pagination {\n  display: inline-block;\n}\n\n.pagination button {\n  color: black;\n  float: left;\n  padding: 8px 16px;\n  text-decoration: none;\n  border: 1px solid #ddd;\n}\n\n.pagination button.active {\n  background-color: #4caf50;\n  color: white;\n  border: 1px solid #4caf50;\n}\n\n.pagination button:hover:not(.active) {\n  background-color: #ddd;\n}\n\n.pagination button:first-child {\n  border-top-left-radius: 5px;\n  border-bottom-left-radius: 5px;\n}\n\n.pagination button:last-child {\n  border-top-right-radius: 5px;\n  border-bottom-right-radius: 5px;\n}\n\n.pagination button:disabled {\n  background-color: lightgray;\n}\n/* ========== */\n\n/* PAGINATION */\n.PaginationContainer {\n  display: flex;\n  justify-content: center;\n}\n\n.pagination {\n  display: inline-block;\n}\n\n.pagination li {\n  color: black;\n  float: left;\n  padding: 8px 16px;\n  text-decoration: none;\n  border: 1px solid #ddd;\n}\n\n.pagination li.active {\n  background-color: #4caf50;\n  color: white;\n  border: 1px solid #4caf50;\n}\n\n.pagination li:hover:not(.active) {\n  background-color: #ddd;\n}\n\n.pagination li:first-child {\n  border-top-left-radius: 5px;\n  border-bottom-left-radius: 5px;\n}\n\n.pagination li:last-child {\n  border-top-right-radius: 5px;\n  border-bottom-right-radius: 5px;\n}\n\n.pagination li:disabled {\n  background-color: lightgray;\n}\n/* ========== */\n", ""]);
 
 
 
@@ -17916,6 +17925,251 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
+
+/***/ }),
+/* 58 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+ // import PropTypes from 'prop-types'
+
+var LEFT_PAGE = 'LEFT';
+var RIGHT_PAGE = 'RIGHT';
+/**
+ * Helper method for creating a range of numbers
+ * range(1, 5) => [1, 2, 3, 4, 5]
+ */
+
+var range = function range(from, to) {
+  var step = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+  var i = from;
+  var range = [];
+
+  while (i <= to) {
+    range.push(i);
+    i += step;
+  }
+
+  return range;
+};
+
+var Pagination =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Pagination, _Component);
+
+  function Pagination(props) {
+    var _this;
+
+    _classCallCheck(this, Pagination);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Pagination).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_this), "gotoPage", function (page) {
+      var _this$props$onPageCha = _this.props.onPageChanged,
+          onPageChanged = _this$props$onPageCha === void 0 ? function (f) {
+        return f;
+      } : _this$props$onPageCha;
+      var currentPage = Math.max(0, Math.min(page, _this.totalPages));
+      var paginationData = {
+        currentPage: currentPage,
+        totalPages: _this.totalPages,
+        pageLimit: _this.pageLimit,
+        totalRecords: _this.totalRecords
+      };
+
+      _this.setState({
+        currentPage: currentPage
+      }, function () {
+        return onPageChanged(paginationData);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleClick", function (page) {
+      return function (evt) {
+        evt.preventDefault();
+
+        _this.gotoPage(page);
+      };
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleMoveLeft", function (evt) {
+      evt.preventDefault();
+
+      _this.gotoPage(_this.state.currentPage
+      /*- this.pageNeighbors*/
+      - 1);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleMoveRight", function (evt) {
+      evt.preventDefault();
+
+      _this.gotoPage(_this.state.currentPage
+      /*+ this.pageNeighbors*/
+      + 1);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "fetchPageNumbers", function () {
+      var totalPages = _this.totalPages;
+      var currentPage = _this.state.currentPage;
+      var pageNeighbors = _this.pageNeighbors;
+      /**
+       * totalNumbers: the total page numbers to show on the control
+       * totalBlocks: totalNumbers + 2 to cover for the left(<) and right(>) controls
+       */
+
+      var totalNumbers = _this.pageNeighbors * 2 + 3;
+      var totalBlocks = totalNumbers + 2;
+
+      if (totalPages > totalBlocks) {
+        var startPage = Math.max(2, currentPage - pageNeighbors);
+        var endPage = Math.min(totalPages - 1, currentPage + pageNeighbors);
+        var pages = range(startPage, endPage);
+        /**
+         * hasLeftSpill: has hidden pages to the left
+         * hasRightSpill: has hidden pages to the right
+         * spillOffset: number of hidden pages either to the left or to the right
+         */
+
+        var hasLeftSpill = startPage > 2;
+        var hasRightSpill = totalPages - endPage > 1;
+        var spillOffset = totalNumbers - (pages.length + 1);
+
+        switch (true) {
+          // handle: (1) < {5 6} [7] {8 9} (10)
+          case hasLeftSpill && !hasRightSpill:
+            {
+              var extraPages = range(startPage - spillOffset, startPage - 1);
+              pages = [LEFT_PAGE].concat(_toConsumableArray(extraPages), _toConsumableArray(pages));
+              break;
+            }
+          // handle: (1) {2 3} [4] {5 6} > (10)
+
+          case !hasLeftSpill && hasRightSpill:
+            {
+              var _extraPages = range(endPage + 1, endPage + spillOffset);
+
+              pages = [].concat(_toConsumableArray(pages), _toConsumableArray(_extraPages), [RIGHT_PAGE]);
+              break;
+            }
+          // handle: (1) < {4 5} [6] {7 8} > (10)
+
+          case hasLeftSpill && hasRightSpill:
+          default:
+            {
+              pages = [LEFT_PAGE].concat(_toConsumableArray(pages), [RIGHT_PAGE]);
+              break;
+            }
+        }
+
+        return [1].concat(_toConsumableArray(pages), [totalPages]);
+      }
+
+      return range(1, totalPages);
+    });
+
+    var _props$totalRecords = props.totalRecords,
+        totalRecords = _props$totalRecords === void 0 ? null : _props$totalRecords,
+        _props$pageLimit = props.pageLimit,
+        pageLimit = _props$pageLimit === void 0 ? 30 : _props$pageLimit,
+        _props$pageNeighbors = props.pageNeighbors,
+        _pageNeighbors = _props$pageNeighbors === void 0 ? 0 : _props$pageNeighbors;
+
+    _this.pageLimit = typeof pageLimit === 'number' ? pageLimit : 30;
+    _this.totalRecords = typeof totalRecords === 'number' ? totalRecords : 0; // pageNeighbors can be: 0, 1 or 2
+
+    _this.pageNeighbors = typeof _pageNeighbors === 'number' ? Math.max(0, Math.min(_pageNeighbors, 2)) : 0;
+    _this.totalPages = Math.ceil(_this.totalRecords / _this.pageLimit);
+    _this.state = {
+      currentPage: 1
+    };
+    return _this;
+  }
+
+  _createClass(Pagination, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.gotoPage(1);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      if (!this.totalRecords || this.totalPages === 1) return null;
+      var currentPage = this.state.currentPage;
+      var pages = this.fetchPageNumbers();
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "PaginationContainer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pagination"
+      }, pages.map(function (page, index) {
+        if (page === LEFT_PAGE) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            "aria-label": "Previous",
+            onClick: _this2.handleMoveLeft,
+            key: index
+          }, "\xAB");
+        }
+
+        if (page === RIGHT_PAGE) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            onClick: _this2.handleMoveRight,
+            "aria-label": "Next",
+            key: index
+          }, "\xBB");
+        }
+
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          key: index,
+          className: "".concat(currentPage === page ? ' active' : ''),
+          onClick: _this2.handleClick(page)
+        }, page);
+      }))));
+    }
+  }]);
+
+  return Pagination;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]); // Pagination.propTypes = {
+//   totalRecords: PropTypes.number.isRequired,
+//   pageLimit: PropTypes.number,
+//   pageNeighbors: PropTypes.number,
+//   onPageChanged: PropTypes.func
+// };
+
+
+/* harmony default export */ __webpack_exports__["default"] = (Pagination);
 
 /***/ })
 /******/ ]);

@@ -1,18 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import './index.css'
 
+import Pagination from './Pagination'
+
 const TableQL = props => {
-  // travers data to find the array of objects and return it
-  const traversData = data => {
-    log('Travers data called.')
+  // traverse data to find the array of objects and return it
+  const traverseData = data => {
+    log('Traverse data called.')
     for (let key in data) {
       if (Array.isArray(data)) {
         return data
       } else {
-        return traversData(data[key])
+        return traverseData(data[key])
       }
     }
   }
@@ -35,7 +37,7 @@ const TableQL = props => {
   */
   const formatLabel = label => {
     log('Format label called.')
-    // insert spaces inbetween words in camel case
+    // insert spaces in between words in camel case
     let formatedLabel = label
       .replace(/([a-z\d])([A-Z])/g, '$1' + ' ' + '$2')
       .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + ' ' + '$2')
@@ -108,7 +110,7 @@ const TableQL = props => {
 
         log('Data: ', data)
 
-        let displayData = traversData(data)
+        let displayData = traverseData(data)
         let dataKeys = props.columns || getHeaderLabels(displayData[0])
 
         log('Data to be displayed (array): ', displayData)
@@ -120,14 +122,24 @@ const TableQL = props => {
           return <p>{`No data found!`}</p>
         }
         return (
-          <table className={props.tableql ? props.tableql : 'tableql'}>
-            <thead className={props.thead}>
-              <tr className={props.theadtr}>{renderTableHeader(dataKeys)}</tr>
-            </thead>
-            <tbody className={props.tbody}>
-              {renderTableRows(displayData, dataKeys)}
-            </tbody>
-          </table>
+          <>
+            <table className={props.tableql ? props.tableql : 'tableql'}>
+              <thead className={props.thead}>
+                <tr className={props.theadtr}>{renderTableHeader(dataKeys)}</tr>
+              </thead>
+              <tbody className={props.tbody}>
+                {renderTableRows(displayData, dataKeys)}
+              </tbody>
+            </table>
+            {props.pagination && (
+              <Pagination
+                totalRecords={100}
+                pageLimit={4}
+                pageNeighbors={2}
+                onPageChanged={() => console.log('on page change')}
+              />
+            )}
+          </>
         )
       }}
     </Query>

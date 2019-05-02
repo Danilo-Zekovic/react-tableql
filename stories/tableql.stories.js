@@ -77,3 +77,9 @@ storiesOf('TableQL/Custom Columns', module)
       />
     </ApolloWrapper>
   ))
+
+storiesOf('TableQL/Pagination', module).add('basic', () => (
+  <ApolloWrapper>
+    <TableQL query={GET_ALL_FILMS} pagination />
+  </ApolloWrapper>
+))
