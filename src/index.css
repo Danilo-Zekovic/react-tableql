@@ -70,12 +70,13 @@ th {
   padding: 8px 16px;
   text-decoration: none;
   border: 1px solid #ddd;
+  outline: 0;
 }
 
 .pagination button.active {
-  background-color: #4caf50;
+  background-color: gray;
   color: white;
-  border: 1px solid #4caf50;
+  border: 1px solid gray;
 }
 
 .pagination button:hover:not(.active) {
@@ -95,10 +96,11 @@ th {
 .pagination button:disabled {
   background-color: lightgray;
 }
+
 /* ========== */
 
 /* PAGINATION */
-.PaginationContainer {
+/* .PaginationContainer {
   display: flex;
   justify-content: center;
 }
@@ -137,5 +139,5 @@ th {
 
 .pagination li:disabled {
   background-color: lightgray;
-}
+} */
 /* ========== */
