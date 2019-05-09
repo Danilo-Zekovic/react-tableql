@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 
 import TableQL from '../src/index'
 import ApolloWrapper from './ApolloWrapper'
-import { GET_ALL_FILMS } from './queries'
+import { GET_ALL_FILMS, GET_ALL_PEOPLE } from './queries'
 
 // TODO https://github.com/abhiaiyer91/apollo-storybook-decorator
 
@@ -61,7 +61,7 @@ storiesOf('TableQL/Custom Columns', module)
     <ApolloWrapper>
       <TableQL
         query={GET_ALL_FILMS}
-        columns={['releaseDate', 'title', 'episodeId']}
+        columns={['releaseDate', 'title', 'episodeID']}
       />
     </ApolloWrapper>
   ))
@@ -74,6 +74,70 @@ storiesOf('TableQL/Custom Columns', module)
           'releaseDate',
           'title',
         ]}
+      />
+    </ApolloWrapper>
+  ))
+
+storiesOf('TableQL/Pagination', module)
+  .add('basic', () => (
+    <ApolloWrapper>
+      <TableQL query={GET_ALL_PEOPLE} pagination />
+    </ApolloWrapper>
+  ))
+  .add('with debug mode', () => (
+    <ApolloWrapper>
+      <TableQL query={GET_ALL_PEOPLE} pagination debug />
+    </ApolloWrapper>
+  ))
+  .add('with page limit', () => (
+    <ApolloWrapper>
+      <TableQL
+        query={GET_ALL_PEOPLE}
+        pagination={{
+          pageLimit: 5,
+        }}
+      />
+    </ApolloWrapper>
+  ))
+  .add('with page neighbors', () => (
+    <ApolloWrapper>
+      <TableQL
+        query={GET_ALL_PEOPLE}
+        pagination={{
+          pageNeighbors: 2,
+          pageLimit: 5,
+        }}
+      />
+    </ApolloWrapper>
+  ))
+  .add('with current page', () => (
+    <ApolloWrapper>
+      <TableQL
+        query={GET_ALL_PEOPLE}
+        pagination={{
+          currentPage: 3,
+        }}
+      />
+    </ApolloWrapper>
+  ))
+  .add('with on page changed', () => (
+    <ApolloWrapper>
+      <TableQL
+        query={GET_ALL_PEOPLE}
+        pagination={{
+          onPageChanged: (currentPage, totalPages, pageLimit, totalRecords) =>
+            alert(
+              'FUNCTION PASSED AS PROP, RETURNED VALUES: ' +
+                'Current Page > ' +
+                currentPage +
+                ', Total Pages > ' +
+                totalPages +
+                ', Page Limit > ' +
+                pageLimit +
+                ', Total Records > ' +
+                totalRecords,
+            ),
+        }}
       />
     </ApolloWrapper>
   ))
