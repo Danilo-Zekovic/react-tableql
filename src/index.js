@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import './index.css'
 
 import Pagination from './Pagination'
+import Table from './Table'
 
 const TableQL = props => {
+  const [currentPage, setCurrentPage] = useState(
+    props.pagination.currentPage || 1,
+  )
+
   // traverse data to find the array of objects and return it
   const traverseData = data => {
     log('Traverse data called.')
@@ -20,7 +25,7 @@ const TableQL = props => {
   }
 
   const getHeaderLabels = data => {
-    log(' Get header labels.')
+    log('Get header labels.')
     let labels = []
     for (let key in data) {
       // exception to eliminate meta fields
@@ -32,55 +37,26 @@ const TableQL = props => {
     return labels
   }
 
-  /*
-    Formating passed string to be title case, where each word starts with a upper case letter
-  */
-  const formatLabel = label => {
-    log('Format label called.')
-    // insert spaces in between words in camel case
-    let formatedLabel = label
-      .replace(/([a-z\d])([A-Z])/g, '$1' + ' ' + '$2')
-      .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + ' ' + '$2')
-      .replace(/([-,_,~,=,+])/g, ' ') // replace unwanted characters with spaces
-
-    // title case the label (make first letters of words capital)
-    formatedLabel = formatedLabel.split(' ')
-    formatedLabel = formatedLabel.map(
-      label => label.charAt(0).toUpperCase() + label.slice(1),
+  const onPageChanged = ({
+    currentPage,
+    totalPages,
+    pageLimit,
+    totalRecords,
+  }) => {
+    log(
+      `On page changed: Current Page > ${currentPage}, Total Pages > ${totalPages}, Page Limit > ${pageLimit}, Total Records > ${totalRecords}`,
     )
+    setCurrentPage(currentPage)
 
-    return formatedLabel.join(' ')
-  }
-
-  const getNodeValue = (column, data) => {
-    let value = data // will hold the final return value
-    const keys = column.id ? column.id.split('.') : column.split('.')
-
-    keys.forEach(key => {
-      value = value[key]
-    })
-
-    return String(value)
-  }
-
-  const renderTableRows = (displayData, dataKeys) => {
-    return displayData.map(data => (
-      <tr key={JSON.stringify(data)} className={props.tbodytr}>
-        {dataKeys.map((column, columnIndex) => (
-          <td className={props.tbodytd} key={`${column + columnIndex}`}>
-            {getNodeValue(column, data)}
-          </td>
-        ))}
-      </tr>
-    ))
-  }
-
-  const renderTableHeader = dataKeys => {
-    return dataKeys.map((column, columnIndex) => (
-      <th className={props.theadth} key={`${column + columnIndex}`}>
-        {typeof column === 'string' ? formatLabel(column) : column.label}
-      </th>
-    ))
+    // expose the values to parent if onPageChanged is passed as part of pagination
+    if (props.pagination.onPageChanged) {
+      props.pagination.onPageChanged(
+        currentPage,
+        totalPages,
+        pageLimit,
+        totalRecords,
+      )
+    }
   }
 
   // when debug true log messages and data
@@ -96,7 +72,7 @@ const TableQL = props => {
       query={gql(props.query)}
       variables={props.variables}
       skip={props.skip}
-      pollInterval={props.pollInterval}
+      pollInterval={props.pollInterval || 0}
     >
       {({ loading, error, data, startPolling, stopPolling }) => {
         if (loading) {
@@ -111,7 +87,20 @@ const TableQL = props => {
         log('Data: ', data)
 
         let displayData = traverseData(data)
+        let allData = displayData
         let dataKeys = props.columns || getHeaderLabels(displayData[0])
+
+        let pageLimit
+        if (props.pagination) {
+          pageLimit = props.pagination.pageLimit || 10
+          const offset =
+            (currentPage - 1) *
+            (props.pagination.pageLimit
+              ? props.pagination.pageLimit
+              : pageLimit)
+
+          displayData = displayData.slice(offset).slice(0, pageLimit)
+        }
 
         log('Data to be displayed (array): ', displayData)
         log('Data keys: ', dataKeys)
@@ -123,20 +112,16 @@ const TableQL = props => {
         }
         return (
           <>
-            <table className={props.tableql ? props.tableql : 'tableql'}>
-              <thead className={props.thead}>
-                <tr className={props.theadtr}>{renderTableHeader(dataKeys)}</tr>
-              </thead>
-              <tbody className={props.tbody}>
-                {renderTableRows(displayData, dataKeys)}
-              </tbody>
-            </table>
+            <Table displayData={displayData} dataKeys={dataKeys} log={log} />
+
             {props.pagination && (
               <Pagination
-                totalRecords={100}
-                pageLimit={4}
-                pageNeighbors={2}
-                onPageChanged={() => console.log('on page change')}
+                totalRecords={allData.length}
+                pageLimit={pageLimit || 10}
+                pageNeighbors={props.pagination.pageNeighbors}
+                selectedPage={currentPage}
+                onPageChanged={returnedData => onPageChanged(returnedData)}
+                log={log}
               />
             )}
           </>

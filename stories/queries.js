@@ -9,3 +9,18 @@ export const GET_ALL_FILMS = `
   }
 }
 `
+
+export const GET_ALL_PEOPLE = `
+{
+  allPeople {
+    people {
+      name
+      gender
+      birthYear
+      eyeColor
+      hairColor
+      skinColor
+    }
+  }
+}
+`
