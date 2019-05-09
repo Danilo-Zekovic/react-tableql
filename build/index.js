@@ -116,7 +116,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var TableQL = function TableQL(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.pagination.currentPage || 1),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.pagination && props.pagination.currentPage ? props.pagination.currentPage : 1),
       _useState2 = _slicedToArray(_useState, 2),
       currentPage = _useState2[0],
       setCurrentPage = _useState2[1]; // traverse data to find the array of objects and return it

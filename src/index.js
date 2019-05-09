@@ -9,7 +9,9 @@ import Table from './Table'
 
 const TableQL = props => {
   const [currentPage, setCurrentPage] = useState(
-    props.pagination.currentPage || 1,
+    props.pagination && props.pagination.currentPage
+      ? props.pagination.currentPage
+      : 1,
   )
 
   // traverse data to find the array of objects and return it
