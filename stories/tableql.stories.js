@@ -27,7 +27,7 @@ tableQl.add('with debug on', () => (
 ))
 
 storiesOf('TableQL/Custom Styles', module)
-  .add('tableql', () => (
+  .add('table', () => (
     <ApolloWrapper>
       <TableQL query={GET_ALL_FILMS} styles={{ table: 'bg-color' }} />
     </ApolloWrapper>
@@ -37,12 +37,12 @@ storiesOf('TableQL/Custom Styles', module)
       <TableQL query={GET_ALL_FILMS} styles={{ thead: 'bg-color' }} />
     </ApolloWrapper>
   ))
-  .add('theadtr', () => (
+  .add('tr in thead', () => (
     <ApolloWrapper>
       <TableQL query={GET_ALL_FILMS} styles={{ theadTr: 'bg-color' }} />
     </ApolloWrapper>
   ))
-  .add('theadth', () => (
+  .add('th in thead', () => (
     <ApolloWrapper>
       <TableQL query={GET_ALL_FILMS} styles={{ theadTh: 'bg-color' }} />
     </ApolloWrapper>
@@ -52,12 +52,12 @@ storiesOf('TableQL/Custom Styles', module)
       <TableQL query={GET_ALL_FILMS} styles={{ tbody: 'bg-color' }} />
     </ApolloWrapper>
   ))
-  .add('tbodytr', () => (
+  .add('tr in tbody', () => (
     <ApolloWrapper>
       <TableQL query={GET_ALL_FILMS} styles={{ tbodyTr: 'bg-color' }} />
     </ApolloWrapper>
   ))
-  .add('tbodytd', () => (
+  .add('td in tbody', () => (
     <ApolloWrapper>
       <TableQL query={GET_ALL_FILMS} styles={{ tbodyTd: 'bg-color' }} />
     </ApolloWrapper>

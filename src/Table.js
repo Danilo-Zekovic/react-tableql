@@ -59,7 +59,7 @@ const Table = ({ log, styles = {}, displayData, dataKeys }) => {
   }
 
   return (
-    <table className={styles.table ? styles.table : 'TableQL'}>
+    <table className={styles.table || 'TableQL'}>
       <thead className={styles.thead || 'TableQL-thead'}>
         <tr className={styles.theadTr || 'TableQL-tr'}>
           {renderTableHeader(dataKeys)}

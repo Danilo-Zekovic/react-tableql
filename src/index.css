@@ -10,9 +10,6 @@
   border-width: gray;
 }
 
-/* table {
-} */
-
 .TableQL-thead {
   display: table-header-group;
   vertical-align: middle;
@@ -88,5 +85,4 @@
 .PaginationContainer button:disabled {
   background-color: lightgray;
 }
-
 /* ========== */
