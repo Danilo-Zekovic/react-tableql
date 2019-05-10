@@ -1,55 +1,51 @@
-.tableql {
+.TableQL {
   background-color: transparent;
   width: 100%;
   margin: 0.5rem 0;
   text-align: left;
   padding: 0 0.4rem;
-}
-
-table {
   border-collapse: collapse;
   display: table;
   border-spacing: 2px;
   border-width: gray;
 }
 
-thead {
+/* table {
+} */
+
+.TableQL-thead {
   display: table-header-group;
   vertical-align: middle;
   border-color: inherit;
 }
 
-.tableql thead th {
+.TableQL-thead-th {
   vertical-align: bottom;
   border-bottom: 2px solid #dee2e6;
 }
 
-tr {
+.TableQL-tr {
   display: table-row;
   vertical-align: inherit;
   border-color: inherit;
 }
 
-th {
+.TableQL-thead-th {
   text-align: inherit;
   font-weight: bold;
 }
 
-tbody {
+.TableQL-tbody {
   display: table-row-group;
   vertical-align: middle;
   border-color: inherit;
 }
 
-.tableql td,
-.tableql th {
+.TableQL-td,
+.TableQL-thead-th {
   padding: 0.69rem;
   vertical-align: top;
   border-top: 1px solid #dee2e6;
-}
-
-td,
-th {
   display: table-cell;
   vertical-align: inherit;
 }
@@ -60,11 +56,7 @@ th {
   justify-content: center;
 }
 
-.pagination {
-  display: inline-block;
-}
-
-.pagination button {
+.PaginationContainer button {
   color: black;
   float: left;
   padding: 8px 16px;
@@ -73,71 +65,28 @@ th {
   outline: 0;
 }
 
-.pagination button.active {
+.PaginationContainer button.active {
   background-color: gray;
   color: white;
   border: 1px solid gray;
 }
 
-.pagination button:hover:not(.active) {
+.PaginationContainer button:hover:not(.active) {
   background-color: #ddd;
 }
 
-.pagination button:first-child {
+.PaginationContainer button:first-child {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
 
-.pagination button:last-child {
+.PaginationContainer button:last-child {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
-.pagination button:disabled {
+.PaginationContainer button:disabled {
   background-color: lightgray;
 }
 
-/* ========== */
-
-/* PAGINATION */
-/* .PaginationContainer {
-  display: flex;
-  justify-content: center;
-}
-
-.pagination {
-  display: inline-block;
-}
-
-.pagination li {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  border: 1px solid #ddd;
-}
-
-.pagination li.active {
-  background-color: #4caf50;
-  color: white;
-  border: 1px solid #4caf50;
-}
-
-.pagination li:hover:not(.active) {
-  background-color: #ddd;
-}
-
-.pagination li:first-child {
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-}
-
-.pagination li:last-child {
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.pagination li:disabled {
-  background-color: lightgray;
-} */
 /* ========== */

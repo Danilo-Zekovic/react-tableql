@@ -1,6 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
+import './customStories/styles.css'
+
 import TableQL from '../src/index'
 import ApolloWrapper from './ApolloWrapper'
 import { GET_ALL_FILMS, GET_ALL_PEOPLE } from './queries'
@@ -27,32 +29,37 @@ tableQl.add('with debug on', () => (
 storiesOf('TableQL/Custom Styles', module)
   .add('tableql', () => (
     <ApolloWrapper>
-      <TableQL query={GET_ALL_FILMS} />
+      <TableQL query={GET_ALL_FILMS} styles={{ table: 'bg-color' }} />
+    </ApolloWrapper>
+  ))
+  .add('thead', () => (
+    <ApolloWrapper>
+      <TableQL query={GET_ALL_FILMS} styles={{ thead: 'bg-color' }} />
     </ApolloWrapper>
   ))
   .add('theadtr', () => (
     <ApolloWrapper>
-      <TableQL query={GET_ALL_FILMS} />
+      <TableQL query={GET_ALL_FILMS} styles={{ theadTr: 'bg-color' }} />
     </ApolloWrapper>
   ))
   .add('theadth', () => (
     <ApolloWrapper>
-      <TableQL query={GET_ALL_FILMS} />
+      <TableQL query={GET_ALL_FILMS} styles={{ theadTh: 'bg-color' }} />
     </ApolloWrapper>
   ))
   .add('tbody', () => (
     <ApolloWrapper>
-      <TableQL query={GET_ALL_FILMS} />
+      <TableQL query={GET_ALL_FILMS} styles={{ tbody: 'bg-color' }} />
     </ApolloWrapper>
   ))
   .add('tbodytr', () => (
     <ApolloWrapper>
-      <TableQL query={GET_ALL_FILMS} />
+      <TableQL query={GET_ALL_FILMS} styles={{ tbodyTr: 'bg-color' }} />
     </ApolloWrapper>
   ))
   .add('tbodytd', () => (
     <ApolloWrapper>
-      <TableQL query={GET_ALL_FILMS} />
+      <TableQL query={GET_ALL_FILMS} styles={{ tbodyTd: 'bg-color' }} />
     </ApolloWrapper>
   ))
 
@@ -137,6 +144,16 @@ storiesOf('TableQL/Pagination', module)
                 ', Total Records > ' +
                 totalRecords,
             ),
+        }}
+      />
+    </ApolloWrapper>
+  ))
+  .add('with custom style', () => (
+    <ApolloWrapper>
+      <TableQL
+        query={GET_ALL_PEOPLE}
+        pagination={{
+          styles: 'pagination',
         }}
       />
     </ApolloWrapper>

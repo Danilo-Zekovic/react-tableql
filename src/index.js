@@ -114,7 +114,12 @@ const TableQL = props => {
         }
         return (
           <>
-            <Table displayData={displayData} dataKeys={dataKeys} log={log} />
+            <Table
+              displayData={displayData}
+              dataKeys={dataKeys}
+              styles={props.styles}
+              log={log}
+            />
 
             {props.pagination && (
               <Pagination
@@ -123,6 +128,7 @@ const TableQL = props => {
                 pageNeighbors={props.pagination.pageNeighbors}
                 selectedPage={currentPage}
                 onPageChanged={returnedData => onPageChanged(returnedData)}
+                styles={props.pagination.styles}
                 log={log}
               />
             )}
