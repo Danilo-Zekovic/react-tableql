@@ -34,11 +34,14 @@ const Table = ({ log, styles = {}, displayData, dataKeys }) => {
 
   const renderTableRows = (displayData, dataKeys) => {
     return displayData.map(data => (
-      <tr key={JSON.stringify(data)} className={styles.tbodyTr || 'TableQL-tr'}>
+      <tr
+        key={`TableQLRow${JSON.stringify(data)}`}
+        className={styles.tbodyTr || 'TableQL-tr'}
+      >
         {dataKeys.map((column, columnIndex) => (
           <td
             className={styles.tbodyTd || 'TableQL-td'}
-            key={`${column + columnIndex}`}
+            key={`TableQLNode${column + columnIndex}`}
           >
             {getNodeValue(column, data)}
           </td>
@@ -51,7 +54,7 @@ const Table = ({ log, styles = {}, displayData, dataKeys }) => {
     return dataKeys.map((column, columnIndex) => (
       <th
         className={styles.theadTh || 'TableQL-thead-th'}
-        key={`${column + columnIndex}`}
+        key={`TableQLHeader${column + columnIndex}`}
       >
         {typeof column === 'string' ? formatLabel(column) : column.label}
       </th>

@@ -13,15 +13,11 @@ import {
 } from './queries'
 
 /**
- * This story is documentation of all possible options in TableQL
+ * This stories is documentation of all possible options in TableQL
  */
-const tableQl = storiesOf('TableQL', module)
-
-tableQl.add('default', () => <TableQL query={GET_ALL_FILMS} />)
-
-tableQl.add('with debug on', () => (
-  <TableQL query={GET_ALL_FILMS} debug={true} />
-))
+storiesOf('TableQL', module)
+  .add('default', () => <TableQL query={GET_ALL_FILMS} />)
+  .add('with debug on', () => <TableQL query={GET_ALL_FILMS} debug={true} />)
 
 storiesOf('TableQL/Custom Styles', module)
   .add('table', () => (
@@ -124,14 +120,15 @@ storiesOf('TableQL/Pagination', module)
 
 // requires setup of ApolloWrapper
 // here just to test some other stuff as well
-storiesOf('TableQL/SWAPI (only locally)', module)
-  .add('default', () => (
-    <ApolloWrapper>
-      <TableQL query={GET_ALL_FILMS_SWAPI} />
-    </ApolloWrapper>
-  ))
-  .add('pagination', () => (
-    <ApolloWrapper>
-      <TableQL query={GET_ALL_PEOPLE_SWAPI} pagination />
-    </ApolloWrapper>
-  ))
+// TODO uncomment when needed
+// storiesOf('TableQL/SWAPI (only locally)', module)
+//   .add('default', () => (
+//     <ApolloWrapper>
+//       <TableQL query={GET_ALL_FILMS_SWAPI} />
+//     </ApolloWrapper>
+//   ))
+//   .add('pagination', () => (
+//     <ApolloWrapper>
+//       <TableQL query={GET_ALL_PEOPLE_SWAPI} pagination />
+//     </ApolloWrapper>
+//   ))
