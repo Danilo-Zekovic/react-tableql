@@ -5,6 +5,10 @@ import { addReadme } from 'storybook-readme'
 // all the console.logs, errors, warnings, and so on print to the Actions
 import '@storybook/addon-console'
 import { withConsole } from '@storybook/addon-console'
+// mock Apollo, it uses graphql-tools in the background
+import apolloStorybookDecorator from 'apollo-storybook-react'
+import { mocks } from './../stories/mockApollo/mocks'
+import { typeDefs } from './../stories/mockApollo/typeDefs'
 
 // set jsx decorator for all the stories
 addDecorator(jsxDecorator)
@@ -17,6 +21,14 @@ addDecorator(withA11y)
 
 // adds possibility to add docs in markdown format for each story
 addDecorator(addReadme)
+
+// mock Apollo client
+addDecorator(
+  apolloStorybookDecorator({
+    typeDefs,
+    mocks,
+  }),
+)
 
 // setup global parameters
 addParameters({

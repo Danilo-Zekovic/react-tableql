@@ -5,156 +5,133 @@ import './customStories/styles.css'
 
 import TableQL from '../src/index'
 import ApolloWrapper from './ApolloWrapper'
-import { GET_ALL_FILMS, GET_ALL_PEOPLE } from './queries'
-
-// TODO https://github.com/abhiaiyer91/apollo-storybook-decorator
+import {
+  GET_ALL_FILMS,
+  GET_ALL_PEOPLE,
+  GET_ALL_FILMS_SWAPI,
+  GET_ALL_PEOPLE_SWAPI,
+} from './queries'
 
 /**
  * This story is documentation of all possible options in TableQL
  */
 const tableQl = storiesOf('TableQL', module)
 
-tableQl.add('default', () => (
-  <ApolloWrapper>
-    <TableQL query={GET_ALL_FILMS} />
-  </ApolloWrapper>
-))
+tableQl.add('default', () => <TableQL query={GET_ALL_FILMS} />)
 
 tableQl.add('with debug on', () => (
-  <ApolloWrapper>
-    <TableQL query={GET_ALL_FILMS} debug={true} />
-  </ApolloWrapper>
+  <TableQL query={GET_ALL_FILMS} debug={true} />
 ))
 
 storiesOf('TableQL/Custom Styles', module)
   .add('table', () => (
-    <ApolloWrapper>
-      <TableQL query={GET_ALL_FILMS} styles={{ table: 'bg-color' }} />
-    </ApolloWrapper>
+    <TableQL query={GET_ALL_FILMS} styles={{ table: 'bg-color' }} />
   ))
   .add('thead', () => (
-    <ApolloWrapper>
-      <TableQL query={GET_ALL_FILMS} styles={{ thead: 'bg-color' }} />
-    </ApolloWrapper>
+    <TableQL query={GET_ALL_FILMS} styles={{ thead: 'bg-color' }} />
   ))
   .add('tr in thead', () => (
-    <ApolloWrapper>
-      <TableQL query={GET_ALL_FILMS} styles={{ theadTr: 'bg-color' }} />
-    </ApolloWrapper>
+    <TableQL query={GET_ALL_FILMS} styles={{ theadTr: 'bg-color' }} />
   ))
   .add('th in thead', () => (
-    <ApolloWrapper>
-      <TableQL query={GET_ALL_FILMS} styles={{ theadTh: 'bg-color' }} />
-    </ApolloWrapper>
+    <TableQL query={GET_ALL_FILMS} styles={{ theadTh: 'bg-color' }} />
   ))
   .add('tbody', () => (
-    <ApolloWrapper>
-      <TableQL query={GET_ALL_FILMS} styles={{ tbody: 'bg-color' }} />
-    </ApolloWrapper>
+    <TableQL query={GET_ALL_FILMS} styles={{ tbody: 'bg-color' }} />
   ))
   .add('tr in tbody', () => (
-    <ApolloWrapper>
-      <TableQL query={GET_ALL_FILMS} styles={{ tbodyTr: 'bg-color' }} />
-    </ApolloWrapper>
+    <TableQL query={GET_ALL_FILMS} styles={{ tbodyTr: 'bg-color' }} />
   ))
   .add('td in tbody', () => (
-    <ApolloWrapper>
-      <TableQL query={GET_ALL_FILMS} styles={{ tbodyTd: 'bg-color' }} />
-    </ApolloWrapper>
+    <TableQL query={GET_ALL_FILMS} styles={{ tbodyTd: 'bg-color' }} />
   ))
 
 storiesOf('TableQL/Custom Columns', module)
   .add('order', () => (
-    <ApolloWrapper>
-      <TableQL
-        query={GET_ALL_FILMS}
-        columns={['releaseDate', 'title', 'episodeID']}
-      />
-    </ApolloWrapper>
+    <TableQL
+      query={GET_ALL_FILMS}
+      columns={['releaseDate', 'title', 'episodeID']}
+    />
   ))
   .add('header label', () => (
-    <ApolloWrapper>
-      <TableQL
-        query={GET_ALL_FILMS}
-        columns={[
-          { id: 'episodeID', label: 'Episode Identification' },
-          'releaseDate',
-          'title',
-        ]}
-      />
-    </ApolloWrapper>
+    <TableQL
+      query={GET_ALL_FILMS}
+      columns={[
+        { id: 'episodeID', label: 'Episode Identification' },
+        'releaseDate',
+        'title',
+      ]}
+    />
   ))
 
 storiesOf('TableQL/Pagination', module)
-  .add('basic', () => (
-    <ApolloWrapper>
-      <TableQL query={GET_ALL_PEOPLE} pagination />
-    </ApolloWrapper>
-  ))
+  .add('basic', () => <TableQL query={GET_ALL_PEOPLE} pagination />)
   .add('with debug mode', () => (
-    <ApolloWrapper>
-      <TableQL query={GET_ALL_PEOPLE} pagination debug />
-    </ApolloWrapper>
+    <TableQL query={GET_ALL_PEOPLE} pagination debug />
   ))
   .add('with page limit', () => (
-    <ApolloWrapper>
-      <TableQL
-        query={GET_ALL_PEOPLE}
-        pagination={{
-          pageLimit: 5,
-        }}
-      />
-    </ApolloWrapper>
+    <TableQL
+      query={GET_ALL_PEOPLE}
+      pagination={{
+        pageLimit: 5,
+      }}
+    />
   ))
   .add('with page neighbors', () => (
-    <ApolloWrapper>
-      <TableQL
-        query={GET_ALL_PEOPLE}
-        pagination={{
-          pageNeighbors: 2,
-          pageLimit: 5,
-        }}
-      />
-    </ApolloWrapper>
+    <TableQL
+      query={GET_ALL_PEOPLE}
+      pagination={{
+        pageNeighbors: 2,
+        pageLimit: 5,
+      }}
+    />
   ))
   .add('with current page', () => (
-    <ApolloWrapper>
-      <TableQL
-        query={GET_ALL_PEOPLE}
-        pagination={{
-          currentPage: 3,
-        }}
-      />
-    </ApolloWrapper>
+    <TableQL
+      query={GET_ALL_PEOPLE}
+      pagination={{
+        currentPage: 3,
+      }}
+    />
   ))
   .add('with on page changed', () => (
-    <ApolloWrapper>
-      <TableQL
-        query={GET_ALL_PEOPLE}
-        pagination={{
-          onPageChanged: (currentPage, totalPages, pageLimit, totalRecords) =>
-            alert(
-              'FUNCTION PASSED AS PROP, RETURNED VALUES: ' +
-                'Current Page > ' +
-                currentPage +
-                ', Total Pages > ' +
-                totalPages +
-                ', Page Limit > ' +
-                pageLimit +
-                ', Total Records > ' +
-                totalRecords,
-            ),
-        }}
-      />
-    </ApolloWrapper>
+    <TableQL
+      query={GET_ALL_PEOPLE}
+      pagination={{
+        onPageChanged: (currentPage, totalPages, pageLimit, totalRecords) =>
+          alert(
+            'FUNCTION PASSED AS PROP, RETURNED VALUES: ' +
+              'Current Page > ' +
+              currentPage +
+              ', Total Pages > ' +
+              totalPages +
+              ', Page Limit > ' +
+              pageLimit +
+              ', Total Records > ' +
+              totalRecords,
+          ),
+      }}
+    />
   ))
   .add('with custom style', () => (
+    <TableQL
+      query={GET_ALL_PEOPLE}
+      pagination={{
+        styles: 'pagination',
+      }}
+    />
+  ))
+
+// requires setup of ApolloWrapper
+// here just to test some other stuff as well
+storiesOf('TableQL/SWAPI (only locally)', module)
+  .add('default', () => (
     <ApolloWrapper>
-      <TableQL
-        query={GET_ALL_PEOPLE}
-        pagination={{
-          styles: 'pagination',
-        }}
-      />
+      <TableQL query={GET_ALL_FILMS_SWAPI} />
+    </ApolloWrapper>
+  ))
+  .add('pagination', () => (
+    <ApolloWrapper>
+      <TableQL query={GET_ALL_PEOPLE_SWAPI} pagination />
     </ApolloWrapper>
   ))

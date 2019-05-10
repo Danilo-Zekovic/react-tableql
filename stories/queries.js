@@ -1,4 +1,29 @@
+// queries for mocked API
 export const GET_ALL_FILMS = `
+{
+  allFilms {
+    title
+    episodeID
+    releaseDate
+  }
+}
+`
+
+export const GET_ALL_PEOPLE = `
+{
+  allPeople {
+    name
+    gender
+    birthYear
+    eyeColor
+    hairColor
+    skinColor
+  }
+}
+`
+
+// queries for SWAPI
+export const GET_ALL_FILMS_SWAPI = `
 {
   allFilms(first:7){
     films{
@@ -10,7 +35,7 @@ export const GET_ALL_FILMS = `
 }
 `
 
-export const GET_ALL_PEOPLE = `
+export const GET_ALL_PEOPLE_SWAPI = `
 {
   allPeople {
     people {
