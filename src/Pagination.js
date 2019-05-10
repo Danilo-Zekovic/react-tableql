@@ -29,6 +29,7 @@ const Pagination = ({
   onPageChanged,
   log,
   selectedPage = 1,
+  styles,
 }) => {
   const [currentPage, setCurrentPage] = useState(selectedPage)
   const totalPages = Math.ceil(totalRecords / pageLimit)
@@ -143,39 +144,37 @@ const Pagination = ({
 
   return (
     <>
-      <div className="PaginationContainer">
-        <div className="pagination">
-          {pages.map((page, index) => {
-            if (page === LEFT_PAGE) {
-              return (
-                <button
-                  aria-label="Previous"
-                  onClick={handleMoveLeft}
-                  key={index}
-                >
-                  &laquo;
-                </button>
-              )
-            }
-            if (page === RIGHT_PAGE) {
-              return (
-                <button onClick={handleMoveRight} aria-label="Next" key={index}>
-                  &raquo;
-                </button>
-              )
-            }
-
+      <div className={styles ? styles : 'PaginationContainer'}>
+        {pages.map((page, index) => {
+          if (page === LEFT_PAGE) {
             return (
               <button
+                aria-label="Previous"
+                onClick={handleMoveLeft}
                 key={index}
-                className={`${currentPage === page ? ' active' : ''}`}
-                onClick={() => handleClick(page)}
               >
-                {page}
+                &laquo;
               </button>
             )
-          })}
-        </div>
+          }
+          if (page === RIGHT_PAGE) {
+            return (
+              <button onClick={handleMoveRight} aria-label="Next" key={index}>
+                &raquo;
+              </button>
+            )
+          }
+
+          return (
+            <button
+              key={index}
+              className={`${currentPage === page ? ' active' : ''}`}
+              onClick={() => handleClick(page)}
+            >
+              {page}
+            </button>
+          )
+        })}
       </div>
     </>
   )

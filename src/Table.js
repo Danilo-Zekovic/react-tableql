@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Table = props => {
+const Table = ({ log, styles = {}, displayData, dataKeys }) => {
   /*
     Formating passed string to be title case, where each word starts with a upper case letter
   */
   const formatLabel = label => {
-    props.log('Format label called.')
+    log('Format label called.')
     // insert spaces in between words in camel case
     let formatedLabel = label
       .replace(/([a-z\d])([A-Z])/g, '$1' + ' ' + '$2')
@@ -34,9 +34,12 @@ const Table = props => {
 
   const renderTableRows = (displayData, dataKeys) => {
     return displayData.map(data => (
-      <tr key={JSON.stringify(data)} className={props.tbodytr}>
+      <tr key={JSON.stringify(data)} className={styles.tbodyTr || 'TableQL-tr'}>
         {dataKeys.map((column, columnIndex) => (
-          <td className={props.tbodytd} key={`${column + columnIndex}`}>
+          <td
+            className={styles.tbodyTd || 'TableQL-td'}
+            key={`${column + columnIndex}`}
+          >
             {getNodeValue(column, data)}
           </td>
         ))}
@@ -46,19 +49,24 @@ const Table = props => {
 
   const renderTableHeader = dataKeys => {
     return dataKeys.map((column, columnIndex) => (
-      <th className={props.theadth} key={`${column + columnIndex}`}>
+      <th
+        className={styles.theadTh || 'TableQL-thead-th'}
+        key={`${column + columnIndex}`}
+      >
         {typeof column === 'string' ? formatLabel(column) : column.label}
       </th>
     ))
   }
 
   return (
-    <table className={props.tableql ? props.tableql : 'tableql'}>
-      <thead className={props.thead}>
-        <tr className={props.theadtr}>{renderTableHeader(props.dataKeys)}</tr>
+    <table className={styles.table || 'TableQL'}>
+      <thead className={styles.thead || 'TableQL-thead'}>
+        <tr className={styles.theadTr || 'TableQL-tr'}>
+          {renderTableHeader(dataKeys)}
+        </tr>
       </thead>
-      <tbody className={props.tbody}>
-        {renderTableRows(props.displayData, props.dataKeys)}
+      <tbody className={styles.tbody || 'TableQL-tbody'}>
+        {renderTableRows(displayData, dataKeys)}
       </tbody>
     </table>
   )

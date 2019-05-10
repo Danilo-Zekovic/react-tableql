@@ -216,6 +216,7 @@ var TableQL = function TableQL(props) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Table__WEBPACK_IMPORTED_MODULE_5__["default"], {
       displayData: displayData,
       dataKeys: dataKeys,
+      styles: props.styles,
       log: log
     }), props.pagination && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pagination__WEBPACK_IMPORTED_MODULE_4__["default"], {
       totalRecords: allData.length,
@@ -225,6 +226,7 @@ var TableQL = function TableQL(props) {
       onPageChanged: function onPageChanged(returnedData) {
         return _onPageChanged(returnedData);
       },
+      styles: props.pagination.styles,
       log: log
     }));
   });
@@ -17317,7 +17319,7 @@ if(false) {}
 
 exports = module.exports = __webpack_require__(55)(false);
 // Module
-exports.push([module.i, ".tableql {\n  background-color: transparent;\n  width: 100%;\n  margin: 0.5rem 0;\n  text-align: left;\n  padding: 0 0.4rem;\n}\n\ntable {\n  border-collapse: collapse;\n  display: table;\n  border-spacing: 2px;\n  border-width: gray;\n}\n\nthead {\n  display: table-header-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.tableql thead th {\n  vertical-align: bottom;\n  border-bottom: 2px solid #dee2e6;\n}\n\ntr {\n  display: table-row;\n  vertical-align: inherit;\n  border-color: inherit;\n}\n\nth {\n  text-align: inherit;\n  font-weight: bold;\n}\n\ntbody {\n  display: table-row-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.tableql td,\n.tableql th {\n  padding: 0.69rem;\n  vertical-align: top;\n  border-top: 1px solid #dee2e6;\n}\n\ntd,\nth {\n  display: table-cell;\n  vertical-align: inherit;\n}\n\n/* PAGINATION */\n.PaginationContainer {\n  display: flex;\n  justify-content: center;\n}\n\n.pagination {\n  display: inline-block;\n}\n\n.pagination button {\n  color: black;\n  float: left;\n  padding: 8px 16px;\n  text-decoration: none;\n  border: 1px solid #ddd;\n  outline: 0;\n}\n\n.pagination button.active {\n  background-color: gray;\n  color: white;\n  border: 1px solid gray;\n}\n\n.pagination button:hover:not(.active) {\n  background-color: #ddd;\n}\n\n.pagination button:first-child {\n  border-top-left-radius: 5px;\n  border-bottom-left-radius: 5px;\n}\n\n.pagination button:last-child {\n  border-top-right-radius: 5px;\n  border-bottom-right-radius: 5px;\n}\n\n.pagination button:disabled {\n  background-color: lightgray;\n}\n\n/* ========== */\n\n/* PAGINATION */\n/* .PaginationContainer {\n  display: flex;\n  justify-content: center;\n}\n\n.pagination {\n  display: inline-block;\n}\n\n.pagination li {\n  color: black;\n  float: left;\n  padding: 8px 16px;\n  text-decoration: none;\n  border: 1px solid #ddd;\n}\n\n.pagination li.active {\n  background-color: #4caf50;\n  color: white;\n  border: 1px solid #4caf50;\n}\n\n.pagination li:hover:not(.active) {\n  background-color: #ddd;\n}\n\n.pagination li:first-child {\n  border-top-left-radius: 5px;\n  border-bottom-left-radius: 5px;\n}\n\n.pagination li:last-child {\n  border-top-right-radius: 5px;\n  border-bottom-right-radius: 5px;\n}\n\n.pagination li:disabled {\n  background-color: lightgray;\n} */\n/* ========== */\n", ""]);
+exports.push([module.i, ".TableQL {\n  background-color: transparent;\n  width: 100%;\n  margin: 0.5rem 0;\n  text-align: left;\n  padding: 0 0.4rem;\n  border-collapse: collapse;\n  display: table;\n  border-spacing: 2px;\n  border-width: gray;\n}\n\n.TableQL-thead {\n  display: table-header-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.TableQL-thead-th {\n  vertical-align: bottom;\n  border-bottom: 2px solid #dee2e6;\n}\n\n.TableQL-tr {\n  display: table-row;\n  vertical-align: inherit;\n  border-color: inherit;\n}\n\n.TableQL-thead-th {\n  text-align: inherit;\n  font-weight: bold;\n}\n\n.TableQL-tbody {\n  display: table-row-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.TableQL-td,\n.TableQL-thead-th {\n  padding: 0.69rem;\n  vertical-align: top;\n  border-top: 1px solid #dee2e6;\n  display: table-cell;\n  vertical-align: inherit;\n}\n\n/* PAGINATION */\n.PaginationContainer {\n  display: flex;\n  justify-content: center;\n}\n\n.PaginationContainer button {\n  color: black;\n  float: left;\n  padding: 8px 16px;\n  text-decoration: none;\n  border: 1px solid #ddd;\n  outline: 0;\n}\n\n.PaginationContainer button.active {\n  background-color: gray;\n  color: white;\n  border: 1px solid gray;\n}\n\n.PaginationContainer button:hover:not(.active) {\n  background-color: #ddd;\n}\n\n.PaginationContainer button:first-child {\n  border-top-left-radius: 5px;\n  border-bottom-left-radius: 5px;\n}\n\n.PaginationContainer button:last-child {\n  border-top-right-radius: 5px;\n  border-bottom-right-radius: 5px;\n}\n\n.PaginationContainer button:disabled {\n  background-color: lightgray;\n}\n/* ========== */\n", ""]);
 
 
 
@@ -17972,7 +17974,8 @@ var Pagination = function Pagination(_ref) {
       onPageChanged = _ref.onPageChanged,
       log = _ref.log,
       _ref$selectedPage = _ref.selectedPage,
-      selectedPage = _ref$selectedPage === void 0 ? 1 : _ref$selectedPage;
+      selectedPage = _ref$selectedPage === void 0 ? 1 : _ref$selectedPage,
+      styles = _ref.styles;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(selectedPage),
       _useState2 = _slicedToArray(_useState, 2),
@@ -18085,9 +18088,7 @@ var Pagination = function Pagination(_ref) {
   if (!totalRecords || totalPages === 1) return null;
   var pages = fetchPageNumbers();
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "PaginationContainer"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pagination"
+    className: styles ? styles : 'PaginationContainer'
   }, pages.map(function (page, index) {
     if (page === LEFT_PAGE) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -18112,7 +18113,7 @@ var Pagination = function Pagination(_ref) {
         return handleClick(page);
       }
     }, page);
-  }))));
+  })));
 }; // Pagination.propTypes = {
 //   totalRecords: PropTypes.number.isRequired,
 //   pageLimit: PropTypes.number,
@@ -18133,12 +18134,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var Table = function Table(props) {
+var Table = function Table(_ref) {
+  var log = _ref.log,
+      _ref$styles = _ref.styles,
+      styles = _ref$styles === void 0 ? {} : _ref$styles,
+      displayData = _ref.displayData,
+      dataKeys = _ref.dataKeys;
+
   /*
     Formating passed string to be title case, where each word starts with a upper case letter
   */
   var formatLabel = function formatLabel(label) {
-    props.log('Format label called.'); // insert spaces in between words in camel case
+    log('Format label called.'); // insert spaces in between words in camel case
 
     var formatedLabel = label.replace(/([a-z\d])([A-Z])/g, '$1' + ' ' + '$2').replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + ' ' + '$2').replace(/([-,_,~,=,+])/g, ' '); // replace unwanted characters with spaces
     // title case the label (make first letters of words capital)
@@ -18164,10 +18171,10 @@ var Table = function Table(props) {
     return displayData.map(function (data) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
         key: JSON.stringify(data),
-        className: props.tbodytr
+        className: styles.tbodyTr || 'TableQL-tr'
       }, dataKeys.map(function (column, columnIndex) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-          className: props.tbodytd,
+          className: styles.tbodyTd || 'TableQL-td',
           key: "".concat(column + columnIndex)
         }, getNodeValue(column, data));
       }));
@@ -18177,21 +18184,21 @@ var Table = function Table(props) {
   var renderTableHeader = function renderTableHeader(dataKeys) {
     return dataKeys.map(function (column, columnIndex) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        className: props.theadth,
+        className: styles.theadTh || 'TableQL-thead-th',
         key: "".concat(column + columnIndex)
       }, typeof column === 'string' ? formatLabel(column) : column.label);
     });
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-    className: props.tableql ? props.tableql : 'tableql'
+    className: styles.table || 'TableQL'
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", {
-    className: props.thead
+    className: styles.thead || 'TableQL-thead'
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-    className: props.theadtr
-  }, renderTableHeader(props.dataKeys))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", {
-    className: props.tbody
-  }, renderTableRows(props.displayData, props.dataKeys)));
+    className: styles.theadTr || 'TableQL-tr'
+  }, renderTableHeader(dataKeys))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", {
+    className: styles.tbody || 'TableQL-tbody'
+  }, renderTableRows(displayData, dataKeys)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Table);
