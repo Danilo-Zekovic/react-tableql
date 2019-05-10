@@ -82,7 +82,7 @@ const TableQL = props => {
           return <p>{`Loading TableQL...`}</p>
         }
         if (error) {
-          log('Error: ', loading)
+          log('Error: ', error)
           return <p>{props.errorMessage || 'Error while loading TableQL'}</p>
         }
 

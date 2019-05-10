@@ -6,3 +6,9 @@
   background-color: aquamarine;
   border: 3px solid red !important;
 }
+
+code {
+  background-color: lightgray;
+  padding: 5px;
+  border-radius: 3px;
+}
