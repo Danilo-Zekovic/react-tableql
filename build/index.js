@@ -17378,7 +17378,7 @@ if(false) {}
 
 exports = module.exports = __webpack_require__(55)(false);
 // Module
-exports.push([module.i, ".TableQL {\n  background-color: transparent;\n  width: 100%;\n  margin: 0.5rem 0;\n  text-align: left;\n  padding: 0 0.4rem;\n  border-collapse: collapse;\n  display: table;\n  border-spacing: 2px;\n  border-width: gray;\n}\n\n.TableQL-thead {\n  display: table-header-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.TableQL-thead-th {\n  vertical-align: bottom;\n  border-bottom: 2px solid #dee2e6;\n}\n\n.TableQL-tr {\n  display: table-row;\n  vertical-align: inherit;\n  border-color: inherit;\n}\n\n.TableQL-thead-th {\n  text-align: inherit;\n  font-weight: bold;\n}\n\n.TableQL-tbody {\n  display: table-row-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.TableQL-td,\n.TableQL-thead-th {\n  padding: 0.69rem;\n  vertical-align: top;\n  border-top: 1px solid #dee2e6;\n  display: table-cell;\n  vertical-align: inherit;\n}\n\n/* PAGINATION */\n.PaginationContainer {\n  display: flex;\n  justify-content: center;\n}\n\n.PaginationContainer button {\n  color: black;\n  float: left;\n  padding: 8px 16px;\n  text-decoration: none;\n  border: 1px solid #ddd;\n  outline: 0;\n}\n\n.PaginationContainer button.active {\n  background-color: gray;\n  color: white;\n  border: 1px solid gray;\n}\n\n.PaginationContainer button:hover:not(.active) {\n  background-color: #ddd;\n}\n\n.PaginationContainer button:first-child {\n  border-top-left-radius: 5px;\n  border-bottom-left-radius: 5px;\n}\n\n.PaginationContainer button:last-child {\n  border-top-right-radius: 5px;\n  border-bottom-right-radius: 5px;\n}\n\n.PaginationContainer button:disabled {\n  background-color: lightgray;\n}\n/* ========== */\n", ""]);
+exports.push([module.i, ".TableQL {\n  background-color: transparent;\n  width: 100%;\n  margin: 0.5rem 0;\n  text-align: left;\n  padding: 0 0.4rem;\n  border-collapse: collapse;\n  display: table;\n  border-spacing: 2px;\n}\n\n.TableQL-thead {\n  display: table-header-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.TableQL-thead-th {\n  vertical-align: bottom;\n  border-bottom: 2px solid #dee2e6;\n}\n\n.TableQL-tr {\n  display: table-row;\n  vertical-align: inherit;\n  border-color: inherit;\n}\n\ntbody .TableQL-tr:hover {\n  background-color: #f1f3f5;\n}\n\n.TableQL-thead-th {\n  text-align: inherit;\n  font-weight: bold;\n}\n\n.TableQL-tbody {\n  display: table-row-group;\n  vertical-align: middle;\n  border-color: inherit;\n}\n\n.TableQL-td,\n.TableQL-thead-th {\n  padding: 0.69rem;\n  vertical-align: top;\n  border-top: 1px solid #dee2e6;\n  display: table-cell;\n  vertical-align: inherit;\n}\n\n/* PAGINATION */\n.PaginationContainer {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n}\n\n.PaginationContainer button {\n  color: black;\n  float: left;\n  padding: 8px 16px;\n  text-decoration: none;\n  border: 1px solid #ddd;\n  outline: 0;\n}\n\n.PaginationContainer button.active {\n  background-color: gray;\n  color: white;\n  border: 1px solid gray;\n}\n\n.PaginationContainer button:hover:not(.active) {\n  background-color: #ddd;\n}\n\n.PaginationContainer button:first-child {\n  border-top-left-radius: 5px;\n  border-bottom-left-radius: 5px;\n}\n\n.PaginationContainer button:last-child {\n  border-top-right-radius: 5px;\n  border-bottom-right-radius: 5px;\n}\n\n.PaginationContainer button:disabled {\n  background-color: lightgray;\n}\n/* ========== */\n", ""]);
 
 
 
@@ -18184,7 +18184,7 @@ Pagination.propTypes = {
   onPageChanged: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
   selectedPage: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
   log: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
-  styles: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object
+  styles: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
 };
 /* harmony default export */ __webpack_exports__["default"] = (Pagination);
 
@@ -18225,13 +18225,23 @@ var Table = function Table(_ref) {
   };
 
   var getNodeValue = function getNodeValue(column, data) {
+    // if customColumn then ignore search for data
+    if (column.customColumn) {
+      // component is required when customColumn true
+      if (!column.component) {
+        throw new Error('When customColumn true, component property must be provided!');
+      }
+
+      return column.component(data);
+    }
+
     var value = data; // will hold the final return value
 
     var keys = column.id ? column.id.split('.') : column.split('.');
     keys.forEach(function (key) {
       value = value[key];
     });
-    return String(value);
+    return column.component ? column.component(value) : String(value);
   };
 
   var renderTableRows = function renderTableRows(displayData, dataKeys) {
@@ -18241,7 +18251,7 @@ var Table = function Table(_ref) {
         className: styles.tbodyTr || 'TableQL-tr'
       }, dataKeys.map(function (column, columnIndex) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-          className: styles.tbodyTd || 'TableQL-td',
+          className: "\n            ".concat(styles.tbodyTd || 'TableQL-td', "\n            ").concat(getNodeStyle(column, data), "\n            "),
           key: "TableQLNode".concat(column + columnIndex)
         }, getNodeValue(column, data));
       }));
@@ -18251,10 +18261,20 @@ var Table = function Table(_ref) {
   var renderTableHeader = function renderTableHeader(dataKeys) {
     return dataKeys.map(function (column, columnIndex) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        className: styles.theadTh || 'TableQL-thead-th',
+        className: "\n          ".concat(styles.theadTh || 'TableQL-thead-th', "\n          ").concat(column.headerStyle, "\n          "),
         key: "TableQLHeader".concat(column + columnIndex)
-      }, typeof column === 'string' ? formatLabel(column) : column.label);
+      }, typeof column === 'string' ? formatLabel(column) : column.label || formatLabel(column.id));
     });
+  };
+
+  var getNodeStyle = function getNodeStyle(_ref2, data) {
+    var nodeStyle = _ref2.nodeStyle;
+
+    if (!nodeStyle) {
+      return;
+    }
+
+    return nodeStyle && typeof nodeStyle == 'string' ? nodeStyle : nodeStyle(data);
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {

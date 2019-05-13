@@ -23,6 +23,17 @@ const Table = ({ log, styles = {}, displayData, dataKeys }) => {
   }
 
   const getNodeValue = (column, data) => {
+    // if customColumn then ignore search for data
+    if (column.customColumn) {
+      // component is required when customColumn true
+      if (!column.component) {
+        throw new Error(
+          'When customColumn true, component property must be provided!',
+        )
+      }
+      return column.component(data)
+    }
+
     let value = data // will hold the final return value
     const keys = column.id ? column.id.split('.') : column.split('.')
 
@@ -30,7 +41,7 @@ const Table = ({ log, styles = {}, displayData, dataKeys }) => {
       value = value[key]
     })
 
-    return String(value)
+    return column.component ? column.component(value) : String(value)
   }
 
   const renderTableRows = (displayData, dataKeys) => {
@@ -41,7 +52,10 @@ const Table = ({ log, styles = {}, displayData, dataKeys }) => {
       >
         {dataKeys.map((column, columnIndex) => (
           <td
-            className={styles.tbodyTd || 'TableQL-td'}
+            className={`
+            ${styles.tbodyTd || 'TableQL-td'}
+            ${getNodeStyle(column, data)}
+            `}
             key={`TableQLNode${column + columnIndex}`}
           >
             {getNodeValue(column, data)}
@@ -54,12 +68,27 @@ const Table = ({ log, styles = {}, displayData, dataKeys }) => {
   const renderTableHeader = dataKeys => {
     return dataKeys.map((column, columnIndex) => (
       <th
-        className={styles.theadTh || 'TableQL-thead-th'}
+        className={`
+          ${styles.theadTh || 'TableQL-thead-th'}
+          ${column.headerStyle}
+          `}
         key={`TableQLHeader${column + columnIndex}`}
       >
-        {typeof column === 'string' ? formatLabel(column) : column.label}
+        {typeof column === 'string'
+          ? formatLabel(column)
+          : column.label || formatLabel(column.id)}
       </th>
     ))
+  }
+
+  const getNodeStyle = ({ nodeStyle }, data) => {
+    if (!nodeStyle) {
+      return
+    }
+
+    return nodeStyle && typeof nodeStyle == 'string'
+      ? nodeStyle
+      : nodeStyle(data)
   }
 
   return (

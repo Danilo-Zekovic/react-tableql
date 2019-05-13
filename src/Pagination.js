@@ -187,7 +187,7 @@ Pagination.propTypes = {
   onPageChanged: PropTypes.func,
   selectedPage: PropTypes.number,
   log: PropTypes.func,
-  styles: PropTypes.object,
+  styles: PropTypes.string,
 }
 
 export default Pagination
