@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 const LEFT_PAGE = 'LEFT'
 const RIGHT_PAGE = 'RIGHT'
@@ -180,11 +180,14 @@ const Pagination = ({
   )
 }
 
-// Pagination.propTypes = {
-//   totalRecords: PropTypes.number.isRequired,
-//   pageLimit: PropTypes.number,
-//   pageNeighbors: PropTypes.number,
-//   onPageChanged: PropTypes.func
-// };
+Pagination.propTypes = {
+  totalRecords: PropTypes.number.isRequired,
+  pageLimit: PropTypes.number,
+  pageNeighbors: PropTypes.number,
+  onPageChanged: PropTypes.func,
+  selectedPage: PropTypes.number,
+  log: PropTypes.func,
+  styles: PropTypes.object,
+}
 
 export default Pagination

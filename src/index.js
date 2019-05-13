@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
+import PropTypes from 'prop-types'
 
 import './index.css'
 
@@ -138,4 +139,31 @@ const TableQL = props => {
     </Query>
   )
 }
+
+TableQL.propTypes = {
+  query: PropTypes.string.isRequired,
+  columns: PropTypes.array,
+  pagination: PropTypes.oneOfType([
+    PropTypes.shape({
+      pageLimit: PropTypes.number,
+      pageNeighbors: PropTypes.number,
+      currentPage: PropTypes.number,
+      onPageChanged: PropTypes.func,
+      styles: PropTypes.object,
+    }),
+    PropTypes.bool,
+  ]),
+  errorMessage: PropTypes.string,
+  styles: PropTypes.shape({
+    table: PropTypes.string,
+    thead: PropTypes.string,
+    theadTr: PropTypes.string,
+    theadTh: PropTypes.string,
+    tbody: PropTypes.string,
+    tbodyTr: PropTypes.string,
+    tbodyTd: PropTypes.string,
+  }),
+  debug: PropTypes.bool,
+}
+
 export default TableQL

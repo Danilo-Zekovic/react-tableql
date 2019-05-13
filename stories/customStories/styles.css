@@ -12,3 +12,9 @@ code {
   padding: 5px;
   border-radius: 3px;
 }
+
+a {
+  cursor: pointer;
+  color: #7751d1;
+  text-decoration: none;
+}

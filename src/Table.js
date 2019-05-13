@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Table = ({ log, styles = {}, displayData, dataKeys }) => {
   /*
@@ -73,6 +74,21 @@ const Table = ({ log, styles = {}, displayData, dataKeys }) => {
       </tbody>
     </table>
   )
+}
+
+Table.propTypes = {
+  log: PropTypes.func,
+  styles: PropTypes.shape({
+    table: PropTypes.string,
+    thead: PropTypes.string,
+    theadTr: PropTypes.string,
+    theadTh: PropTypes.string,
+    tbody: PropTypes.string,
+    tbodyTr: PropTypes.string,
+    tbodyTd: PropTypes.string,
+  }),
+  displayData: PropTypes.array.isRequired,
+  dataKeys: PropTypes.array.isRequired,
 }
 
 export default Table

@@ -96,10 +96,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(37);
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(53);
-/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(58);
-/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(59);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(53);
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(58);
+/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(59);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -107,6 +109,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -213,12 +216,12 @@ var TableQL = function TableQL(props) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No data found!");
     }
 
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Table__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Table__WEBPACK_IMPORTED_MODULE_6__["default"], {
       displayData: displayData,
       dataKeys: dataKeys,
       styles: props.styles,
       log: log
-    }), props.pagination && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pagination__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }), props.pagination && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pagination__WEBPACK_IMPORTED_MODULE_5__["default"], {
       totalRecords: allData.length,
       pageLimit: pageLimit || 10,
       pageNeighbors: props.pagination.pageNeighbors,
@@ -232,6 +235,28 @@ var TableQL = function TableQL(props) {
   });
 };
 
+TableQL.propTypes = {
+  query: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string.isRequired,
+  columns: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.array,
+  pagination: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.shape({
+    pageLimit: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.number,
+    pageNeighbors: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.number,
+    currentPage: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.number,
+    onPageChanged: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.func,
+    styles: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object
+  }), prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool]),
+  errorMessage: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+  styles: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.shape({
+    table: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+    thead: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+    theadTr: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+    theadTh: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+    tbody: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+    tbodyTr: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+    tbodyTd: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string
+  }),
+  debug: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool
+};
 /* harmony default export */ __webpack_exports__["default"] = (TableQL);
 
 /***/ }),
@@ -17955,6 +17980,8 @@ module.exports = function (css) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -17975,7 +18002,7 @@ function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = 
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
- // import PropTypes from 'prop-types'
+
 
 var LEFT_PAGE = 'LEFT';
 var RIGHT_PAGE = 'RIGHT';
@@ -18148,14 +18175,17 @@ var Pagination = function Pagination(_ref) {
       }
     }, page);
   })));
-}; // Pagination.propTypes = {
-//   totalRecords: PropTypes.number.isRequired,
-//   pageLimit: PropTypes.number,
-//   pageNeighbors: PropTypes.number,
-//   onPageChanged: PropTypes.func
-// };
+};
 
-
+Pagination.propTypes = {
+  totalRecords: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number.isRequired,
+  pageLimit: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+  pageNeighbors: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+  onPageChanged: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  selectedPage: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+  log: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  styles: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object
+};
 /* harmony default export */ __webpack_exports__["default"] = (Pagination);
 
 /***/ }),
@@ -18166,6 +18196,9 @@ var Pagination = function Pagination(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
 
 
 var Table = function Table(_ref) {
@@ -18235,6 +18268,20 @@ var Table = function Table(_ref) {
   }, renderTableRows(displayData, dataKeys)));
 };
 
+Table.propTypes = {
+  log: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  styles: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    table: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    thead: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    theadTr: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    theadTh: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    tbody: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    tbodyTr: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    tbodyTd: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+  }),
+  displayData: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array.isRequired,
+  dataKeys: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array.isRequired
+};
 /* harmony default export */ __webpack_exports__["default"] = (Table);
 
 /***/ })
