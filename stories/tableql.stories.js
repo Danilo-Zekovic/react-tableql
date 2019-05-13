@@ -12,6 +12,14 @@ import {
   GET_ALL_PEOPLE_SWAPI,
 } from './queries'
 
+const Button = ({ data }) => {
+  return (
+    <button onClick={() => console.log('Returned data: ', data)}>
+      Click Me
+    </button>
+  )
+}
+
 /**
  * This stories is documentation of all possible options in TableQL
  */
@@ -56,6 +64,88 @@ storiesOf('TableQL/Custom Columns', module)
         { id: 'episodeID', label: 'Episode Identification' },
         'releaseDate',
         'title',
+      ]}
+    />
+  ))
+  .add('component', () => (
+    <TableQL
+      query={GET_ALL_FILMS}
+      columns={[
+        'episodeID',
+        'releaseDate',
+        {
+          id: 'title',
+          component: data => data.toUpperCase(),
+        },
+      ]}
+    />
+  ))
+  .add('react component', () => (
+    <TableQL
+      query={GET_ALL_FILMS}
+      columns={[
+        'episodeID',
+        'releaseDate',
+        {
+          id: 'title',
+          component: data => <Button data={data} />,
+        },
+      ]}
+    />
+  ))
+  .add('custom column', () => (
+    <TableQL
+      query={GET_ALL_FILMS}
+      columns={[
+        'episodeID',
+        'releaseDate',
+        'title',
+        {
+          id: 'actions',
+          component: props => <Button data={props} />,
+          customColumn: true,
+        },
+      ]}
+    />
+  ))
+  .add('style header', () => (
+    <TableQL
+      query={GET_ALL_FILMS}
+      columns={[
+        'episodeID',
+        'releaseDate',
+        {
+          id: 'title',
+          headerStyle: 'bg-color',
+        },
+      ]}
+    />
+  ))
+  .add('style nodes', () => (
+    <TableQL
+      query={GET_ALL_FILMS}
+      columns={[
+        'episodeID',
+        'releaseDate',
+        {
+          id: 'title',
+          nodeStyle: 'bg-color',
+        },
+      ]}
+    />
+  ))
+  .add('selective styling', () => (
+    <TableQL
+      query={GET_ALL_FILMS}
+      columns={[
+        'episodeID',
+        'releaseDate',
+        {
+          id: 'title',
+          nodeStyle: data => {
+            if (data.title.length <= 19) return 'bg-color'
+          },
+        },
       ]}
     />
   ))

@@ -7,7 +7,6 @@
   border-collapse: collapse;
   display: table;
   border-spacing: 2px;
-  border-width: gray;
 }
 
 .TableQL-thead {
@@ -25,6 +24,10 @@
   display: table-row;
   vertical-align: inherit;
   border-color: inherit;
+}
+
+tbody .TableQL-tr:hover {
+  background-color: #f1f3f5;
 }
 
 .TableQL-thead-th {
@@ -49,7 +52,11 @@
 
 /* PAGINATION */
 .PaginationContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 

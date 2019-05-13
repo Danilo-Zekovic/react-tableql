@@ -1,7 +1,8 @@
 # react-tableql
 
-React table component that is integrated with Apollo and GraphQL. Simple way to
-display your data.
+---
+
+React table component that is harnessing the power of Apollo and GraphQL. Simple way to display your data.
 
 Official React TableQL Storybook: https://danilo-zekovic.github.io/react-tableql/
 
@@ -38,6 +39,24 @@ ReactDOM.render(
 
 For more information how to setup Apollo Client please visit their Get Started page:
 https://www.apollographql.com/docs/react/essentials/get-started.html
+
+## Scripts
+
+##### start
+
+Builds the component with hot reload. Usefull when developing and working on the TableQL.
+
+##### build
+
+Builds production ready component using Webpack.
+
+##### format
+
+Formats the code using Prettier by rules defined in Pretier config file.
+
+##### format:check
+
+Checks if all the formating follows the defined rules.
 
 ## Development/Contribution
 
@@ -90,7 +109,11 @@ React
 GraphQL
 Apollo
 
-## Queries
+---
+
+# Props
+
+## Query
 
 To pass the GraphQL query to the component, all you have to do is create a string with backticks as follows:
 
@@ -113,6 +136,8 @@ Then pass it as a query prop:
 <TableQL query={GET_ALL_FILMS} />
 ```
 
+This is the minimum requirement for TableQL to work, rest of the props are used to modify and customize it.
+
 ## Columns
 
 Prop `columns` is very important when one wants to customize the columns.
@@ -127,19 +152,148 @@ Example of order:
   columns={['episodeID', 'releaseDate', 'title']} />
 ```
 
-If you want to have a custom header label for the column use property `label`:
-Example of order:
+> NOTE: Order can be controlled in GraphQL query, which is recommended way as that improves performance because TableQL does not have to do extra work.
+
+#### Columns Object Options
+
+When column is represented as object then `id` property is required, so that TableQL knows which value to grab.
+If data that needs to be displayed is in nested object then `id` should be a chain of keys separated with periods, Ex. 'foo.bar.blah'.
+
+##### label
+
+If you want to have a custom header label for the column use property `label`.
+
+Example:
 
 ```
 <TableQL
   query={GET_ALL_FILMS}
-  columns={[{id:'episodeID', label:'Episode Identification'}, 'releaseDate', 'title']} />
+  columns={[
+    {id:'episodeID', label:'Episode Identification'},
+    'releaseDate',
+    'title'
+    ]} />
 ```
 
-When column is represented as object then `id` property is required, so that TableQL
-knows which value to grab.
-If data that needs to be displayed is in nested object then `id` should be a chain
-of keys separated with periods, Ex. 'foo.bar.blah'.
+##### format
+
+To format values to our own liking use `format` prop, and pass it a function that receives one parameter value to be modified, and returns the value to be displayed.
+
+Example:
+
+```
+<TableQL
+  query={GET_ALL_FILMS}
+  columns={[
+    {id:'episodeID', format: data => data.toUpperCase()},
+    'releaseDate',
+    'title'
+    ]} />
+```
+
+##### component
+
+To add your own column formating or custom React component use `component` parameter. Pass it a function that returns a React component or a function that formats the data. TableQL will return data that would have been displayed
+
+Example with React component:
+
+```
+<TableQL
+  query={GET_ALL_FILMS}
+  columns={[
+    'episodeID',
+    'releaseDate',
+    { id: 'title', component: data => <Button data={data} />}
+    ]} />
+```
+
+Example with formating function:
+
+```
+<TableQL
+  query={GET_ALL_FILMS}
+  columns={[
+    'episodeID',
+    'releaseDate',
+    { id: 'title', component: data => data.toUpperCase() />}
+    ]} />
+```
+
+##### customColumn
+
+This property indicates if the column is addition to existing columns that are extracted from returned data or if it is something that developer is adding to rest of the table. Pass `true` to `customColumn` property, and provide component so that TableQL knows how to render it. When `customColumn: true` then all the data for the given row is returned to component, which makes it easy to do manipulations such as edit, delete...
+
+Example:
+
+```
+<TableQL
+  query={GET_ALL_FILMS}
+  columns={[
+    'episodeID',
+    'releaseDate',
+    'title',
+    {
+      id: 'actions',
+      component: props => <Button data={props} />,
+      customColumn: true,
+    },
+  ]} />
+```
+
+##### headerStyle
+
+Pass a class name to `headerStyle` to only style the header of that one column.
+
+Example:
+
+```
+<TableQL
+  query={GET_ALL_FILMS}
+  columns={[
+    'episodeID',
+    'releaseDate',
+    {
+      id: 'title',
+      headerStyle: 'custom-style-class'
+    },
+  ]} />
+```
+
+##### nodeStyle
+
+To style nodes/cells of the column you can pass a string or function. When string passed then class name is passed. When function is passed TableQl will return the data for that row as parameters. It can be used for conditional styling such as make the color green when true.
+
+Example with string:
+
+```
+<TableQL
+  query={GET_ALL_FILMS}
+  columns={[
+    'episodeID',
+    'releaseDate',
+    {
+      id: 'title',
+      nodeStyle: 'custom-style-class',
+    },
+  ]} />
+```
+
+Example with function:
+
+```
+<TableQL
+  query={GET_ALL_FILMS}
+  columns={[
+    'episodeID',
+    'releaseDate',
+    {
+      id: 'title',
+      nodeStyle: data => {
+        if (data.title.length <= 10) return 'custom-style-class'
+      },
+    },
+  ]} />
+```
 
 ## Pagination
 
@@ -213,7 +367,6 @@ This mode will enable logs that are part of the component and are disabled by de
 ### TODO
 
 Other Apollo configuration options
-Pagination
 More options for customization
 Subscribe for live updates
 Passing the custom functions
@@ -221,7 +374,6 @@ Cleanup of node packages
 Improving the component
 Better documentation and user manual
 Tutorials
-PropTypes
 Special cases (value is an array, ...)
 Column sorting
 Search
