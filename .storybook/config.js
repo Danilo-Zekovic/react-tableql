@@ -36,6 +36,9 @@ addParameters({
     name: 'React TableQL',
     showPanel: true,
     hierarchySeparator: /\/|\./,
+    // theme: {
+    // brandImage: square, // path to image
+    // },
   },
 })
 

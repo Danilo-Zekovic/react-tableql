@@ -3,7 +3,9 @@
 React table component that is integrated with Apollo and GraphQL. Simple way to
 display your data.
 
-### NOTE: Work on this component is in progress. Please stay tuned for future changes upgrades
+Official React TableQL Storybook: https://danilo-zekovic.github.io/react-tableql/
+
+### NOTE: Work on this component is in progress. Please stay tuned for future changes, upgrades
 
 If you have any suggestions please let me know or join the project.
 
@@ -37,7 +39,7 @@ ReactDOM.render(
 For more information how to setup Apollo Client please visit their Get Started page:
 https://www.apollographql.com/docs/react/essentials/get-started.html
 
-#### Development
+## Development/Contribution
 
 When doing development on the component on local machine follow next steps to make your time more productive:
 
@@ -224,3 +226,5 @@ Special cases (value is an array, ...)
 Column sorting
 Search
 Tests
+
+For more about TableQL visit **[Official React TableQL Storybook](https://danilo-zekovic.github.io/react-tableql/)** and explore all the options, and see some demo examples.
