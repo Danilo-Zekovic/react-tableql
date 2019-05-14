@@ -42,11 +42,15 @@ https://www.apollographql.com/docs/react/essentials/get-started.html
 
 ##### start
 
-Builds the component with hot reload. Usefull when developing and working on the TableQL.
+Builds the component with hot reload. Useful when developing and working on the TableQL.
 
 ##### build
 
 Builds production ready component using Webpack.
+
+##### build:all
+
+Builds production ready component using Webpack, and builds static Storybook files that will be used on GitHub pages as [online TableQL documentation and component demonstration](https://danilo-zekovic.github.io/react-tableql/).
 
 ##### format
 
@@ -55,6 +59,14 @@ Formats the code using Prettier by rules defined in Pretier config file.
 ##### format:check
 
 Checks if all the formating follows the defined rules.
+
+##### storybook
+
+Starts Storybook locally on port 6006, http://localhost:6006/
+
+##### build-storybook
+
+Builds static Storybook files that will be used on GitHub pages as [online TableQL documentation and component demonstration](https://danilo-zekovic.github.io/react-tableql/).
 
 ## Development/Contribution
 
@@ -134,7 +146,7 @@ Then pass it as a query prop:
 <TableQL query={GET_ALL_FILMS} />
 ```
 
-This is the minimum requirement for TableQL to work, rest of the props are used to modify and customize it.
+This is the minimum requirement for TableQL to work, rest of the props are used to modify and customize it. query is mandatory prop, all other are optional.
 
 ## columns
 
