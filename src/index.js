@@ -80,7 +80,7 @@ const TableQL = props => {
       {({ loading, error, data, startPolling, stopPolling }) => {
         if (loading) {
           log('Loading: ', loading)
-          return <p>{`Loading TableQL...`}</p>
+          return <p>{`Loading...`}</p>
         }
         if (error) {
           log('Error: ', error)
@@ -120,6 +120,7 @@ const TableQL = props => {
               dataKeys={dataKeys}
               styles={props.styles}
               log={log}
+              onRowClick={props.onRowClick}
             />
 
             {props.pagination && (
@@ -163,6 +164,7 @@ TableQL.propTypes = {
     tbodyTr: PropTypes.string,
     tbodyTd: PropTypes.string,
   }),
+  onRowClick: PropTypes.func,
   debug: PropTypes.bool,
 }
 

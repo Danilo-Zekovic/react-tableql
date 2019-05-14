@@ -26,6 +26,20 @@ const Button = ({ data }) => {
 storiesOf('TableQL', module)
   .add('default', () => <TableQL query={GET_ALL_FILMS} />)
   .add('with debug on', () => <TableQL query={GET_ALL_FILMS} debug={true} />)
+  .add('click row', () => (
+    <TableQL
+      query={GET_ALL_FILMS}
+      onRowClick={data =>
+        alert(
+          `Row has been clicked. This is data that has been returned: Title - ${
+            data.title
+          }, Episode ID - ${data.episodeID}, Release Date - ${
+            data.releaseDate
+          }`,
+        )
+      }
+    />
+  ))
 
 storiesOf('TableQL/Custom Styles', module)
   .add('table', () => (

@@ -14,7 +14,8 @@
     "react-tableql",
     "graphql",
     "apollo",
-    "datagrid"
+    "datagrid",
+    "client"
   ],
   "peerDependencies": {
     "react": ">= 16.8.0 < 17",
