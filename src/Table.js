@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Table = ({ log, styles = {}, displayData, dataKeys }) => {
+const Table = ({ log, styles = {}, displayData, dataKeys, onRowClick }) => {
   /*
     Formating passed string to be title case, where each word starts with a upper case letter
   */
@@ -49,6 +49,7 @@ const Table = ({ log, styles = {}, displayData, dataKeys }) => {
       <tr
         key={`TableQLRow${JSON.stringify(data)}`}
         className={styles.tbodyTr || 'TableQL-tr'}
+        onClick={() => onRowClick(data)}
       >
         {dataKeys.map((column, columnIndex) => (
           <td
@@ -118,6 +119,7 @@ Table.propTypes = {
   }),
   displayData: PropTypes.array.isRequired,
   dataKeys: PropTypes.array.isRequired,
+  onRowClick: PropTypes.func,
 }
 
 export default Table

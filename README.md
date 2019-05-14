@@ -1,7 +1,5 @@
 # react-tableql
 
----
-
 React table component that is harnessing the power of Apollo and GraphQL. Simple way to display your data.
 
 Official React TableQL Storybook: https://danilo-zekovic.github.io/react-tableql/
@@ -105,15 +103,15 @@ My advice would be to set up your editor to format code on save.
 
 ## Dependencies
 
-React
-GraphQL
-Apollo
+- React
+- GraphQL
+- Apollo
 
 ---
 
 # Props
 
-## Query
+## query
 
 To pass the GraphQL query to the component, all you have to do is create a string with backticks as follows:
 
@@ -138,7 +136,7 @@ Then pass it as a query prop:
 
 This is the minimum requirement for TableQL to work, rest of the props are used to modify and customize it.
 
-## Columns
+## columns
 
 Prop `columns` is very important when one wants to customize the columns.
 It is an array. The simplest usage for it is making the order of the columns, of
@@ -295,7 +293,7 @@ Example with function:
   ]} />
 ```
 
-## Pagination
+## pagination
 
 To enable pagination pass `true` or config object to `pagination` prop. When `true` passed then component will use its default values to configure the pagination.
 Config object has the following properties:
@@ -313,6 +311,35 @@ Config object has the following properties:
 **pageNeighbors** - sets the number of pages that will be shown around current page in pagination component
 **currentPage** - sets the initial page
 **onPageChanged** - returns the data about pagination
+
+Example:
+
+```
+<TableQL
+  query={GET_ALL_FILMS}
+  pagination={
+    {
+      pageLimit: 5,
+      pageNeighbors: 2,
+      currentPage: 1,
+      onPageChanged: (currentPage, totalPages, pageLimit, totalRecords) => {
+        alert(currentPage)
+      }
+    }
+  } />
+```
+
+## onRowClick
+
+If something is needed to happen when the row is clicked then pass a function to `onRowClick` prop. TableQl will return data that is found in the row that was clicked.
+
+Example:
+
+```
+<TableQL
+  query={GET_ALL_FILMS}
+  onRowClick={data => alert(data)} />
+```
 
 ## Apollo Options
 
@@ -366,17 +393,18 @@ This mode will enable logs that are part of the component and are disabled by de
 
 ### TODO
 
-Other Apollo configuration options
-More options for customization
-Subscribe for live updates
-Passing the custom functions
-Cleanup of node packages
-Improving the component
-Better documentation and user manual
-Tutorials
-Special cases (value is an array, ...)
-Column sorting
-Search
-Tests
+- Other Apollo configuration options
+- More options for customization
+- Subscribe for live updates
+- Passing the custom functions
+- Cleanup of node packages
+- Improving the component
+- Better documentation and user manual
+- Tutorials
+- Special cases (value is an array, ...)
+- Column sorting
+- Search
+- Tests
+- Continues integration
 
 For more about TableQL visit **[Official React TableQL Storybook](https://danilo-zekovic.github.io/react-tableql/)** and explore all the options, and see some demo examples.
