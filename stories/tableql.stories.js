@@ -40,6 +40,16 @@ storiesOf('TableQL', module)
       }
     />
   ))
+  .add('error boundary', () => (
+    <TableQL
+      query={GET_ALL_FILMS}
+      columns={[
+        'title',
+        'episodeID',
+        { id: 'releaseDate', customColumn: true },
+      ]}
+    />
+  ))
 
 storiesOf('TableQL/Custom Styles', module)
   .add('table', () => (
