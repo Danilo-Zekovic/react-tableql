@@ -49,7 +49,7 @@ const Table = ({ log, styles = {}, displayData, dataKeys, onRowClick }) => {
       <tr
         key={`TableQLRow${JSON.stringify(data)}`}
         className={styles.tbodyTr || 'TableQL-tr'}
-        onClick={() => onRowClick(data)}
+        onClick={onRowClick ? () => onRowClick(data) : null}
       >
         {dataKeys.map((column, columnIndex) => (
           <td
@@ -84,7 +84,7 @@ const Table = ({ log, styles = {}, displayData, dataKeys, onRowClick }) => {
 
   const getNodeStyle = ({ nodeStyle }, data) => {
     if (!nodeStyle) {
-      return
+      return ''
     }
 
     return nodeStyle && typeof nodeStyle == 'string'
