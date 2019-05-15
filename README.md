@@ -363,23 +363,28 @@ Example:
 ## Apollo Options
 
 Pass data as you would to Apollo client to following props that match Apollo Client
-props:
+props. For details on Apollo Query Props please visit official documentation https://www.apollographql.com/docs/react/essentials/queries
 
 | Apollo Query Props              | Tested             | Works              |
 | ------------------------------- | ------------------ | ------------------ |
 | **query**                       | :white_check_mark: | :white_check_mark: |
 | **variable**                    | :white_check_mark: | :white_check_mark: |
-| **pollInterval**                | :x:                | :interrobang:      |
-| **notifyOnNetworkStatusChange** | :x:                | :interrobang:      |
+| **pollInterval**                | :white_check_mark: | :white_check_mark: |
+| **notifyOnNetworkStatusChange** | :white_check_mark: | :white_check_mark: |
 | **fetchPolicy**                 | :x:                | :interrobang:      |
 | **errorPolicy**                 | :x:                | :interrobang:      |
 | **ssr**                         | :x:                | :interrobang:      |
-| **displayName**                 | :x:                | :interrobang:      |
-| **skip**                        | :x:                | :interrobang:      |
-| **onCompleted**                 | :x:                | :interrobang:      |
-| **onError**                     | :x:                | :interrobang:      |
+| **displayName**                 | :white_check_mark: | :interrobang:      |
+| **skip**                        | :white_check_mark: | :white_check_mark: |
+| **onCompleted**                 | :white_check_mark: | :white_check_mark: |
+| **onError**                     | :white_check_mark: | :white_check_mark: |
 | **context**                     | :x:                | :interrobang:      |
 | **partialRefetch**              | :x:                | :interrobang:      |
+| **children**                    | :white_check_mark: | :x:                |
+
+> NOTE: children is already taken care of by TableQL. There is no option to pass children to TableQL yet.
+
+Those props that are not yet tested can also be passed to the TableQL just as you would to Query component from Apollo Client.
 
 Example:
 
@@ -430,10 +435,6 @@ This mode will enable logs that are part of the component and are disabled by de
 
 ### TODO
 
-- Other Apollo configuration options
-- More options for customization
-- Subscribe for live updates
-- Passing the custom functions
 - Cleanup of node packages
 - Improving the component
 - Better documentation and user manual
@@ -443,5 +444,9 @@ This mode will enable logs that are part of the component and are disabled by de
 - Search
 - Tests
 - Continues integration
+- Sticky header
+- Resizable header/columns
+- Filters
+- Subscribe for live updates
 
 For more about TableQL visit **[Official React TableQL Storybook](https://danilo-zekovic.github.io/react-tableql/)** and explore all the options, and see some demo examples.

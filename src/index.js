@@ -9,11 +9,19 @@ import Pagination from './Pagination'
 import Table from './Table'
 import ErrorBoundary from './ErrorBaundary'
 
-const TableQL = props => {
+const TableQL = ({
+  pagination,
+  debug,
+  query,
+  variables,
+  errorMessage,
+  columns,
+  styles,
+  onRowClick,
+  ...props
+}) => {
   const [currentPage, setCurrentPage] = useState(
-    props.pagination && props.pagination.currentPage
-      ? props.pagination.currentPage
-      : 1,
+    pagination && pagination.currentPage ? pagination.currentPage : 1,
   )
 
   // traverse data to find the array of objects and return it
@@ -53,31 +61,36 @@ const TableQL = props => {
     setCurrentPage(currentPage)
 
     // expose the values to parent if onPageChanged is passed as part of pagination
-    if (props.pagination.onPageChanged) {
-      props.pagination.onPageChanged(
-        currentPage,
-        totalPages,
-        pageLimit,
-        totalRecords,
-      )
+    if (pagination.onPageChanged) {
+      pagination.onPageChanged(currentPage, totalPages, pageLimit, totalRecords)
     }
   }
 
   // when debug true log messages and data
   const log = (tag, load = '') => {
-    if (props.debug) {
+    if (debug) {
       console.log(tag, load)
     }
   }
 
-  log('Props: ', props)
+  log('Props: ', {
+    pagination,
+    debug,
+    query,
+    variables,
+    errorMessage,
+    columns,
+    styles,
+    onRowClick,
+    ...props,
+  })
+
   return (
     <ErrorBoundary>
       <Query
-        query={gql(props.query)}
-        variables={props.variables}
-        skip={props.skip}
-        pollInterval={props.pollInterval || 0}
+        query={typeof query === 'string' ? gql(query) : query}
+        variables={variables}
+        {...props} // skip, pollInterval, notifyOnNetworkStatusChange, onError, onCompleted
       >
         {({ loading, error, data, startPolling, stopPolling }) => {
           if (loading) {
@@ -86,23 +99,25 @@ const TableQL = props => {
           }
           if (error) {
             log('Error: ', error)
-            return <p>{props.errorMessage || 'Error while loading TableQL'}</p>
+            return <p>{errorMessage || 'Error while loading TableQL'}</p>
           }
 
           log('Data: ', data)
 
+          if (!data) {
+            return <p>{`No data found!`}</p>
+          }
+
           let displayData = traverseData(data)
           let allData = displayData
-          let dataKeys = props.columns || getHeaderLabels(displayData[0])
+          let dataKeys = columns || getHeaderLabels(displayData[0])
 
           let pageLimit
-          if (props.pagination) {
-            pageLimit = props.pagination.pageLimit || 10
+          if (pagination) {
+            pageLimit = pagination.pageLimit || 10
             const offset =
               (currentPage - 1) *
-              (props.pagination.pageLimit
-                ? props.pagination.pageLimit
-                : pageLimit)
+              (pagination.pageLimit ? pagination.pageLimit : pageLimit)
 
             displayData = displayData.slice(offset).slice(0, pageLimit)
           }
@@ -111,7 +126,7 @@ const TableQL = props => {
           log('Data keys: ', dataKeys)
 
           // TODO probably bad idea not to display empty table
-          if (!displayData || displayData.length == 0) {
+          if (!displayData || displayData.length == 0 || !data) {
             log('No data found!')
             return <p>{`No data found!`}</p>
           }
@@ -120,19 +135,19 @@ const TableQL = props => {
               <Table
                 displayData={displayData}
                 dataKeys={dataKeys}
-                styles={props.styles}
+                styles={styles}
                 log={log}
-                onRowClick={props.onRowClick}
+                onRowClick={onRowClick}
               />
 
-              {props.pagination && (
+              {pagination && (
                 <Pagination
                   totalRecords={allData.length}
                   pageLimit={pageLimit || 10}
-                  pageNeighbors={props.pagination.pageNeighbors}
+                  pageNeighbors={pagination.pageNeighbors}
                   selectedPage={currentPage}
                   onPageChanged={returnedData => onPageChanged(returnedData)}
-                  styles={props.pagination.styles}
+                  styles={pagination.styles}
                   log={log}
                 />
               )}
@@ -145,7 +160,10 @@ const TableQL = props => {
 }
 
 TableQL.propTypes = {
-  query: PropTypes.string.isRequired,
+  query: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.object.isRequired,
+  ]),
   columns: PropTypes.array,
   pagination: PropTypes.oneOfType([
     PropTypes.shape({
@@ -153,7 +171,7 @@ TableQL.propTypes = {
       pageNeighbors: PropTypes.number,
       currentPage: PropTypes.number,
       onPageChanged: PropTypes.func,
-      styles: PropTypes.object,
+      styles: PropTypes.string,
     }),
     PropTypes.bool,
   ]),

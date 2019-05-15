@@ -22,6 +22,21 @@ export const GET_ALL_PEOPLE = `
 }
 `
 
+export const FALSE = `
+{
+  allFilms {
+    title {
+      foo
+      bar
+    }
+    episodeID
+    releaseDate
+    foo
+    bar
+  }
+}
+`
+
 // queries for SWAPI
 export const GET_ALL_FILMS_SWAPI = `
 {
