@@ -1,5 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
+import gql from 'graphql-tag'
 
 import './customStories/styles.css'
 
@@ -10,6 +11,7 @@ import {
   GET_ALL_PEOPLE,
   GET_ALL_FILMS_SWAPI,
   GET_ALL_PEOPLE_SWAPI,
+  FALSE,
 } from './queries'
 
 const Button = ({ data }) => {
@@ -25,7 +27,12 @@ const Button = ({ data }) => {
  */
 storiesOf('TableQL', module)
   .add('default', () => <TableQL query={GET_ALL_FILMS} />)
-  .add('with debug on', () => <TableQL query={GET_ALL_FILMS} debug={true} />)
+  .add('with debug on', () => (
+    <>
+      <h3>Check Actions bellow!</h3>
+      <TableQL query={GET_ALL_FILMS} debug={true} />
+    </>
+  ))
   .add('click row', () => (
     <TableQL
       query={GET_ALL_FILMS}
