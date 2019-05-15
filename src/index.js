@@ -7,6 +7,7 @@ import './index.css'
 
 import Pagination from './Pagination'
 import Table from './Table'
+import ErrorBoundary from './ErrorBaundary'
 
 const TableQL = props => {
   const [currentPage, setCurrentPage] = useState(
@@ -71,73 +72,75 @@ const TableQL = props => {
 
   log('Props: ', props)
   return (
-    <Query
-      query={gql(props.query)}
-      variables={props.variables}
-      skip={props.skip}
-      pollInterval={props.pollInterval || 0}
-    >
-      {({ loading, error, data, startPolling, stopPolling }) => {
-        if (loading) {
-          log('Loading: ', loading)
-          return <p>{`Loading...`}</p>
-        }
-        if (error) {
-          log('Error: ', error)
-          return <p>{props.errorMessage || 'Error while loading TableQL'}</p>
-        }
+    <ErrorBoundary>
+      <Query
+        query={gql(props.query)}
+        variables={props.variables}
+        skip={props.skip}
+        pollInterval={props.pollInterval || 0}
+      >
+        {({ loading, error, data, startPolling, stopPolling }) => {
+          if (loading) {
+            log('Loading: ', loading)
+            return <p>{`Loading...`}</p>
+          }
+          if (error) {
+            log('Error: ', error)
+            return <p>{props.errorMessage || 'Error while loading TableQL'}</p>
+          }
 
-        log('Data: ', data)
+          log('Data: ', data)
 
-        let displayData = traverseData(data)
-        let allData = displayData
-        let dataKeys = props.columns || getHeaderLabels(displayData[0])
+          let displayData = traverseData(data)
+          let allData = displayData
+          let dataKeys = props.columns || getHeaderLabels(displayData[0])
 
-        let pageLimit
-        if (props.pagination) {
-          pageLimit = props.pagination.pageLimit || 10
-          const offset =
-            (currentPage - 1) *
-            (props.pagination.pageLimit
-              ? props.pagination.pageLimit
-              : pageLimit)
+          let pageLimit
+          if (props.pagination) {
+            pageLimit = props.pagination.pageLimit || 10
+            const offset =
+              (currentPage - 1) *
+              (props.pagination.pageLimit
+                ? props.pagination.pageLimit
+                : pageLimit)
 
-          displayData = displayData.slice(offset).slice(0, pageLimit)
-        }
+            displayData = displayData.slice(offset).slice(0, pageLimit)
+          }
 
-        log('Data to be displayed (array): ', displayData)
-        log('Data keys: ', dataKeys)
+          log('Data to be displayed (array): ', displayData)
+          log('Data keys: ', dataKeys)
 
-        // TODO probably bad idea not to display empty table
-        if (!displayData || displayData.length == 0) {
-          log('No data found!')
-          return <p>{`No data found!`}</p>
-        }
-        return (
-          <>
-            <Table
-              displayData={displayData}
-              dataKeys={dataKeys}
-              styles={props.styles}
-              log={log}
-              onRowClick={props.onRowClick}
-            />
-
-            {props.pagination && (
-              <Pagination
-                totalRecords={allData.length}
-                pageLimit={pageLimit || 10}
-                pageNeighbors={props.pagination.pageNeighbors}
-                selectedPage={currentPage}
-                onPageChanged={returnedData => onPageChanged(returnedData)}
-                styles={props.pagination.styles}
+          // TODO probably bad idea not to display empty table
+          if (!displayData || displayData.length == 0) {
+            log('No data found!')
+            return <p>{`No data found!`}</p>
+          }
+          return (
+            <>
+              <Table
+                displayData={displayData}
+                dataKeys={dataKeys}
+                styles={props.styles}
                 log={log}
+                onRowClick={props.onRowClick}
               />
-            )}
-          </>
-        )
-      }}
-    </Query>
+
+              {props.pagination && (
+                <Pagination
+                  totalRecords={allData.length}
+                  pageLimit={pageLimit || 10}
+                  pageNeighbors={props.pagination.pageNeighbors}
+                  selectedPage={currentPage}
+                  onPageChanged={returnedData => onPageChanged(returnedData)}
+                  styles={props.pagination.styles}
+                  log={log}
+                />
+              )}
+            </>
+          )
+        }}
+      </Query>
+    </ErrorBoundary>
   )
 }
 

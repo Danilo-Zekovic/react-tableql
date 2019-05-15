@@ -123,6 +123,18 @@ My advice would be to set up your editor to format code on save.
 
 # Props
 
+| Prop                 | Required | Type              | Default Value | Description                                                                                                     |
+| -------------------- | -------- | ----------------- | ------------- | --------------------------------------------------------------------------------------------------------------- |
+| **query**            | Yes      | String            |               | Graphql query                                                                                                   |
+| **columns**          | No       | Array             | `null`        | Customization of columns                                                                                        |
+| **pagination**       | No       | Object or Boolean | `false`       | Adds pagination                                                                                                 |
+| **onRowClick**       | No       | Function          | `null`        | Handle row click                                                                                                |
+| **styles**           | No       | Object            | `{}`          | Change the look of part of a table                                                                              |
+| **debug**            | No       | Boolean           | `false`       | Turns on and off the debug mode                                                                                 |
+| **_Apollo Options_** | No       | -                 | -             | See [Apollo Client](https://www.apollographql.com/docs/react/essentials/get-started.html) site for more details |
+
+> NOTE: TabelQL has yet to be tested for all the options that Apollo Client has to offer. See the once that have been tested in the section Apollo Options bellow.
+
 ## query
 
 To pass the GraphQL query to the component, all you have to do is create a string with backticks as follows:
@@ -166,6 +178,15 @@ Example of order:
 
 #### Columns Object Options
 
+| Property         | Required                         | Type               | Default Value | Description                                            |
+| ---------------- | -------------------------------- | ------------------ | ------------- | ------------------------------------------------------ |
+| **id**           | Yes                              | String             | `null`        | Accessor                                               |
+| **label**        | No                               | String             |               | Table header label                                     |
+| **component**    | No, Yes when customColumn `true` | Function           | `null`        | Change the value, or inject a component or value       |
+| **customColumn** | No                               | Boolean            | `false`       | Adds a column that is not populated by data from query |
+| **headerStyle**  | No                               | String             | `''`          | CSS class for header style                             |
+| **nodeStyle**    | No                               | String or Function | `''`          | CSS class style for nodes in column                    |
+
 When column is represented as object then `id` property is required, so that TableQL knows which value to grab.
 If data that needs to be displayed is in nested object then `id` should be a chain of keys separated with periods, Ex. 'foo.bar.blah'.
 
@@ -180,22 +201,6 @@ Example:
   query={GET_ALL_FILMS}
   columns={[
     {id:'episodeID', label:'Episode Identification'},
-    'releaseDate',
-    'title'
-    ]} />
-```
-
-##### format
-
-To format values to our own liking use `format` prop, and pass it a function that receives one parameter value to be modified, and returns the value to be displayed.
-
-Example:
-
-```
-<TableQL
-  query={GET_ALL_FILMS}
-  columns={[
-    {id:'episodeID', format: data => data.toUpperCase()},
     'releaseDate',
     'title'
     ]} />
@@ -319,10 +324,12 @@ Config object has the following properties:
 }
 ```
 
-**pageLimit** - sets the number of records per page
-**pageNeighbors** - sets the number of pages that will be shown around current page in pagination component
-**currentPage** - sets the initial page
-**onPageChanged** - returns the data about pagination
+| Property          | Required | Type     | Default Value | Description                                                                    |
+| ----------------- | -------- | -------- | ------------- | ------------------------------------------------------------------------------ |
+| **pageLimit**     | No       | Number   | `10`          | Number of rows per page                                                        |
+| **pageNeighbors** | No       | Number   | `0`           | Number of pages that will be shown around current page in pagination component |
+| **currentPage**   | No       | Number   | `1`           | The initial page                                                               |
+| **onPageChanged** | No       | Function | `null`        | On page change returns data about pagination                                   |
 
 Example:
 
@@ -358,9 +365,27 @@ Example:
 Pass data as you would to Apollo client to following props that match Apollo Client
 props:
 
-**variables** - pass the query variables as you would to Apollo client
-**skip** -
-**pollInterval** -
+| Apollo Query Props              | Tested             | Works              |
+| ------------------------------- | ------------------ | ------------------ |
+| **query**                       | :white_check_mark: | :white_check_mark: |
+| **variable**                    | :white_check_mark: | :white_check_mark: |
+| **pollInterval**                | :x:                | :interrobang:      |
+| **notifyOnNetworkStatusChange** | :x:                | :interrobang:      |
+| **fetchPolicy**                 | :x:                | :interrobang:      |
+| **errorPolicy**                 | :x:                | :interrobang:      |
+| **ssr**                         | :x:                | :interrobang:      |
+| **displayName**                 | :x:                | :interrobang:      |
+| **skip**                        | :x:                | :interrobang:      |
+| **onCompleted**                 | :x:                | :interrobang:      |
+| **onError**                     | :x:                | :interrobang:      |
+| **context**                     | :x:                | :interrobang:      |
+| **partialRefetch**              | :x:                | :interrobang:      |
+
+Example:
+
+```
+<TableQL query={SOME_QUERY_WITH_VAR} variable={someValue} />
+```
 
 ## Custom Styling
 
