@@ -27,7 +27,7 @@
     "react-apollo": "^2.5.5"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watch",
     "start": "webpack --watch",
     "build": "webpack",
     "build:all": "webpack && build-storybook -o docs",
@@ -45,7 +45,9 @@
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
     "@storybook/addon-a11y": "^5.0.11",
     "@storybook/addon-actions": "^5.0.11",
     "@storybook/addon-console": "^1.1.0",
@@ -53,16 +55,24 @@
     "@storybook/addons": "^5.0.11",
     "@storybook/react": "^5.0.11",
     "apollo-storybook-react": "^0.2.1",
-    "babel-loader": "^8.0.5",
+    "babel-jest": "^24.8.0",
+    "babel-loader": "^8.0.6",
     "css-loader": "^2.1.1",
     "graphql-tools": "^4.0.4",
-    "prettier": "^1.17.0",
+    "jest": "^24.8.0",
+    "prettier": "^1.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-testing-library": "^7.0.0",
     "storybook-addon-jsx": "^7.1.2",
     "storybook-readme": "^5.0.3",
     "style-loader": "^0.23.1",
     "webpack": "^4.31.0",
     "webpack-cli": "^3.3.2"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   }
 }

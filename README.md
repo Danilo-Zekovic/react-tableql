@@ -1,10 +1,18 @@
 # react-tableql
 
+<a href="https://npmjs.com/package/react-tableql" target="\_parent">
+  <img alt="" src="https://img.shields.io/npm/dm/react-tableql.svg" />
+</a>
+<a href="https://github.com/Danilo-Zekovic/react-tableql" target="\_parent">
+  <img alt="" src="https://img.shields.io/github/stars/Danilo-Zekovic/react-tableql.svg?style=social&label=Star" />
+</a>
+
 React table component that is harnessing the power of Apollo and GraphQL. Simple way to display your data.
 
 Official React TableQL Storybook: https://danilo-zekovic.github.io/react-tableql/
 
-### NOTE: Work on this component is in progress. Please stay tuned for future changes, upgrades
+> **Disclaimer**:
+> This component is still under development and may not perform as expected. Use at your own risk.
 
 If you have any suggestions please let me know or join the project.
 
@@ -51,6 +59,10 @@ Builds production ready component using Webpack.
 ##### build:all
 
 Builds production ready component using Webpack, and builds static Storybook files that will be used on GitHub pages as [online TableQL documentation and component demonstration](https://danilo-zekovic.github.io/react-tableql/).
+
+##### test
+
+Runs tests in watch mode.
 
 ##### format
 

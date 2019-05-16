@@ -69,10 +69,8 @@ const Table = ({ log, styles = {}, displayData, dataKeys, onRowClick }) => {
   const renderTableHeader = dataKeys => {
     return dataKeys.map((column, columnIndex) => (
       <th
-        className={`
-          ${styles.theadTh || 'TableQL-thead-th'}
-          ${column.headerStyle}
-          `}
+        className={`${styles.theadTh ||
+          'TableQL-thead-th'} ${column.headerStyle || ''}`}
         key={`TableQLHeader${column + columnIndex}`}
       >
         {typeof column === 'string'

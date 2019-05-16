@@ -13,7 +13,6 @@ const TableQL = ({
   pagination,
   debug,
   query,
-  variables,
   errorMessage,
   columns,
   styles,
@@ -77,7 +76,6 @@ const TableQL = ({
     pagination,
     debug,
     query,
-    variables,
     errorMessage,
     columns,
     styles,
@@ -89,8 +87,7 @@ const TableQL = ({
     <ErrorBoundary>
       <Query
         query={typeof query === 'string' ? gql(query) : query}
-        variables={variables}
-        {...props} // skip, pollInterval, notifyOnNetworkStatusChange, onError, onCompleted
+        {...props} // skip, pollInterval, notifyOnNetworkStatusChange, onError, onCompleted, variables
       >
         {({ loading, error, data, startPolling, stopPolling }) => {
           if (loading) {

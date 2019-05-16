@@ -12,7 +12,7 @@ import {
   GET_ALL_FILMS_SWAPI,
   GET_ALL_PEOPLE_SWAPI,
   FALSE,
-} from './queries'
+} from '../__mocks__/queries'
 
 const Button = ({ data }) => {
   return (
