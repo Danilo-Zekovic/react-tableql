@@ -21,7 +21,7 @@ export const GET_ALL_PEOPLE = `
   }
 }
 `
-
+// bad query
 export const FALSE = `
 {
   allFilms {

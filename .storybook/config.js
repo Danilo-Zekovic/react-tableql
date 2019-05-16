@@ -7,8 +7,8 @@ import '@storybook/addon-console'
 import { withConsole } from '@storybook/addon-console'
 // mock Apollo, it uses graphql-tools in the background
 import apolloStorybookDecorator from 'apollo-storybook-react'
-import { mocks } from './../stories/mockApollo/mocks'
-import { typeDefs } from './../stories/mockApollo/typeDefs'
+import { mocks } from './../__mocks__/mocks'
+import { typeDefs } from './../__mocks__/typeDefs'
 
 // set jsx decorator for all the stories
 addDecorator(jsxDecorator)
