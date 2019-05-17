@@ -58,8 +58,8 @@ https://www.apollographql.com/docs/react/essentials/get-started.html
 - ReactDOM
 - GraphQL
 - Apollo
-
-###[Scripts for running this project](#-scripts)
+   
+### [Scripts for running this project are at the bottom!](#-scripts)
 
 ---
 
