@@ -1,3 +1,7 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .pagination {
   background-color: rgb(150, 140, 209);
 }
@@ -8,13 +12,27 @@
 }
 
 code {
-  background-color: lightgray;
-  padding: 5px;
-  border-radius: 3px;
+  background-color: #f1f3f5;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 a {
   cursor: pointer;
   color: #7751d1;
   text-decoration: none;
+}
+
+.customRow td,
+.customRow th {
+  border: 1px solid #dee2e6;
+}
+
+.customRow th {
+  background-color: rgb(150, 140, 209);
+  color: white;
+}
+
+tbody .customRow:hover {
+  background-color: #f1f3f5;
 }
