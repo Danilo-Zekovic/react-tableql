@@ -72,7 +72,7 @@ Additionally for ApolloTableQL:
 npm install --save graphql apollo-boost react-apollo
 ```
 
-##[Scripts for running this project](#scripts)
+### [Scripts for running this project are at the bottom!](#scripts)
 
 ---
 
