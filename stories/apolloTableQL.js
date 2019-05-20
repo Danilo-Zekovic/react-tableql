@@ -4,15 +4,15 @@ import gql from 'graphql-tag'
 
 import './customStories/styles.css'
 
-import TableQL from '../src/index'
+import { ApolloTableQL } from '../src/index'
 import ApolloWrapper from './ApolloWrapper'
 import {
   GET_ALL_FILMS,
   GET_ALL_PEOPLE,
   GET_ALL_FILMS_SWAPI,
   GET_ALL_PEOPLE_SWAPI,
-  FALSE,
 } from '../__mocks__/queries'
+import IntroApolloTableQL from './customStories/IntroApolloTableQL'
 
 const Button = ({ data }) => {
   return (
@@ -25,16 +25,19 @@ const Button = ({ data }) => {
 /**
  * This stories is documentation of all possible options in TableQL
  */
-storiesOf('TableQL', module)
-  .add('default', () => <TableQL query={GET_ALL_FILMS} />)
+export const BASIC = storiesOf('Apollo-TableQL|Basic', module)
+  .addParameters({ options: { showPanel: false } })
+  .add('introduction', () => <IntroApolloTableQL />)
+  .addParameters({ options: { showPanel: true } })
+  .add('default', () => <ApolloTableQL query={GET_ALL_FILMS} />)
   .add('with debug on', () => (
     <>
       <h3>Check Actions bellow!</h3>
-      <TableQL query={GET_ALL_FILMS} debug={true} />
+      <ApolloTableQL query={GET_ALL_FILMS} debug={true} />
     </>
   ))
   .add('click row', () => (
-    <TableQL
+    <ApolloTableQL
       query={GET_ALL_FILMS}
       onRowClick={data =>
         alert(
@@ -48,7 +51,7 @@ storiesOf('TableQL', module)
     />
   ))
   .add('error boundary', () => (
-    <TableQL
+    <ApolloTableQL
       query={GET_ALL_FILMS}
       columns={[
         'title',
@@ -58,38 +61,38 @@ storiesOf('TableQL', module)
     />
   ))
 
-storiesOf('TableQL/Custom Styles', module)
+export const CUSTOM_STYLES = storiesOf('Apollo-TableQL|Custom Styles', module)
   .add('table', () => (
-    <TableQL query={GET_ALL_FILMS} styles={{ table: 'bg-color' }} />
+    <ApolloTableQL query={GET_ALL_FILMS} styles={{ table: 'bg-color' }} />
   ))
   .add('thead', () => (
-    <TableQL query={GET_ALL_FILMS} styles={{ thead: 'bg-color' }} />
+    <ApolloTableQL query={GET_ALL_FILMS} styles={{ thead: 'bg-color' }} />
   ))
   .add('tr in thead', () => (
-    <TableQL query={GET_ALL_FILMS} styles={{ theadTr: 'bg-color' }} />
+    <ApolloTableQL query={GET_ALL_FILMS} styles={{ theadTr: 'bg-color' }} />
   ))
   .add('th in thead', () => (
-    <TableQL query={GET_ALL_FILMS} styles={{ theadTh: 'bg-color' }} />
+    <ApolloTableQL query={GET_ALL_FILMS} styles={{ theadTh: 'bg-color' }} />
   ))
   .add('tbody', () => (
-    <TableQL query={GET_ALL_FILMS} styles={{ tbody: 'bg-color' }} />
+    <ApolloTableQL query={GET_ALL_FILMS} styles={{ tbody: 'bg-color' }} />
   ))
   .add('tr in tbody', () => (
-    <TableQL query={GET_ALL_FILMS} styles={{ tbodyTr: 'bg-color' }} />
+    <ApolloTableQL query={GET_ALL_FILMS} styles={{ tbodyTr: 'bg-color' }} />
   ))
   .add('td in tbody', () => (
-    <TableQL query={GET_ALL_FILMS} styles={{ tbodyTd: 'bg-color' }} />
+    <ApolloTableQL query={GET_ALL_FILMS} styles={{ tbodyTd: 'bg-color' }} />
   ))
 
-storiesOf('TableQL/Custom Columns', module)
+export const CUSTOM_COLUMNS = storiesOf('Apollo-TableQL|Custom Columns', module)
   .add('order', () => (
-    <TableQL
+    <ApolloTableQL
       query={GET_ALL_FILMS}
       columns={['releaseDate', 'title', 'episodeID']}
     />
   ))
   .add('header label', () => (
-    <TableQL
+    <ApolloTableQL
       query={GET_ALL_FILMS}
       columns={[
         { id: 'episodeID', label: 'Episode Identification' },
@@ -99,7 +102,7 @@ storiesOf('TableQL/Custom Columns', module)
     />
   ))
   .add('component', () => (
-    <TableQL
+    <ApolloTableQL
       query={GET_ALL_FILMS}
       columns={[
         'episodeID',
@@ -112,7 +115,7 @@ storiesOf('TableQL/Custom Columns', module)
     />
   ))
   .add('react component', () => (
-    <TableQL
+    <ApolloTableQL
       query={GET_ALL_FILMS}
       columns={[
         'episodeID',
@@ -125,7 +128,7 @@ storiesOf('TableQL/Custom Columns', module)
     />
   ))
   .add('custom column', () => (
-    <TableQL
+    <ApolloTableQL
       query={GET_ALL_FILMS}
       columns={[
         'episodeID',
@@ -140,7 +143,7 @@ storiesOf('TableQL/Custom Columns', module)
     />
   ))
   .add('style header', () => (
-    <TableQL
+    <ApolloTableQL
       query={GET_ALL_FILMS}
       columns={[
         'episodeID',
@@ -153,7 +156,7 @@ storiesOf('TableQL/Custom Columns', module)
     />
   ))
   .add('style nodes', () => (
-    <TableQL
+    <ApolloTableQL
       query={GET_ALL_FILMS}
       columns={[
         'episodeID',
@@ -166,7 +169,7 @@ storiesOf('TableQL/Custom Columns', module)
     />
   ))
   .add('selective styling', () => (
-    <TableQL
+    <ApolloTableQL
       query={GET_ALL_FILMS}
       columns={[
         'episodeID',
@@ -181,13 +184,13 @@ storiesOf('TableQL/Custom Columns', module)
     />
   ))
 
-storiesOf('TableQL/Pagination', module)
-  .add('basic', () => <TableQL query={GET_ALL_PEOPLE} pagination />)
+export const PAGINATION = storiesOf('Apollo-TableQL|Pagination', module)
+  .add('basic', () => <ApolloTableQL query={GET_ALL_PEOPLE} pagination />)
   .add('with debug mode', () => (
-    <TableQL query={GET_ALL_PEOPLE} pagination debug />
+    <ApolloTableQL query={GET_ALL_PEOPLE} pagination debug />
   ))
   .add('with page limit', () => (
-    <TableQL
+    <ApolloTableQL
       query={GET_ALL_PEOPLE}
       pagination={{
         pageLimit: 5,
@@ -195,7 +198,7 @@ storiesOf('TableQL/Pagination', module)
     />
   ))
   .add('with page neighbors', () => (
-    <TableQL
+    <ApolloTableQL
       query={GET_ALL_PEOPLE}
       pagination={{
         pageNeighbors: 2,
@@ -204,7 +207,7 @@ storiesOf('TableQL/Pagination', module)
     />
   ))
   .add('with current page', () => (
-    <TableQL
+    <ApolloTableQL
       query={GET_ALL_PEOPLE}
       pagination={{
         currentPage: 3,
@@ -212,7 +215,7 @@ storiesOf('TableQL/Pagination', module)
     />
   ))
   .add('with on page changed', () => (
-    <TableQL
+    <ApolloTableQL
       query={GET_ALL_PEOPLE}
       pagination={{
         onPageChanged: (currentPage, totalPages, pageLimit, totalRecords) =>
@@ -231,25 +234,10 @@ storiesOf('TableQL/Pagination', module)
     />
   ))
   .add('with custom style', () => (
-    <TableQL
+    <ApolloTableQL
       query={GET_ALL_PEOPLE}
       pagination={{
         styles: 'pagination',
       }}
     />
   ))
-
-// requires setup of ApolloWrapper
-// here just to test some other stuff as well
-// TODO uncomment when needed
-// storiesOf('TableQL/SWAPI (only locally)', module)
-//   .add('default', () => (
-//     <ApolloWrapper>
-//       <TableQL query={GET_ALL_FILMS_SWAPI} />
-//     </ApolloWrapper>
-//   ))
-//   .add('pagination', () => (
-//     <ApolloWrapper>
-//       <TableQL query={GET_ALL_PEOPLE_SWAPI} pagination />
-//     </ApolloWrapper>
-//   ))
