@@ -19,13 +19,12 @@
   ],
   "peerDependencies": {
     "react": ">= 16.8.0 < 17",
-    "react-dom": ">= 16.8.0 < 17"
+    "react-dom": ">= 16.8.0 < 17",
+    "apollo-boost": ">= 0.1.28",
+    "graphql": ">= 14 < 15",
+    "react-apollo": ">= 2.5 < 3"
   },
-  "dependencies": {
-    "apollo-boost": "^0.1.28",
-    "graphql": "^14.3.0",
-    "react-apollo": "^2.5.5"
-  },
+  "dependencies": {},
   "scripts": {
     "test": "jest --watch",
     "start": "webpack --watch",
@@ -54,16 +53,19 @@
     "@storybook/addon-links": "^5.0.11",
     "@storybook/addons": "^5.0.11",
     "@storybook/react": "^5.0.11",
+    "apollo-boost": "^0.1.28",
     "apollo-storybook-react": "^0.2.1",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^2.1.1",
+    "graphql": "^14.3.0",
     "graphql-tools": "^4.0.4",
     "jest": "^24.8.0",
     "prettier": "^1.17.1",
     "react": "^16.8.6",
+    "react-apollo": "^2.5.5",
     "react-dom": "^16.8.6",
-    "react-testing-library": "^7.0.0",
+    "react-testing-library": "^7.0.1",
     "storybook-addon-jsx": "^7.1.2",
     "storybook-readme": "^5.0.3",
     "style-loader": "^0.23.1",

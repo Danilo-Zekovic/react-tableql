@@ -12,7 +12,7 @@ React table component that is harnessing the power GraphQL. Simple way to displa
 Official React TableQL Storybook: https://danilo-zekovic.github.io/react-tableql/
 
 > **Disclaimer**:
-> This component is still under development and may not perform as expected. Use at your own risk.
+> This components are still under development and may not perform as expected. Use at your own risk.
 
 If you have any suggestions please let me know or join the project.
 
@@ -54,12 +54,25 @@ https://www.apollographql.com/docs/react/essentials/get-started.html
 
 ## Dependencies
 
+These packages are required to be able to use TableQL and ApolloTableQL:
+
 - React
 - ReactDOM
-- GraphQL
-- Apollo
 
-###[Scripts for running this project](#-scripts)
+```
+npm install --save react react-dom
+```
+
+Additionally for ApolloTableQL:
+
+- GraphQL
+- Apollo Client
+
+```
+npm install --save graphql apollo-boost react-apollo
+```
+
+##[Scripts for running this project](#scripts)
 
 ---
 
@@ -67,8 +80,8 @@ https://www.apollographql.com/docs/react/essentials/get-started.html
 
 | Prop                 | Required | Type              | Default Value | Description                                                                                                     | TabelQL            | ApolloTableQL      |
 | -------------------- | -------- | ----------------- | ------------- | --------------------------------------------------------------------------------------------------------------- | ------------------ | ------------------ |
-| **query**            | Yes      | String            |               | Graphql query                                                                                                   | :x:                | :white_check_mark: |
-| **data**             | Yes      | Array             |               | Data to be parsed and rendered                                                                                  | :white_check_mark: | :x:                |
+| **query**            | Yes      | String            | -             | Graphql query                                                                                                   | :x:                | :white_check_mark: |
+| **data**             | Yes      | Array             | -             | Data to be parsed and rendered                                                                                  | :white_check_mark: | :x:                |
 | **columns**          | No       | Array             | `null`        | Customization of columns                                                                                        | :white_check_mark: | :white_check_mark: |
 | **pagination**       | No       | Object or Boolean | `false`       | Adds pagination                                                                                                 | :white_check_mark: | :white_check_mark: |
 | **onRowClick**       | No       | Function          | `null`        | Handle row click                                                                                                | :white_check_mark: | :white_check_mark: |
@@ -78,7 +91,7 @@ https://www.apollographql.com/docs/react/essentials/get-started.html
 | **error**            | No       | Error             | `''`          | Error object                                                                                                    | :white_check_mark: | :x:                |
 | **_Apollo Options_** | No       | -                 | -             | See [Apollo Client](https://www.apollographql.com/docs/react/essentials/get-started.html) site for more details | :x:                | :white_check_mark: |
 
-> NOTE: TabelQL has yet to be tested for all the options that Apollo Client has to offer. See the once that have been tested in the section Apollo Options bellow.
+> NOTE: ApolloTabelQL has yet to be tested for all the options that Apollo Client has to offer. See the once that have been tested in the section Apollo Options bellow.
 
 ## query
 
@@ -103,7 +116,7 @@ Then pass it as a query prop:
 <ApolloTableQL query={GET_ALL_FILMS} />
 ```
 
-This is the minimum requirement for TableQL to work, rest of the props are used to modify and customize it. query is mandatory prop, all other are optional.
+This is the minimum requirement for ApolloTableQL to work, rest of the props are used to modify and customize it. query is mandatory prop, all other are optional.
 
 ## columns
 
@@ -126,7 +139,7 @@ Example of order:
 | Property         | Required                         | Type               | Default Value | Description                                            |
 | ---------------- | -------------------------------- | ------------------ | ------------- | ------------------------------------------------------ |
 | **id**           | Yes                              | String             | `null`        | Accessor                                               |
-| **label**        | No                               | String             |               | Table header label                                     |
+| **label**        | No                               | String             | -             | Table header label                                     |
 | **component**    | No, Yes when customColumn `true` | Function           | `null`        | Change the value, or inject a component or value       |
 | **customColumn** | No                               | Boolean            | `false`       | Adds a column that is not populated by data from query |
 | **headerStyle**  | No                               | String             | `''`          | CSS class for header style                             |
@@ -295,7 +308,7 @@ Example:
 
 ## onRowClick
 
-If something is needed to happen when the row is clicked then pass a function to `onRowClick` prop. TableQl will return data that is found in the row that was clicked.
+If something is needed to happen when the row is clicked then pass a function to `onRowClick` prop. TableQL will return data that is found in the row that was clicked.
 
 Example:
 
@@ -303,6 +316,30 @@ Example:
 <ApolloTableQL
   query={GET_ALL_FILMS}
   onRowClick={data => alert(data)} />
+```
+
+## loading
+
+Pass it to indicate if data loading. This is only for TableQL, ApolloTableQL takes care of it.
+
+Example:
+
+```
+<TableQL
+  data={GET_ALL_FILMS}
+  loading={true} />
+```
+
+## error
+
+Pass the JavaScript Error object if there is an error while fetching the data, or if server returned an error. This is only for TableQL, ApolloTableQL takes care of it.
+
+Example:
+
+```
+<TableQL
+  data={GET_ALL_FILMS}
+  error={new Error('Some error!')} />
 ```
 
 ## Apollo Options
@@ -327,9 +364,9 @@ props. For details on Apollo Query Props please visit official documentation htt
 | **partialRefetch**              | :x:                | :interrobang:      |
 | **children**                    | :white_check_mark: | :x:                |
 
-> NOTE: children is already taken care of by TableQL. There is no option to pass children to TableQL yet.
+> NOTE: children is already taken care of by ApolloTableQL. There is no option to pass children to ApolloTableQL yet.
 
-Those props that are not yet tested can also be passed to the TableQL just as you would to Query component from Apollo Client.
+Those props that are not yet tested can also be passed to the ApolloTableQL just as you would to Query component from Apollo Client.
 
 Example:
 
@@ -381,6 +418,7 @@ This mode will enable logs that are part of the component and are disabled by de
 ---
 
 ###Licence
+
 MIT
 
 ---

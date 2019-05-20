@@ -5,7 +5,7 @@ import { Setup, Welcome } from './customStories'
 
 export const foo = storiesOf('Getting Started|Introduction', module)
   .addParameters({ options: { showPanel: false } })
-  .add('to TableQL', () => <Welcome />)
+  .add('to React TableQL', () => <Welcome />)
 
 export const boo = storiesOf('Getting Started|Setup', module)
   .addParameters({ options: { showPanel: false } })

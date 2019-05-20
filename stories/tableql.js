@@ -7,13 +7,7 @@ import './customStories/styles.css'
 
 import TableQL from '../src/index'
 import IntroTableQL from './customStories/IntroTableQL'
-import {
-  GET_ALL_FILMS,
-  GET_ALL_PEOPLE,
-  GET_ALL_FILMS_SWAPI,
-  GET_ALL_PEOPLE_SWAPI,
-  FALSE,
-} from '../__mocks__/queries'
+import { GET_ALL_FILMS } from '../__mocks__/queries'
 
 const Button = ({ data }) => {
   return (

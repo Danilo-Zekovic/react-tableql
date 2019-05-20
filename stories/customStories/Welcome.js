@@ -9,8 +9,8 @@ const Welcome = () => {
 
       <p>
         On this Storybook presentation you will be able to learn how to use
-        TableQL component, as well as to see all the different options that it
-        has.
+        React TableQL components, as well as to see all the different options
+        that they have.
         <a onClick={linkTo('Getting Started')}> Get started with TableQL!</a>
       </p>
       <br />
