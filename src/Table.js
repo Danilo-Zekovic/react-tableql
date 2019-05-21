@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Table = ({ log, styles = {}, displayData, dataKeys, onRowClick }) => {
+  // console.log(displayData, dataKeys)
+
   /*
     Formating passed string to be title case, where each word starts with a upper case letter
   */
@@ -80,6 +82,7 @@ const Table = ({ log, styles = {}, displayData, dataKeys, onRowClick }) => {
     ))
   }
 
+  // when nodeStyle is a function that is selective styling as function decides should and which css class will be returned.
   const getNodeStyle = ({ nodeStyle }, data) => {
     if (!nodeStyle) {
       return ''
@@ -105,7 +108,7 @@ const Table = ({ log, styles = {}, displayData, dataKeys, onRowClick }) => {
 }
 
 Table.propTypes = {
-  log: PropTypes.func,
+  log: PropTypes.func.isRequired,
   styles: PropTypes.shape({
     table: PropTypes.string,
     thead: PropTypes.string,

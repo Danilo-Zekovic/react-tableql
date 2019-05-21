@@ -5,8 +5,16 @@ class ErrorBoundary extends Component {
     hasError: false,
     error: '',
   }
-  componentDidCatch(error) {
+  componentDidCatch(error, info) {
     this.setState({ ...this.state, hasError: true, error })
+
+    // report the details about error
+    console.log(
+      'React-TableQL Error: ',
+      error,
+      '\nMore info about error: ',
+      info,
+    )
   }
 
   render() {

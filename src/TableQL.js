@@ -93,7 +93,9 @@ const TableQL = ({
 
   log('Data: ', data)
 
-  if (!data) {
+  // TODO consider having something different when there is no data compared to empty array
+  if (!data || data.length === 0) {
+    log('No data found!')
     return <p>{`No data found!`}</p>
   }
 
@@ -133,7 +135,7 @@ const TableQL = ({
         {pagination && (
           <Pagination
             totalRecords={allData.length}
-            pageLimit={pageLimit || 10}
+            pageLimit={pageLimit}
             pageNeighbors={pagination.pageNeighbors}
             selectedPage={currentPage}
             onPageChanged={returnedData => onPageChanged(returnedData)}
@@ -147,10 +149,13 @@ const TableQL = ({
 }
 
 TableQL.propTypes = {
-  // query: PropTypes.oneOfType([
-  //   PropTypes.string.isRequired,
-  //   PropTypes.object.isRequired,
-  // ]),
+  data: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object).isRequired,
+    PropTypes.object,
+  ]),
+  loading: PropTypes.bool,
+  error: PropTypes.object,
+  errorMessage: PropTypes.string,
   columns: PropTypes.array,
   pagination: PropTypes.oneOfType([
     PropTypes.shape({

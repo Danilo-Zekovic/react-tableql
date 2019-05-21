@@ -23,7 +23,7 @@ const range = (from, to, step = 1) => {
 // pageNeighbors can be: 0, 1 or 2
 
 const Pagination = ({
-  totalRecords = null,
+  totalRecords,
   pageLimit = 10,
   pageNeighbors = 0,
   onPageChanged,
@@ -49,7 +49,9 @@ const Pagination = ({
 
     log('Pagination Return Data: ', { ...paginationData })
 
-    onPageChanged(paginationData)
+    if (onPageChanged) {
+      onPageChanged(paginationData)
+    }
   }, [currentPage])
 
   const gotoPage = page => {
@@ -144,7 +146,10 @@ const Pagination = ({
 
   return (
     <>
-      <div className={styles ? styles : 'PaginationContainer'}>
+      <div
+        className={styles ? styles : 'PaginationContainer'}
+        data-testid="pagination"
+      >
         {pages.map((page, index) => {
           if (page === LEFT_PAGE) {
             return (
