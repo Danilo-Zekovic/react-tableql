@@ -1,0 +1,937 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ApolloTableQL> pass gql\`query\` 1`] = `
+<div>
+  <table
+    class="TableQL"
+  >
+    <thead
+      class="TableQL-thead"
+    >
+      <tr
+        class="TableQL-tr"
+      >
+        <th
+          class="TableQL-thead-th "
+        >
+          Title
+        </th>
+        <th
+          class="TableQL-thead-th "
+        >
+          Episode ID
+        </th>
+        <th
+          class="TableQL-thead-th "
+        >
+          Release Date
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="TableQL-tbody"
+    >
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          A New Hope
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          4
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1977-05-25
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          Attack of the Clones
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          2
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          2002-05-16
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          The Phantom Menace
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1999-05-19
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          Revenge of the Sith
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          3
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          2005-05-19
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          Return of the Jedi
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          6
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1983-05-25
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          The Empire Strikes Back
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          5
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1980-05-17
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          The Force Awakens
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          7
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          2015-12-11
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`<ApolloTableQL> snapshot custom columns 1`] = `
+<div>
+  <table
+    class="TableQL"
+  >
+    <thead
+      class="TableQL-thead"
+    >
+      <tr
+        class="TableQL-tr"
+      >
+        <th
+          class="TableQL-thead-th "
+        >
+          Episode Identification
+        </th>
+        <th
+          class="TableQL-thead-th "
+        >
+          Release Date
+        </th>
+        <th
+          class="TableQL-thead-th "
+        >
+          Title
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="TableQL-tbody"
+    >
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          4
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1977-05-25
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          A New Hope
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          2
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          2002-05-16
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          Attack of the Clones
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1999-05-19
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          The Phantom Menace
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          3
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          2005-05-19
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          Revenge of the Sith
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          6
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1983-05-25
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          Return of the Jedi
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          5
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1980-05-17
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          The Empire Strikes Back
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          7
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          2015-12-11
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          The Force Awakens
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`<ApolloTableQL> snapshot default 1`] = `
+<div>
+  <table
+    class="TableQL"
+  >
+    <thead
+      class="TableQL-thead"
+    >
+      <tr
+        class="TableQL-tr"
+      >
+        <th
+          class="TableQL-thead-th "
+        >
+          Title
+        </th>
+        <th
+          class="TableQL-thead-th "
+        >
+          Episode ID
+        </th>
+        <th
+          class="TableQL-thead-th "
+        >
+          Release Date
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="TableQL-tbody"
+    >
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          A New Hope
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          4
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1977-05-25
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          Attack of the Clones
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          2
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          2002-05-16
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          The Phantom Menace
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1999-05-19
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          Revenge of the Sith
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          3
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          2005-05-19
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          Return of the Jedi
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          6
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1983-05-25
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          The Empire Strikes Back
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          5
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1980-05-17
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          The Force Awakens
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          7
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          2015-12-11
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`<ApolloTableQL> snapshot default pagination 1`] = `
+<div>
+  <table
+    class="TableQL"
+  >
+    <thead
+      class="TableQL-thead"
+    >
+      <tr
+        class="TableQL-tr"
+      >
+        <th
+          class="TableQL-thead-th "
+        >
+          Title
+        </th>
+        <th
+          class="TableQL-thead-th "
+        >
+          Episode ID
+        </th>
+        <th
+          class="TableQL-thead-th "
+        >
+          Release Date
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="TableQL-tbody"
+    >
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          A New Hope
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          4
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1977-05-25
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          Attack of the Clones
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          2
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          2002-05-16
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          The Phantom Menace
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1999-05-19
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          Revenge of the Sith
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          3
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          2005-05-19
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          Return of the Jedi
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          6
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1983-05-25
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          The Empire Strikes Back
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          5
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          1980-05-17
+        </td>
+      </tr>
+      <tr
+        class="TableQL-tr"
+      >
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          The Force Awakens
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          7
+        </td>
+        <td
+          class="
+            TableQL-td
+            
+            "
+        >
+          2015-12-11
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`<ApolloTableQL> testing loading state 1`] = `
+<div>
+  <p>
+    Loading...
+  </p>
+</div>
+`;

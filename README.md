@@ -441,6 +441,10 @@ Builds production ready component using Webpack, and builds static Storybook fil
 
 Runs tests in watch mode.
 
+##### test:coverage
+
+Check how much of the code do tests cover. To see it visually and explore what is not covered open `./coverage/lcov-report/index.html` in your browser.
+
 ##### format
 
 Formats the code using Prettier by rules defined in Pretier config file.

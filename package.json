@@ -1,6 +1,6 @@
 {
   "name": "react-tableql",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "React table component that is integrated with Apollo Client and GraphQL",
   "main": "build/index.js",
   "license": "MIT",
@@ -27,6 +27,7 @@
   "dependencies": {},
   "scripts": {
     "test": "jest --watch",
+    "test:coverage": "jest --coverage",
     "start": "webpack --watch",
     "build": "webpack",
     "build:all": "webpack && build-storybook -o docs",
@@ -75,6 +76,17 @@
   "jest": {
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "collectCoverageFrom": [
+      "**/src/**/*.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 90,
+        "branches": 90,
+        "functions": 90,
+        "lines": 90
+      }
     }
   }
 }
