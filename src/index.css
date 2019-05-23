@@ -20,6 +20,14 @@
   border-bottom: 2px solid #dee2e6;
 }
 
+.TableQL-thead-th-sort {
+  cursor: pointer;
+}
+
+.TableQL-thead-th-sort:hover {
+  background-color: #f1f3f5;
+}
+
 .TableQL-tr {
   display: table-row;
   vertical-align: inherit;

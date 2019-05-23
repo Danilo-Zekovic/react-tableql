@@ -50,6 +50,7 @@ export const BASIC = storiesOf('Apollo-TableQL|Basic', module)
       }
     />
   ))
+  .add('sort', () => <ApolloTableQL query={GET_ALL_FILMS} sort />)
   .add('error boundary', () => (
     <ApolloTableQL
       query={GET_ALL_FILMS}
@@ -183,6 +184,32 @@ export const CUSTOM_COLUMNS = storiesOf('Apollo-TableQL|Custom Columns', module)
       ]}
     />
   ))
+  .add('sort', () => (
+    <ApolloTableQL
+      query={GET_ALL_FILMS}
+      columns={[
+        'episodeID',
+        'releaseDate',
+        {
+          id: 'title',
+          sort: true,
+        },
+      ]}
+    />
+  ))
+  .add('custom sort', () => (
+    <ApolloTableQL
+      query={GET_ALL_FILMS}
+      columns={[
+        'episodeID',
+        'releaseDate',
+        {
+          id: 'title',
+          sort: (data, property) => data.reverse(),
+        },
+      ]}
+    />
+  ))
 
 export const PAGINATION = storiesOf('Apollo-TableQL|Pagination', module)
   .add('basic', () => <ApolloTableQL query={GET_ALL_PEOPLE} pagination />)
@@ -241,3 +268,4 @@ export const PAGINATION = storiesOf('Apollo-TableQL|Pagination', module)
       }}
     />
   ))
+  .add('sort', () => <ApolloTableQL query={GET_ALL_PEOPLE} pagination sort />)

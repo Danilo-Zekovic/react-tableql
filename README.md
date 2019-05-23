@@ -89,6 +89,7 @@ npm install --save graphql apollo-boost react-apollo
 | **debug**            | No       | Boolean           | `false`       | Turns on and off the debug mode                                                                                 | :white_check_mark: | :white_check_mark: |
 | **loading**          | No       | Boolean           | `false`       | Indicates if data is loading                                                                                    | :white_check_mark: | :x:                |
 | **error**            | No       | Error             | `''`          | Error object                                                                                                    | :white_check_mark: | :x:                |
+| **sort**             | No       | Boolean           | `false`       | All columns can be sorted by                                                                                    | :white_check_mark: | :white_check_mark: |
 | **_Apollo Options_** | No       | -                 | -             | See [Apollo Client](https://www.apollographql.com/docs/react/essentials/get-started.html) site for more details | :x:                | :white_check_mark: |
 
 > NOTE: ApolloTabelQL has yet to be tested for all the options that Apollo Client has to offer. See the once that have been tested in the section Apollo Options bellow.
@@ -136,14 +137,15 @@ Example of order:
 
 #### Columns Object Options
 
-| Property         | Required                         | Type               | Default Value | Description                                            |
-| ---------------- | -------------------------------- | ------------------ | ------------- | ------------------------------------------------------ |
-| **id**           | Yes                              | String             | `null`        | Accessor                                               |
-| **label**        | No                               | String             | -             | Table header label                                     |
-| **component**    | No, Yes when customColumn `true` | Function           | `null`        | Change the value, or inject a component or value       |
-| **customColumn** | No                               | Boolean            | `false`       | Adds a column that is not populated by data from query |
-| **headerStyle**  | No                               | String             | `''`          | CSS class for header style                             |
-| **nodeStyle**    | No                               | String or Function | `''`          | CSS class style for nodes in column                    |
+| Property         | Required                         | Type                | Default Value | Description                                            |
+| ---------------- | -------------------------------- | ------------------- | ------------- | ------------------------------------------------------ |
+| **id**           | Yes                              | String              | -             | Accessor                                               |
+| **label**        | No                               | String              | -             | Table header label                                     |
+| **component**    | No, Yes when customColumn `true` | Function            | `null`        | Change the value, or inject a component or value       |
+| **customColumn** | No                               | Boolean             | `false`       | Adds a column that is not populated by data from query |
+| **headerStyle**  | No                               | String              | `''`          | CSS class for header style                             |
+| **nodeStyle**    | No                               | String or Function  | `''`          | CSS class style for nodes in column                    |
+| **sort**         | No                               | Boolean or Function | `false`       | Sort by this column                                    |
 
 When column is represented as object then `id` property is required, so that TableQL knows which value to grab.
 If data that needs to be displayed is in nested object then `id` should be a chain of keys separated with periods, Ex. 'foo.bar.blah'.
@@ -268,6 +270,41 @@ Example with function:
   ]} />
 ```
 
+##### sort
+
+Sort can be boolean or a function that takes array of objects as first argument and string property which was clicked to be sorted, and it should return the array of objects that were reorder:
+
+Example when sort boolean:
+
+```
+<ApolloTableQL
+  query={GET_ALL_FILMS}
+  columns={[
+    'episodeID',
+    'releaseDate',
+    {
+      id: 'title',
+      sort: true,
+    },
+  ]} />
+```
+
+Example when sort function:
+
+```
+<ApolloTableQL
+  query={GET_ALL_FILMS}
+  columns={[
+    'episodeID',
+    'releaseDate',
+    {
+      id: 'title',
+      sort: (data, property) => data.sort(property),
+    },
+  ]}
+/>
+```
+
 ## pagination
 
 To enable pagination pass `true` or config object to `pagination` prop. When `true` passed then component will use its default values to configure the pagination.
@@ -340,6 +377,16 @@ Example:
 <TableQL
   data={GET_ALL_FILMS}
   error={new Error('Some error!')} />
+```
+
+## sort
+
+Pass `true` to add sort on all of the columns. When header label clicked sort the table by that column:
+
+Example:
+
+```
+<ApolloTableQL query={GET_ALL_FILMS} sort />
 ```
 
 ## Apollo Options
@@ -510,18 +557,17 @@ My advice would be to set up your editor to format code on save.
 
 ### TODO
 
-- Cleanup of node packages
-- Improving the component
-- Better documentation and user manual
-- Tutorials
-- Special cases (value is an array, ...)
-- Column sorting
-- Search
-- Tests
-- Continues integration
+- Column sorting when pagination enabled
 - Sticky header
+- Special cases (value is an array, ...)
+- Continues integration
+- Better documentation and user manual
+- Search
 - Resizable header/columns
 - Filters
+- Improving the component
+- Cleanup of node packages
 - Subscribe for live updates
+- Tutorials
 
 For more about TableQL visit **[Official React TableQL Storybook](https://danilo-zekovic.github.io/react-tableql/)** and explore all the options, and see some demo examples.
