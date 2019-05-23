@@ -159,6 +159,15 @@ describe('<TableQL>', () => {
       container.firstChild.querySelector('tbody').lastChild.firstChild
         .textContent,
     ).toBe('The Phantom Menace')
+
+    fireEvent.click(
+      container.firstChild.querySelector('thead').firstChild.firstChild,
+    )
+
+    expect(
+      container.firstChild.querySelector('tbody').lastChild.firstChild
+        .textContent,
+    ).toBe('A New Hope')
   })
 
   it('column sort', () => {
