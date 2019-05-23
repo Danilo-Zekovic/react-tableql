@@ -87,6 +87,10 @@ const TableQL = ({
       newOrder.sort((a, b) => (a[property] > b[property] ? 1 : -1))
     }
 
+    if (JSON.stringify(newOrder) === JSON.stringify(fullData)) {
+      newOrder = newOrder.reverse()
+    }
+
     setFullData(newOrder) // needed for pagination sort
 
     setDisplayData(newOrder)
