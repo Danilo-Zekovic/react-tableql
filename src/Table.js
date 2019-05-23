@@ -1,9 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Table = ({ log, styles = {}, displayData, dataKeys, onRowClick }) => {
-  // console.log(displayData, dataKeys)
-
+const Table = ({
+  log,
+  styles = {},
+  displayData,
+  dataKeys,
+  onRowClick,
+  onSort,
+  sort,
+}) => {
   /*
     Formating passed string to be title case, where each word starts with a upper case letter
   */
@@ -72,8 +78,15 @@ const Table = ({ log, styles = {}, displayData, dataKeys, onRowClick }) => {
     return dataKeys.map((column, columnIndex) => (
       <th
         className={`${styles.theadTh ||
-          'TableQL-thead-th'} ${column.headerStyle || ''}`}
+          'TableQL-thead-th'} ${column.headerStyle || ''} ${
+          column.sort || sort ? 'TableQL-thead-th-sort' : ''
+        }`}
         key={`TableQLHeader${column + columnIndex}`}
+        onClick={() => {
+          if (!onSort && !column.sort && !sort) return
+          log('Header sort was clicked: ', column)
+          onSort(column)
+        }}
       >
         {typeof column === 'string'
           ? formatLabel(column)
@@ -121,6 +134,8 @@ Table.propTypes = {
   displayData: PropTypes.array.isRequired,
   dataKeys: PropTypes.array.isRequired,
   onRowClick: PropTypes.func,
+  onSort: PropTypes.func,
+  sort: PropTypes.bool,
 }
 
 export default Table

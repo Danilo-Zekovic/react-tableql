@@ -1,4 +1,4 @@
-import React, { Simulate } from 'react'
+import React from 'react'
 import { render, cleanup, fireEvent } from 'react-testing-library'
 import '@babel/polyfill' // TODO: not ideal find the way to move it globally, webpack
 
@@ -138,6 +138,112 @@ describe('<TableQL>', () => {
 
     expect(container.firstChild).toMatchSnapshot()
     expect(console.log).toBeCalled()
-    expect(console.log).toHaveBeenCalledTimes(12)
+    expect(console.log).toHaveBeenCalledTimes(19)
+  })
+
+  it('sort', () => {
+    const { container } = render(<TableQL data={FILMS} sort />)
+
+    expect(container.firstChild).toMatchSnapshot()
+
+    expect(
+      container.firstChild.querySelector('tbody').lastChild.firstChild
+        .textContent,
+    ).toBe('The Force Awakens')
+
+    fireEvent.click(
+      container.firstChild.querySelector('thead').firstChild.firstChild,
+    )
+
+    expect(
+      container.firstChild.querySelector('tbody').lastChild.firstChild
+        .textContent,
+    ).toBe('The Phantom Menace')
+  })
+
+  it('column sort', () => {
+    const { container } = render(
+      <TableQL
+        data={FILMS}
+        columns={[
+          { id: 'title', sort: true },
+          'episodeID',
+          'openingCrawl',
+          'director',
+          'producer',
+          'releaseDate',
+        ]}
+      />,
+    )
+
+    expect(
+      container.firstChild.querySelector('tbody').lastChild.firstChild
+        .textContent,
+    ).toBe('The Force Awakens')
+
+    fireEvent.click(
+      container.firstChild.querySelector('thead').firstChild.firstChild,
+    )
+
+    expect(
+      container.firstChild.querySelector('tbody').lastChild.firstChild
+        .textContent,
+    ).toBe('The Phantom Menace')
+
+    expect(container.firstChild).toMatchSnapshot()
+  })
+
+  it('column custom sort', () => {
+    const { container } = render(
+      <TableQL
+        data={FILMS}
+        columns={[
+          { id: 'title', sort: data => data.reverse() },
+          'episodeID',
+          'openingCrawl',
+          'director',
+          'producer',
+          'releaseDate',
+        ]}
+      />,
+    )
+
+    expect(
+      container.firstChild.querySelector('tbody').lastChild.firstChild
+        .textContent,
+    ).toBe('The Force Awakens')
+
+    fireEvent.click(
+      container.firstChild.querySelector('thead').firstChild.firstChild,
+    )
+
+    expect(
+      container.firstChild.querySelector('tbody').lastChild.firstChild
+        .textContent,
+    ).toBe('A New Hope')
+
+    expect(container.firstChild).toMatchSnapshot()
+  })
+
+  it('sort and pagination', () => {
+    const { container } = render(
+      <TableQL data={PEOPLE} columns={['name']} sort pagination />,
+    )
+
+    expect(
+      container.firstChild.querySelector('tbody').firstChild.firstChild
+        .textContent,
+    ).toBe('Luke Skywalker')
+
+    fireEvent.click(
+      container.firstChild.querySelector('thead').firstChild.firstChild,
+    )
+
+    expect(
+      container.firstChild.querySelector('tbody').firstChild.firstChild
+        .textContent,
+    ).toBe('Ackbar')
+
+    expect(container.firstChild).toMatchSnapshot()
   })
 })

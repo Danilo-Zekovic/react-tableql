@@ -12,17 +12,17 @@ exports[`<ApolloTableQL> pass gql\`query\` 1`] = `
         class="TableQL-tr"
       >
         <th
-          class="TableQL-thead-th "
+          class="TableQL-thead-th  "
         >
           Title
         </th>
         <th
-          class="TableQL-thead-th "
+          class="TableQL-thead-th  "
         >
           Episode ID
         </th>
         <th
-          class="TableQL-thead-th "
+          class="TableQL-thead-th  "
         >
           Release Date
         </th>
@@ -244,17 +244,17 @@ exports[`<ApolloTableQL> snapshot custom columns 1`] = `
         class="TableQL-tr"
       >
         <th
-          class="TableQL-thead-th "
+          class="TableQL-thead-th  "
         >
           Episode Identification
         </th>
         <th
-          class="TableQL-thead-th "
+          class="TableQL-thead-th  "
         >
           Release Date
         </th>
         <th
-          class="TableQL-thead-th "
+          class="TableQL-thead-th  "
         >
           Title
         </th>
@@ -476,17 +476,17 @@ exports[`<ApolloTableQL> snapshot default 1`] = `
         class="TableQL-tr"
       >
         <th
-          class="TableQL-thead-th "
+          class="TableQL-thead-th  "
         >
           Title
         </th>
         <th
-          class="TableQL-thead-th "
+          class="TableQL-thead-th  "
         >
           Episode ID
         </th>
         <th
-          class="TableQL-thead-th "
+          class="TableQL-thead-th  "
         >
           Release Date
         </th>
@@ -708,17 +708,17 @@ exports[`<ApolloTableQL> snapshot default pagination 1`] = `
         class="TableQL-tr"
       >
         <th
-          class="TableQL-thead-th "
+          class="TableQL-thead-th  "
         >
           Title
         </th>
         <th
-          class="TableQL-thead-th "
+          class="TableQL-thead-th  "
         >
           Episode ID
         </th>
         <th
-          class="TableQL-thead-th "
+          class="TableQL-thead-th  "
         >
           Release Date
         </th>

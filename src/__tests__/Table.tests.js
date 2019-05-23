@@ -276,4 +276,95 @@ describe('<Table>', () => {
         .lastChild.firstChild.classList.contains(customClass),
     ).toBeFalsy()
   })
+
+  it('sort', () => {
+    console.log = jest.fn()
+
+    const { container } = render(
+      <Table
+        displayData={FILMS}
+        dataKeys={[
+          'title',
+          'episodeID',
+          'openingCrawl',
+          'director',
+          'producer',
+          'releaseDate',
+        ]}
+        log={() => {}}
+        sort
+        onSort={column => {
+          console.log(column)
+        }}
+      />,
+    )
+
+    const headerLabel = container.querySelector('thead').firstChild.firstChild
+    fireEvent.click(headerLabel)
+
+    expect(container.firstChild).toMatchSnapshot()
+    expect(headerLabel.classList.contains('TableQL-thead-th-sort')).toBeTruthy()
+    expect(console.log).toHaveBeenCalledTimes(1)
+
+    console.log.mockRestore()
+  })
+
+  it('sort through column', () => {
+    console.log = jest.fn()
+
+    const { container } = render(
+      <Table
+        displayData={FILMS}
+        dataKeys={[
+          { id: 'title', sort: true },
+          'episodeID',
+          'openingCrawl',
+          'director',
+          'producer',
+          'releaseDate',
+        ]}
+        log={() => {}}
+        onSort={column => {
+          console.log(column)
+        }}
+      />,
+    )
+
+    const headerLabel = container.querySelector('thead').firstChild.firstChild
+    fireEvent.click(headerLabel)
+
+    expect(container.firstChild).toMatchSnapshot()
+    expect(headerLabel.classList.contains('TableQL-thead-th-sort')).toBeTruthy()
+    expect(console.log).toHaveBeenCalledTimes(1)
+
+    console.log.mockRestore()
+  })
+
+  it('sort through column', () => {
+    console.log = jest.fn()
+
+    const { container } = render(
+      <Table
+        displayData={FILMS}
+        dataKeys={[
+          'title',
+          'episodeID',
+          'openingCrawl',
+          'director',
+          'producer',
+          'releaseDate',
+        ]}
+        log={() => {}}
+      />,
+    )
+
+    const headerLabel = container.querySelector('thead').firstChild.firstChild
+    fireEvent.click(headerLabel)
+
+    expect(container.firstChild).toMatchSnapshot()
+    expect(headerLabel.classList.contains('TableQL-thead-th-sort')).toBeFalsy()
+    expect(console.log).toHaveBeenCalledTimes(0)
+
+    console.log.mockRestore()
+  })
 })
