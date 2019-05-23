@@ -486,6 +486,10 @@ Builds production ready component using Webpack, and builds static Storybook fil
 
 ##### test
 
+Run all the tests.
+
+##### test:watch
+
 Runs tests in watch mode.
 
 ##### test:coverage
