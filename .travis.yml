@@ -23,7 +23,7 @@ deploy:
   api_key:
     secure: '$NPM_TOKEN'
   on:
-    tags: true
+    # tags: true
     repo: Danilo-Zekovic/react-tableql
     branch: master
 
