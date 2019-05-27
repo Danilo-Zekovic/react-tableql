@@ -22,6 +22,7 @@ before_deploy:
 
 deploy:
   provider: npm
+  skip_cleanup: true
   email: '$EMAIL'
   api_key:
     secure: '$NPM_TOKEN'
