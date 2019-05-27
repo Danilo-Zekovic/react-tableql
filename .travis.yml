@@ -19,9 +19,9 @@ before_deploy:
 
 deploy:
   provider: npm
-  email: $EMAIL
+  email: '$EMAIL'
   api_key:
-    secure: $NPM_AUTH_TOKEN
+    secure: '$NPM_TOKEN'
   on:
     tags: true
     repo: Danilo-Zekovic/react-tableql
