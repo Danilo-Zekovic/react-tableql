@@ -145,43 +145,37 @@ const Pagination = ({
   const pages = fetchPageNumbers()
 
   return (
-    <>
-      <div
-        className={styles ? styles : 'PaginationContainer'}
-        data-testid="pagination"
-      >
-        {pages.map((page, index) => {
-          if (page === LEFT_PAGE) {
-            return (
-              <button
-                aria-label="Previous"
-                onClick={handleMoveLeft}
-                key={index}
-              >
-                &laquo;
-              </button>
-            )
-          }
-          if (page === RIGHT_PAGE) {
-            return (
-              <button onClick={handleMoveRight} aria-label="Next" key={index}>
-                &raquo;
-              </button>
-            )
-          }
-
+    <div
+      className={styles ? styles : 'PaginationContainer'}
+      data-testid="pagination"
+    >
+      {pages.map((page, index) => {
+        if (page === LEFT_PAGE) {
           return (
-            <button
-              key={index}
-              className={`${currentPage === page ? ' active' : ''}`}
-              onClick={() => handleClick(page)}
-            >
-              {page}
+            <button aria-label="Previous" onClick={handleMoveLeft} key={index}>
+              &laquo;
             </button>
           )
-        })}
-      </div>
-    </>
+        }
+        if (page === RIGHT_PAGE) {
+          return (
+            <button onClick={handleMoveRight} aria-label="Next" key={index}>
+              &raquo;
+            </button>
+          )
+        }
+
+        return (
+          <button
+            key={index}
+            className={`${currentPage === page ? ' active' : ''}`}
+            onClick={() => handleClick(page)}
+          >
+            {page}
+          </button>
+        )
+      })}
+    </div>
   )
 }
 

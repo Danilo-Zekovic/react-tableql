@@ -1,11 +1,6 @@
 # react-tableql
 
-<a href="https://npmjs.com/package/react-tableql" target="\_parent">
-  <img alt="" src="https://img.shields.io/npm/dm/react-tableql.svg" />
-</a>
-<a href="https://github.com/Danilo-Zekovic/react-tableql" target="\_parent">
-  <img alt="" src="https://img.shields.io/github/stars/Danilo-Zekovic/react-tableql.svg?style=social&label=Star" />
-</a>
+[![Build Status](https://travis-ci.com/Danilo-Zekovic/react-tableql.svg?branch=master)](https://travis-ci.com/Danilo-Zekovic/react-tableql) [![downloads](https://img.shields.io/npm/dm/react-tableql.svg)](https://npmjs.com/package/react-tableql) [![downloads](https://img.shields.io/github/stars/Danilo-Zekovic/react-tableql.svg?style=social&label=Star)](https://github.com/Danilo-Zekovic/react-tableql)
 
 React table component that is harnessing the power GraphQL. Simple way to display your data.
 
@@ -485,6 +480,10 @@ Builds production ready component using Webpack.
 Builds production ready component using Webpack, and builds static Storybook files that will be used on GitHub pages as [online TableQL documentation and component demonstration](https://danilo-zekovic.github.io/react-tableql/).
 
 ##### test
+
+Run all the tests.
+
+##### test:watch
 
 Runs tests in watch mode.
 

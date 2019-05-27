@@ -1,0 +1,31 @@
+language: node_js
+
+node_js:
+  - '11'
+
+script:
+  - echo "Check coverage"
+  - npm run test:coverage
+  - echo "Check formating"
+  - npm run format:check
+  - echo "Build the component and Storybook"
+  - npm run build:all
+
+after_success:
+  - echo "All good!"
+
+before_deploy:
+  - echo "Ready to Deploy"
+
+deploy:
+  provider: npm
+  email: $EMAIL
+  api_key:
+    secure: $NPM_AUTH_TOKEN
+  on:
+    tags: true
+    repo: Danilo-Zekovic/react-tableql
+    branch: master
+
+after_deploy:
+  - echo "Deploy over."

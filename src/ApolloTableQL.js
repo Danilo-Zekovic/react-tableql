@@ -7,16 +7,14 @@ import TableQL from './TableQL'
 
 const ApolloTableQL = ({ query, ...props }) => {
   return (
-    <>
-      <Query
-        query={typeof query === 'string' ? gql(query) : query}
-        {...props} // skip, pollInterval, notifyOnNetworkStatusChange, onError, onCompleted, variables
-      >
-        {({ data, loading, error }) => (
-          <TableQL loading={loading} data={data} error={error} {...props} />
-        )}
-      </Query>
-    </>
+    <Query
+      query={typeof query === 'string' ? gql(query) : query}
+      {...props} // skip, pollInterval, notifyOnNetworkStatusChange, onError, onCompleted, variables
+    >
+      {({ data, loading, error }) => (
+        <TableQL loading={loading} data={data} error={error} {...props} />
+      )}
+    </Query>
   )
 }
 
