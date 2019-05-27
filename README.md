@@ -554,6 +554,10 @@ npm run format
 
 My advice would be to set up your editor to format code on save.
 
+## Travis
+
+Continues Deployment is triggered on tag change. On every commit Travis will run tests, format check, Storybook build, and component build. It needs to be built with Node >= 9 for everything to pass.
+
 ---
 
 ### TODO
