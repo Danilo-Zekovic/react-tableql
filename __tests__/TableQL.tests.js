@@ -2,10 +2,8 @@ import React from 'react'
 import { render, cleanup, fireEvent } from 'react-testing-library'
 import '@babel/polyfill' // TODO: not ideal find the way to move it globally, webpack
 
-import TableQL from '../index'
-import { FILMS, PEOPLE } from '../../__mocks__/data'
-
-const wait = time => new Promise(resolve => setTimeout(resolve, time))
+import TableQL from '../src/index'
+import { FILMS, PEOPLE } from '../__mocks__/data'
 
 describe('<TableQL>', () => {
   afterEach(cleanup)

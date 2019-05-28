@@ -21,6 +21,11 @@
     "url": "https://github.com/Danilo-Zekovic/react-tableql/issues"
   },
   "homepage": "https://github.com/Danilo-Zekovic/react-tableql#readme",
+  "files": [
+    "src/**/*",
+    "build/**/*",
+    "docs/**/*"
+  ],
   "peerDependencies": {
     "react": ">= 16.8.0 < 17",
     "react-dom": ">= 16.8.0 < 17",
@@ -82,9 +87,8 @@
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
     },
-    "collectCoverage": true,
     "collectCoverageFrom": [
-      "**/src/**/*.js"
+      "src/**/*.js"
     ],
     "coverageThreshold": {
       "global": {

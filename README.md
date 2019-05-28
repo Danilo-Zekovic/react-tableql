@@ -1,6 +1,6 @@
 # react-tableql
 
-[![Build Status](https://travis-ci.com/Danilo-Zekovic/react-tableql.svg?branch=master)](https://travis-ci.com/Danilo-Zekovic/react-tableql) [![codecov](https://codecov.io/gh/Danilo-Zekovic/react-tableql/branch/master/graph/badge.svg)](https://codecov.io/gh/Danilo-Zekovic/react-tableql) [![downloads](https://img.shields.io/npm/dm/react-tableql.svg)](https://npmjs.com/package/react-tableql) [![npm version](https://img.shields.io/npm/v/react-tableql.svg?style=flat)](https://www.npmjs.com/package/react-tableql) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Danilo-Zekovic/react-tableql/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Danilo-Zekovic/react-tableql#readme)
+[![Build Status](https://travis-ci.com/Danilo-Zekovic/react-tableql.svg?branch=master)](https://travis-ci.com/Danilo-Zekovic/react-tableql) [![codecov](https://codecov.io/gh/Danilo-Zekovic/react-tableql/branch/master/graph/badge.svg)](https://codecov.io/gh/Danilo-Zekovic/react-tableql) [![downloads](https://img.shields.io/npm/dm/react-tableql.svg)](https://npmjs.com/package/react-tableql) [![npm version](https://img.shields.io/npm/v/react-tableql.svg?style=flat)](https://www.npmjs.com/package/react-tableql) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Danilo-Zekovic/react-tableql/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Danilo-Zekovic/react-tableql/blob/master/CONTRIBUTING.md)
 
 [![stars](https://img.shields.io/github/stars/Danilo-Zekovic/react-tableql.svg?style=social&label=Star)](https://github.com/Danilo-Zekovic/react-tableql) [![fork](https://img.shields.io/github/forks/Danilo-Zekovic/react-tableql.svg?style=social&label=Fork)](https://github.com/Danilo-Zekovic/react-tableql) [![watch](https://img.shields.io/github/watchers/Danilo-Zekovic/react-tableql.svg?style=social&label=Watch)](https://github.com/Danilo-Zekovic/react-tableql)
 
@@ -508,51 +508,6 @@ Starts Storybook locally on port 6006, http://localhost:6006/
 ##### build-storybook
 
 Builds static Storybook files that will be used on GitHub pages as [online TableQL documentation and component demonstration](https://danilo-zekovic.github.io/react-tableql/).
-
-## Development/Contribution
-
-When doing development on the component on local machine follow next steps to make your time more productive:
-
-Start [Storybook]('https://storybook.js.org/'):
-
-`npm run storybook`
-
-Create a story in Storybook where you can test your changes.
-
-OR
-
-Hot-reload
-
-```
-npm start
-```
-
-Linking react-tableql in local:
-First run
-
-```
-npm link
-```
-
-inside the react-tableql directory, then in the project that you wish to test the component
-
-```
-npm link react-tableql
-```
-
-Check is everything formatted by the set rules in Prettier:
-
-```
-npm run format:check
-```
-
-And to format everything run:
-
-```
-npm run format
-```
-
-My advice would be to set up your editor to format code on save.
 
 ## Travis
 
