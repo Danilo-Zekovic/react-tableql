@@ -1,7 +1,14 @@
 language: node_js
 
 node_js:
+  - '12'
   - '11'
+  - '10'
+  - '9'
+
+install:
+  - npm install
+  - npm install -g codecov
 
 script:
   - echo "Check coverage"
@@ -10,6 +17,8 @@ script:
   - npm run format:check
   - echo "Build the component and Storybook"
   - npm run build:all
+  - echo "Upload coverage"
+  - codecov --token="$CODECOV_TOKEN"
 
 after_success:
   - echo "All good!"
@@ -19,11 +28,12 @@ before_deploy:
 
 deploy:
   provider: npm
+  skip_cleanup: true
   email: '$EMAIL'
   api_key:
     secure: '$NPM_TOKEN'
   on:
-    # tags: true
+    tags: true
     repo: Danilo-Zekovic/react-tableql
     branch: master
 
