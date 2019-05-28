@@ -6,6 +6,9 @@ node_js:
   - '10'
   - '9'
 
+install:
+  - npm install -g codecov
+
 script:
   - echo "Check coverage"
   - npm run test:coverage
@@ -13,6 +16,8 @@ script:
   - npm run format:check
   - echo "Build the component and Storybook"
   - npm run build:all
+  - echo "Upload coverage"
+  - codecov --token="$CODECOV_TOKEN"
 
 after_success:
   - echo "All good!"
