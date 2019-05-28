@@ -1,8 +1,8 @@
 import React from 'react'
-import { render, cleanup, fireEvent } from 'react-testing-library'
+import { render, cleanup } from 'react-testing-library'
 import '@babel/polyfill' // TODO: not ideal find the way to move it globally, webpack
 
-import ErrorBoundary from '../ErrorBaundary'
+import ErrorBoundary from '../src/ErrorBaundary'
 
 // NOTE: credit for these tests goes to @kentcdodds,
 // as I used his code and explanation https://github.com/kentcdodds/react-testing-library-course/blob/master/src/__tests__/error-boundary.js
@@ -22,7 +22,7 @@ describe('<ErrorBoundary>', () => {
     console.error = jest.fn()
     console.log = jest.fn()
 
-    const { container, rerender, getByText } = render(
+    const { container, rerender } = render(
       <ErrorBoundary>
         <Bomb />
       </ErrorBoundary>,

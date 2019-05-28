@@ -509,51 +509,6 @@ Starts Storybook locally on port 6006, http://localhost:6006/
 
 Builds static Storybook files that will be used on GitHub pages as [online TableQL documentation and component demonstration](https://danilo-zekovic.github.io/react-tableql/).
 
-## Development/Contribution
-
-When doing development on the component on local machine follow next steps to make your time more productive:
-
-Start [Storybook]('https://storybook.js.org/'):
-
-`npm run storybook`
-
-Create a story in Storybook where you can test your changes.
-
-OR
-
-Hot-reload
-
-```
-npm start
-```
-
-Linking react-tableql in local:
-First run
-
-```
-npm link
-```
-
-inside the react-tableql directory, then in the project that you wish to test the component
-
-```
-npm link react-tableql
-```
-
-Check is everything formatted by the set rules in Prettier:
-
-```
-npm run format:check
-```
-
-And to format everything run:
-
-```
-npm run format
-```
-
-My advice would be to set up your editor to format code on save.
-
 ## Travis
 
 Continues Deployment is triggered on tag change. On every commit Travis will run tests, format check, Storybook build, and component build. It needs to be built with Node >= 9 for everything to pass.

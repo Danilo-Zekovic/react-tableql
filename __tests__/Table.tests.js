@@ -2,8 +2,8 @@ import React from 'react'
 import { render, cleanup, fireEvent } from 'react-testing-library'
 import '@babel/polyfill' // TODO: not ideal find the way to move it globally, webpack
 
-import { FILMS } from '../../__mocks__/data'
-import Table from '../Table'
+import { FILMS } from '../__mocks__/data'
+import Table from '../src/Table'
 
 const DATA_KEYS = [
   'title',

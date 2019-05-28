@@ -4,9 +4,9 @@ import { MockedProvider } from 'react-apollo/test-utils'
 import gql from 'graphql-tag'
 import '@babel/polyfill' // TODO: not ideal find the way to move it globally, webpack
 
-import { ApolloTableQL } from '../index'
-import { testMocks } from '../../__mocks__/mocks'
-import { GET_ALL_FILMS } from '../../__mocks__/queries'
+import { ApolloTableQL } from '../src/index'
+import { testMocks } from '../__mocks__/mocks'
+import { GET_ALL_FILMS } from '../__mocks__/queries'
 
 const Default = () => <ApolloTableQL query={GET_ALL_FILMS} />
 const Pagination = () => <ApolloTableQL query={GET_ALL_FILMS} pagination />
