@@ -34,7 +34,6 @@ ApolloTableQL.propTypes = {
     }),
     PropTypes.bool,
   ]),
-  errorMessage: PropTypes.string,
   styles: PropTypes.shape({
     table: PropTypes.string,
     thead: PropTypes.string,
@@ -47,6 +46,7 @@ ApolloTableQL.propTypes = {
   onRowClick: PropTypes.func,
   errorMessage: PropTypes.string,
   debug: PropTypes.bool,
+  sort: PropTypes.bool,
 }
 
 export default ApolloTableQL

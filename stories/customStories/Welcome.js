@@ -3,7 +3,7 @@ import { linkTo } from '@storybook/addon-links'
 
 const Welcome = () => {
   return (
-    <div>
+    <div style={{ width: '960px' }}>
       <h1>Welcome to TableQL</h1>
       <h3>Universal Apollo Client and GraphQL table renderer component.</h3>
 

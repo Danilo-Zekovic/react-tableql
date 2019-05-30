@@ -70,7 +70,7 @@ const PROPS = [
 ]
 
 const IntroApolloTableQL = () => (
-  <>
+  <div style={{ width: '960px' }}>
     <h1>ApolloTableQL</h1>
     <p>
       ApolloTableQL is TableQL wrapped with Apollo Client Query and its logic.
@@ -106,7 +106,7 @@ const IntroApolloTableQL = () => (
       Rest of TableQL section will just demonstrate how to wrap it with axios
       and Apollo. Shell we?
     </p>
-  </>
+  </div>
 )
 
 export default IntroApolloTableQL
