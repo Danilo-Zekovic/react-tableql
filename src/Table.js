@@ -83,7 +83,7 @@ const Table = ({
         }`}
         key={`TableQLHeader${column + columnIndex}`}
         onClick={() => {
-          if (!onSort && !column.sort && !sort) return
+          if (!column.sort && !sort) return
           log('Header sort was clicked: ', column)
           onSort(column)
         }}

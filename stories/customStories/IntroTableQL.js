@@ -70,7 +70,7 @@ const PROPS = [
 ]
 
 const IntroTableQL = () => (
-  <>
+  <div style={{ width: '960px' }}>
     <h1>TableQL</h1>
     <p>
       TableQL is in core of react-tableql. It is a react component that parses
@@ -101,7 +101,7 @@ const IntroTableQL = () => (
       Rest of TableQL section will just demonstrate how to wrap it with axios
       and Apollo. Shell we?
     </p>
-  </>
+  </div>
 )
 
 export default IntroTableQL

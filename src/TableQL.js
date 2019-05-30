@@ -220,7 +220,7 @@ TableQL.propTypes = {
     tbodyTd: PropTypes.string,
   }),
   onRowClick: PropTypes.func,
-  sort: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  sort: PropTypes.bool,
   debug: PropTypes.bool,
 }
 

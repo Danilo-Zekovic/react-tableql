@@ -13,6 +13,8 @@ Official React TableQL Storybook: https://danilo-zekovic.github.io/react-tableql
 
 If you have any suggestions please let me know or join the project.
 
+> Latest code can be found on [GitHub](https://github.com/Danilo-Zekovic/react-tableql)
+
 ## Installing and Using react-tableql
 
 First install it:
@@ -75,19 +77,20 @@ npm install --save graphql apollo-boost react-apollo
 
 # Props
 
-| Prop                 | Required | Type              | Default Value | Description                                                                                                     | TabelQL            | ApolloTableQL      |
-| -------------------- | -------- | ----------------- | ------------- | --------------------------------------------------------------------------------------------------------------- | ------------------ | ------------------ |
-| **query**            | Yes      | String            | -             | Graphql query                                                                                                   | :x:                | :white_check_mark: |
-| **data**             | Yes      | Array             | -             | Data to be parsed and rendered                                                                                  | :white_check_mark: | :x:                |
-| **columns**          | No       | Array             | `null`        | Customization of columns                                                                                        | :white_check_mark: | :white_check_mark: |
-| **pagination**       | No       | Object or Boolean | `false`       | Adds pagination                                                                                                 | :white_check_mark: | :white_check_mark: |
-| **onRowClick**       | No       | Function          | `null`        | Handle row click                                                                                                | :white_check_mark: | :white_check_mark: |
-| **styles**           | No       | Object            | `{}`          | Change the look of part of a table                                                                              | :white_check_mark: | :white_check_mark: |
-| **debug**            | No       | Boolean           | `false`       | Turns on and off the debug mode                                                                                 | :white_check_mark: | :white_check_mark: |
-| **loading**          | No       | Boolean           | `false`       | Indicates if data is loading                                                                                    | :white_check_mark: | :x:                |
-| **error**            | No       | Error             | `''`          | Error object                                                                                                    | :white_check_mark: | :x:                |
-| **sort**             | No       | Boolean           | `false`       | All columns can be sorted by                                                                                    | :white_check_mark: | :white_check_mark: |
-| **_Apollo Options_** | No       | -                 | -             | See [Apollo Client](https://www.apollographql.com/docs/react/essentials/get-started.html) site for more details | :x:                | :white_check_mark: |
+| Prop                    | Required | Type              | Default Value | Description                                                                                                     | TabelQL            | ApolloTableQL      |
+| ----------------------- | -------- | ----------------- | ------------- | --------------------------------------------------------------------------------------------------------------- | ------------------ | ------------------ |
+| [**query**](#query)     | Yes      | String            | -             | Graphql query                                                                                                   | :x:                | :white_check_mark: |
+| **data**                | Yes      | Array             | -             | Data to be parsed and rendered                                                                                  | :white_check_mark: | :x:                |
+| [**columns**](#columns) | No       | Array             | `null`        | Customization of columns                                                                                        | :white_check_mark: | :white_check_mark: |
+| **pagination**          | No       | Object or Boolean | `false`       | Adds pagination                                                                                                 | :white_check_mark: | :white_check_mark: |
+| **onRowClick**          | No       | Function          | `null`        | Handle row click                                                                                                | :white_check_mark: | :white_check_mark: |
+| **styles**              | No       | Object            | `{}`          | Change the look of part of a table                                                                              | :white_check_mark: | :white_check_mark: |
+| **debug**               | No       | Boolean           | `false`       | Turns on and off the debug mode                                                                                 | :white_check_mark: | :white_check_mark: |
+| **loading**             | No       | Boolean           | `false`       | Indicates if data is loading                                                                                    | :white_check_mark: | :x:                |
+| **error**               | No       | Error             | `''`          | Error object                                                                                                    | :white_check_mark: | :x:                |
+| **sort**                | No       | Boolean           | `false`       | All columns can be sorted by                                                                                    | :white_check_mark: | :white_check_mark: |
+| **errorMessage**        | No       | String            | ''            | When error occurs display this message                                                                          | :white_check_mark: | :white_check_mark: |
+| **_Apollo Options_**    | No       | -                 | -             | See [Apollo Client](https://www.apollographql.com/docs/react/essentials/get-started.html) site for more details | :x:                | :white_check_mark: |
 
 > NOTE: ApolloTabelQL has yet to be tested for all the options that Apollo Client has to offer. See the once that have been tested in the section Apollo Options bellow.
 
@@ -378,12 +381,22 @@ Example:
 
 ## sort
 
-Pass `true` to add sort on all of the columns. When header label clicked sort the table by that column:
+Pass `true` to add sort on all of the columns. When header label clicked sort the table by that column.
 
 Example:
 
 ```
 <ApolloTableQL query={GET_ALL_FILMS} sort />
+```
+
+## errorMessage
+
+Error message to be displayed when error occurs.
+
+Example:
+
+```
+<ApolloTableQL query={GET_ALL_FILMS} errorMessage="There was an error! Try again." />
 ```
 
 ## Apollo Options

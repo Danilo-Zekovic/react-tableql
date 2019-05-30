@@ -2,7 +2,7 @@ import React from 'react'
 import { linkTo } from '@storybook/addon-links'
 
 const Setup = () => (
-  <div>
+  <div style={{ width: '960px' }}>
     <h1>Getting Started</h1>
     <p>
       To use TableQL first you need to have React and ReactDOM added to the
