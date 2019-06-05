@@ -8,6 +8,8 @@ React table component that is harnessing the power GraphQL. Simple way to displa
 
 Official React TableQL Storybook: https://danilo-zekovic.github.io/react-tableql/
 
+Demo app: https://github.com/Danilo-Zekovic/react-tableql-example-app
+
 > **Disclaimer**:
 > This components are still under development and may not perform as expected. Use at your own risk.
 
