@@ -34,8 +34,8 @@ const StorybookDirections = () => (
     </h3>
     <p>
       Represents the code needed to achieve given example. Note JSX and
-      JavaScript in that tab is not the latest JavaScript as it transformed into
-      ES5
+      JavaScript in that tab is not the latest JavaScript as it is transformed
+      into ES5
     </p>
 
     <h3>

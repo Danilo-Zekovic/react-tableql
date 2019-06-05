@@ -18,7 +18,8 @@ const Setup = () => (
     </p>
     <br />
     <blockquote>
-      NOTE: Component in which is TableQL used must be wrapped in Apollo Client.
+      NOTE: Component in which is ApolloTableQL used must be wrapped in Apollo
+      Client.
     </blockquote>
     <br />
     <a href="https://github.com/Danilo-Zekovic/react-tableql" target="blank">
