@@ -479,9 +479,12 @@ Example:
 <ApolloTableQL
   query={GET_ALL_FILMS}
   styles={
-    table:'custom-class',
-    tbodyTd: 'custom-body-node-class'
-  } />
+    {
+      table:'custom-class',
+      tbodyTd: 'custom-body-node-class'
+    }
+  }
+/>
 ```
 
 If no custom styling is passed component will use its own styling.

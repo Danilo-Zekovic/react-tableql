@@ -3,11 +3,11 @@ import { storiesOf } from '@storybook/react'
 
 import { Setup, Welcome, StorybookDirections } from './customStories'
 
-export const foo = storiesOf('Getting Started|Introduction', module)
+export const foo = storiesOf('1. Getting Started|Introduction', module)
   .addParameters({ options: { showPanel: false } })
   .add('to React TableQL', () => <Welcome />)
   .add('to Storybook', () => <StorybookDirections />)
 
-export const boo = storiesOf('Getting Started|Setup', module)
+export const boo = storiesOf('1. Getting Started|Setup', module)
   .addParameters({ options: { showPanel: false } })
   .add('Install', () => <Setup />)

@@ -20,11 +20,11 @@ const Button = ({ data }) => {
 /**
  * This stories is documentation of all possible options in TableQL
  */
-export const BASIC_TABLEQL = storiesOf('TableQL|Basic', module)
+export const BASIC_TABLEQL = storiesOf('2. TableQL|Basic', module)
   .addParameters({ options: { showPanel: false } })
   .add('definition', () => <IntroTableQL />)
 
-export const WRAPPER_EXAMPLES = storiesOf('TableQL|Wrapped Examples', module)
+export const WRAPPER_EXAMPLES = storiesOf('2. TableQL|Wrapped Examples', module)
   .add('apollo client', () => (
     <Query query={gql(GET_ALL_FILMS)}>{props => <TableQL {...props} />}</Query>
   ))

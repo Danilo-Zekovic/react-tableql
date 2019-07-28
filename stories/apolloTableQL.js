@@ -25,7 +25,7 @@ const Button = ({ data }) => {
 /**
  * This stories is documentation of all possible options in TableQL
  */
-export const BASIC = storiesOf('Apollo-TableQL|Basic', module)
+export const BASIC = storiesOf('3. Apollo-TableQL|Basic', module)
   .addParameters({ options: { showPanel: false } })
   .add('introduction', () => <IntroApolloTableQL />)
   .addParameters({ options: { showPanel: true } })
@@ -62,7 +62,7 @@ export const BASIC = storiesOf('Apollo-TableQL|Basic', module)
     />
   ))
 
-export const CUSTOM_STYLES = storiesOf('Apollo-TableQL|Custom Styles', module)
+export const CUSTOM_STYLES = storiesOf('3. Apollo-TableQL|Custom Styles', module)
   .add('table', () => (
     <ApolloTableQL query={GET_ALL_FILMS} styles={{ table: 'bg-color' }} />
   ))
@@ -85,7 +85,7 @@ export const CUSTOM_STYLES = storiesOf('Apollo-TableQL|Custom Styles', module)
     <ApolloTableQL query={GET_ALL_FILMS} styles={{ tbodyTd: 'bg-color' }} />
   ))
 
-export const CUSTOM_COLUMNS = storiesOf('Apollo-TableQL|Custom Columns', module)
+export const CUSTOM_COLUMNS = storiesOf('3. Apollo-TableQL|Custom Columns', module)
   .add('order', () => (
     <ApolloTableQL
       query={GET_ALL_FILMS}
@@ -211,7 +211,7 @@ export const CUSTOM_COLUMNS = storiesOf('Apollo-TableQL|Custom Columns', module)
     />
   ))
 
-export const PAGINATION = storiesOf('Apollo-TableQL|Pagination', module)
+export const PAGINATION = storiesOf('3. Apollo-TableQL|Pagination', module)
   .add('basic', () => <ApolloTableQL query={GET_ALL_PEOPLE} pagination />)
   .add('with debug mode', () => (
     <ApolloTableQL query={GET_ALL_PEOPLE} pagination debug />
