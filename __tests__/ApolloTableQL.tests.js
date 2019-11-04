@@ -1,6 +1,6 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
-import { MockedProvider } from 'react-apollo/test-utils'
+import { render, cleanup, wait } from '@testing-library/react'
+import { MockedProvider } from '@apollo/react-testing'
 import gql from 'graphql-tag'
 import '@babel/polyfill' // TODO: not ideal find the way to move it globally, webpack
 
@@ -22,7 +22,7 @@ const CustomColumn = () => (
 )
 
 // async helper function. crete an additional tick in the event loop to make sure everything goes as expected
-const wait = time => new Promise(resolve => setTimeout(resolve, time))
+// const wait = time => new Promise(resolve => setTimeout(resolve, time))
 
 describe('<ApolloTableQL>', () => {
   afterEach(cleanup)
@@ -44,9 +44,9 @@ describe('<ApolloTableQL>', () => {
       </MockedProvider>,
     )
 
-    await wait(0)
-
-    expect(container).toMatchSnapshot()
+    await wait(() => {
+      expect(container).toMatchSnapshot()
+    })
   })
 
   it('snapshot default pagination', async () => {
@@ -56,9 +56,9 @@ describe('<ApolloTableQL>', () => {
       </MockedProvider>,
     )
 
-    await wait(0)
-
-    expect(container).toMatchSnapshot()
+    await wait(() => {
+      expect(container).toMatchSnapshot()
+    })
   })
 
   it('snapshot custom columns', async () => {
@@ -68,9 +68,9 @@ describe('<ApolloTableQL>', () => {
       </MockedProvider>,
     )
 
-    await wait(0)
-
-    expect(container).toMatchSnapshot()
+    await wait(() => {
+      expect(container).toMatchSnapshot()
+    })
   })
 
   it('pass gql`query`', async () => {
@@ -80,21 +80,21 @@ describe('<ApolloTableQL>', () => {
       </MockedProvider>,
     )
 
-    await wait(0)
+    await wait(() => {
+      expect(container.querySelector('tbody').querySelectorAll('tr')).toBeTruthy()
+      expect(container.querySelector('tbody').querySelectorAll('tr').length).toBe(
+        7,
+      )
 
-    expect(container).toMatchSnapshot()
+      expect(container.querySelector('thead').querySelector('tr')).toBeTruthy()
+      expect(
+        container
+          .querySelector('thead')
+          .querySelector('tr')
+          .querySelectorAll('th').length,
+      ).toBe(3)
 
-    expect(container.querySelector('tbody').querySelectorAll('tr')).toBeTruthy()
-    expect(container.querySelector('tbody').querySelectorAll('tr').length).toBe(
-      7,
-    )
-
-    expect(container.querySelector('thead').querySelector('tr')).toBeTruthy()
-    expect(
-      container
-        .querySelector('thead')
-        .querySelector('tr')
-        .querySelectorAll('th').length,
-    ).toBe(3)
+      expect(container).toMatchSnapshot()
+    })
   })
 })
