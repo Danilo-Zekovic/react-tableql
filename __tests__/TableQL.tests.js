@@ -117,6 +117,7 @@ describe('<TableQL>', () => {
     expect(container.firstChild).toMatchSnapshot()
     expect(queryByTestId('pagination')).toBeTruthy()
     expect(queryAllByTestId('pagination').length).toBe(1)
+    expect(console.log).toHaveBeenCalledWith(3, 18, pageLimit, PEOPLE.length)
     // change page
     expect(queryByText('1')).toBeTruthy()
     fireEvent.click(queryByText('1'))
