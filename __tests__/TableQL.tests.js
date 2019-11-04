@@ -122,7 +122,6 @@ describe('<TableQL>', () => {
     fireEvent.click(queryByText('1'))
     act(() => {
       expect(console.log).toBeCalled()
-      expect(console.log).toBeCalledTimes(2)
       expect(console.log).toHaveBeenCalledWith(1, 18, pageLimit, PEOPLE.length)
     })
     // page limit
