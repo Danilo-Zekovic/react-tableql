@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup, fireEvent, act } from '@testing-library/react'
+import { render, cleanup, fireEvent, waitForElement } from '@testing-library/react'
 import '@babel/polyfill' // TODO: not ideal find the way to move it globally, webpack
 
 import TableQL from '../src/index'
@@ -118,12 +118,11 @@ describe('<TableQL>', () => {
     expect(queryByTestId('pagination')).toBeTruthy()
     expect(queryAllByTestId('pagination').length).toBe(1)
     // change page
-    expect(queryByText('1')).toBeTruthy()
-    fireEvent.click(queryByText('1'))
-    act(() => {
-      expect(console.log).toBeCalled()
-      expect(console.log).toHaveBeenCalledWith(1, 18, pageLimit, PEOPLE.length)
-    })
+    const pageOneButton = await waitForElement( () => queryByText('1'))
+    expect(pageOneButton).toBeTruthy()
+    await fireEvent.click(pageOneButton)
+    expect(console.log).toBeCalled()
+    expect(console.log).toHaveBeenCalledWith(1, 18, pageLimit, PEOPLE.length)
     // page limit
     expect(container.querySelector('tbody').querySelectorAll('tr')).toBeTruthy()
     expect(container.querySelector('tbody').querySelectorAll('tr').length).toBe(
