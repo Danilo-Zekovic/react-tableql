@@ -117,12 +117,14 @@ describe('<TableQL>', () => {
     expect(container.firstChild).toMatchSnapshot()
     expect(queryByTestId('pagination')).toBeTruthy()
     expect(queryAllByTestId('pagination').length).toBe(1)
-    expect(console.log).toHaveBeenCalledWith(3, 18, pageLimit, PEOPLE.length)
     // change page
     expect(queryByText('1')).toBeTruthy()
     fireEvent.click(queryByText('1'))
-    expect(console.log).toBeCalled()
-    expect(console.log).toHaveBeenCalledWith(1, 18, pageLimit, PEOPLE.length)
+    setTimeout(() => {
+      expect(console.log).toBeCalled()
+      expect(console.log).toBeCalledTimes(2)
+      expect(console.log).toHaveBeenCalledWith(1, 18, pageLimit, PEOPLE.length)
+    }, 1000);
     // page limit
     expect(container.querySelector('tbody').querySelectorAll('tr')).toBeTruthy()
     expect(container.querySelector('tbody').querySelectorAll('tr').length).toBe(
