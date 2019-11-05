@@ -8,7 +8,7 @@ import TableQL from './TableQL'
 const ApolloTableQL = ({ query, ...props }) => {
   const { loading, error, data } = useQuery(
     typeof query === 'string' ? gql(query) : query,
-    { ...props }
+    { ...props },
   )
 
   return <TableQL loading={loading} data={data} error={error} {...props} />
