@@ -444,6 +444,8 @@ props. For details on Apollo Query Props please visit official documentation htt
 | **context**                     | :x:                | :interrobang:      |
 | **partialRefetch**              | :x:                | :interrobang:      |
 | **children**                    | :white_check_mark: | :x:                |
+| **client**                      | :x:                | :interrobang:      |
+| **returnPartialData**           | :x:                | :interrobang:      |
 
 > NOTE: children is already taken care of by ApolloTableQL. There is no option to pass children to ApolloTableQL yet.
 
