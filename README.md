@@ -568,6 +568,7 @@ Continues Deployment is triggered on tag change. On every commit Travis will run
 - Improving the component
 - Cleanup of node packages
 - Subscribe for live updates
+- Context where global info can be set, ex. theming
 - Tutorials
 
 For more about TableQL visit **[Official React TableQL Storybook](https://danilo-zekovic.github.io/react-tableql/)** and explore all the options, and see some demo examples.
