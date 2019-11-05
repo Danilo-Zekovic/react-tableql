@@ -1,21 +1,17 @@
 import React from 'react'
-import { Query } from 'react-apollo'
+import { useQuery } from 'react-apollo'
 import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
 
 import TableQL from './TableQL'
 
 const ApolloTableQL = ({ query, ...props }) => {
-  return (
-    <Query
-      query={typeof query === 'string' ? gql(query) : query}
-      {...props} // skip, pollInterval, notifyOnNetworkStatusChange, onError, onCompleted, variables
-    >
-      {({ data, loading, error }) => (
-        <TableQL loading={loading} data={data} error={error} {...props} />
-      )}
-    </Query>
+  const { loading, error, data } = useQuery(
+    typeof query === 'string' ? gql(query) : query,
+    { ...props },
   )
+
+  return <TableQL loading={loading} data={data} error={error} {...props} />
 }
 
 ApolloTableQL.propTypes = {
