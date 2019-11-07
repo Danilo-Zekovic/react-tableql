@@ -31,7 +31,7 @@ Then import it into your React component:
 import TableQL from 'react-tableql'
 ```
 
-or for ApolloTableQL
+or for ApolloTableQL:
 
 ```
 import { ApolloTableQL } from 'react-tableql'
