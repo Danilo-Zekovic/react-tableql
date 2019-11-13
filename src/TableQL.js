@@ -6,6 +6,7 @@ import './index.css'
 import Pagination from './Pagination'
 import Table from './Table'
 import ErrorBoundary from './ErrorBaundary'
+import Loader from './components/Loader/Loader'
 
 const TableQL = ({
   pagination,
@@ -107,7 +108,7 @@ const TableQL = ({
 
   if (loading) {
     log('Loading: ', loading)
-    return <p>{`Loading...`}</p>
+    return <Loader />
   }
   if (error) {
     log('Error: ', error)

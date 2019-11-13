@@ -96,16 +96,6 @@ const IntroApolloTableQL = () => (
       styles={{ tbodyTr: 'customRow TableQL-tr', theadTr: 'customRow' }}
     />
     * this table is created with TableQL :)
-    <h2>What next?</h2>
-    <p>
-      Demonstration of component and all of its functionality will be done with{' '}
-      <a onClick={linkTo('apollo-tableql-basic--default')}>ApolloTableQL</a>
-      in its own section.
-    </p>
-    <p>
-      Rest of TableQL section will just demonstrate how to wrap it with axios
-      and Apollo. Shell we?
-    </p>
   </div>
 )
 

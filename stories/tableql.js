@@ -23,6 +23,7 @@ const Button = ({ data }) => {
 export const BASIC_TABLEQL = storiesOf('2. TableQL|Basic', module)
   .addParameters({ options: { showPanel: false } })
   .add('definition', () => <IntroTableQL />)
+  .add('loading', () => <TableQL loading data={[]} />)
 
 export const WRAPPER_EXAMPLES = storiesOf('2. TableQL|Wrapped Examples', module)
   .add('apollo client', () => (
