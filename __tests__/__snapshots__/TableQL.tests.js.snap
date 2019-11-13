@@ -2925,15 +2925,15 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <p>
-        Loading...
-      </p>
+      <div
+        class="rtql-loader"
+      />
     </div>
   </body>,
   "container": <div>
-    <p>
-      Loading...
-    </p>
+    <div
+      class="rtql-loader"
+    />
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

@@ -930,8 +930,8 @@ exports[`<ApolloTableQL> snapshot default pagination 1`] = `
 
 exports[`<ApolloTableQL> testing loading state 1`] = `
 <div>
-  <p>
-    Loading...
-  </p>
+  <div
+    class="rtql-loader"
+  />
 </div>
 `;
