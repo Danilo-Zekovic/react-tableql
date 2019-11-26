@@ -14,6 +14,16 @@ exports[`<TableQL> column custom sort 1`] = `
         class="TableQL-thead-th  TableQL-thead-th-sort"
       >
         Title
+        <div
+          class="TableQL-thead-th-sort-arrows"
+        >
+          <div
+            class="TableQL-thead-th-sort-arrow-up"
+          />
+          <div
+            class="TableQL-thead-th-sort-arrow-down"
+          />
+        </div>
       </th>
       <th
         class="TableQL-thead-th  "
@@ -559,6 +569,16 @@ exports[`<TableQL> column sort 1`] = `
         class="TableQL-thead-th  TableQL-thead-th-sort"
       >
         Title
+        <div
+          class="TableQL-thead-th-sort-arrows"
+        >
+          <div
+            class="TableQL-thead-th-sort-arrow-up"
+          />
+          <div
+            class="TableQL-thead-th-sort-arrow-down"
+          />
+        </div>
       </th>
       <th
         class="TableQL-thead-th  "
@@ -4885,31 +4905,91 @@ exports[`<TableQL> sort 1`] = `
         class="TableQL-thead-th  TableQL-thead-th-sort"
       >
         Title
+        <div
+          class="TableQL-thead-th-sort-arrows"
+        >
+          <div
+            class="TableQL-thead-th-sort-arrow-up"
+          />
+          <div
+            class="TableQL-thead-th-sort-arrow-down"
+          />
+        </div>
       </th>
       <th
         class="TableQL-thead-th  TableQL-thead-th-sort"
       >
         Episode ID
+        <div
+          class="TableQL-thead-th-sort-arrows"
+        >
+          <div
+            class="TableQL-thead-th-sort-arrow-up"
+          />
+          <div
+            class="TableQL-thead-th-sort-arrow-down"
+          />
+        </div>
       </th>
       <th
         class="TableQL-thead-th  TableQL-thead-th-sort"
       >
         Opening Crawl
+        <div
+          class="TableQL-thead-th-sort-arrows"
+        >
+          <div
+            class="TableQL-thead-th-sort-arrow-up"
+          />
+          <div
+            class="TableQL-thead-th-sort-arrow-down"
+          />
+        </div>
       </th>
       <th
         class="TableQL-thead-th  TableQL-thead-th-sort"
       >
         Director
+        <div
+          class="TableQL-thead-th-sort-arrows"
+        >
+          <div
+            class="TableQL-thead-th-sort-arrow-up"
+          />
+          <div
+            class="TableQL-thead-th-sort-arrow-down"
+          />
+        </div>
       </th>
       <th
         class="TableQL-thead-th  TableQL-thead-th-sort"
       >
         Producer
+        <div
+          class="TableQL-thead-th-sort-arrows"
+        >
+          <div
+            class="TableQL-thead-th-sort-arrow-up"
+          />
+          <div
+            class="TableQL-thead-th-sort-arrow-down"
+          />
+        </div>
       </th>
       <th
         class="TableQL-thead-th  TableQL-thead-th-sort"
       >
         Release Date
+        <div
+          class="TableQL-thead-th-sort-arrows"
+        >
+          <div
+            class="TableQL-thead-th-sort-arrow-up"
+          />
+          <div
+            class="TableQL-thead-th-sort-arrow-down"
+          />
+        </div>
       </th>
     </tr>
   </thead>
@@ -5430,6 +5510,16 @@ exports[`<TableQL> sort and pagination 1`] = `
         class="TableQL-thead-th  TableQL-thead-th-sort"
       >
         Name
+        <div
+          class="TableQL-thead-th-sort-arrows"
+        >
+          <div
+            class="TableQL-thead-th-sort-arrow-up"
+          />
+          <div
+            class="TableQL-thead-th-sort-arrow-down"
+          />
+        </div>
       </th>
     </tr>
   </thead>
