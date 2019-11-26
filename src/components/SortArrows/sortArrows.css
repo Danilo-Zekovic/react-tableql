@@ -1,0 +1,28 @@
+.TableQL-thead-th-sort-arrows {
+  float: right;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+}
+
+.TableQL-thead-th-sort-arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid transparent;
+
+  border-bottom: 5px solid #787C80;
+  margin-bottom: 1px;
+}
+
+.TableQL-thead-th-sort-arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+
+  border-top: 5px solid #787C80;
+  margin-top: 1px;
+}

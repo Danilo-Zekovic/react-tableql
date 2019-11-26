@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import SortArrows from './components/SortArrows/SortArrows'
+
 const Table = ({
   log,
   styles = {},
@@ -91,6 +93,7 @@ const Table = ({
         {typeof column === 'string'
           ? formatLabel(column)
           : column.label || formatLabel(column.id)}
+        {(column.sort || sort) && <SortArrows />}
       </th>
     ))
   }
