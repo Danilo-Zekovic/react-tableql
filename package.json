@@ -70,7 +70,7 @@
     "apollo-storybook-react": "^0.2.3",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
-    "css-loader": "^3.3.0",
+    "css-loader": "^3.3.2",
     "graphql": "^14.5.8",
     "graphql-tools": "^4.0.6",
     "husky": "^3.1.0",
