@@ -22,9 +22,7 @@
   },
   "homepage": "https://github.com/Danilo-Zekovic/react-tableql#readme",
   "files": [
-    "src/**/*",
-    "build/**/*",
-    "docs/**/*"
+    "build/**/*"
   ],
   "peerDependencies": {
     "react": ">= 16.8.0 < 17",
@@ -65,7 +63,7 @@
     "@storybook/addon-links": "^5.3.14",
     "@storybook/addons": "^5.3.14",
     "@storybook/react": "^5.3.14",
-    "@testing-library/react": "^9.4.1",
+    "@testing-library/react": "^9.5.0",
     "apollo-boost": "^0.4.7",
     "apollo-storybook-react": "^0.2.4",
     "babel-jest": "^25.1.0",
