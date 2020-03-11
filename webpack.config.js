@@ -5,7 +5,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'index.js',
-    libraryTarget: 'commonjs2', // THIS IS THE MOST IMPORTANT LINE! :mindblow:
+    libraryTarget: 'commonjs2', // THIS IS THE MOST IMPORTANT LINE!
   },
   module: {
     rules: [
@@ -30,5 +30,6 @@ module.exports = {
   },
   externals: {
     react: 'commonjs react', // this line is just to use the React dependency of our parent-testing-project instead of using our own React.
+    'react-apollo': 'commonjs react-apollo',
   },
 }
