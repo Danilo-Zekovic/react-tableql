@@ -1,0 +1,18 @@
+{
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "outDir": "build",
+    "rootDir": ".",
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "lib": ["es6", "dom"],
+    "jsx": "react",
+    "removeComments": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  }
+}
