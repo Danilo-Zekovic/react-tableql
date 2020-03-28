@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ApolloTableQL> snapshot custom columns 1`] = `
+<div>
+  <p>
+    Error while loading TableQL: 
+  </p>
+</div>
+`;
+
+exports[`<ApolloTableQL> snapshot default 1`] = `
+<div>
+  <p>
+    Error while loading TableQL: 
+  </p>
+</div>
+`;
+
+exports[`<ApolloTableQL> snapshot default pagination 1`] = `
+<div>
+  <p>
+    Error while loading TableQL: 
+  </p>
+</div>
+`;
+
+exports[`<ApolloTableQL> testing loading state 1`] = `
+<div>
+  <div
+    class="rtql-loader"
+  />
+</div>
+`;

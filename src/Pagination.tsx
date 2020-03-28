@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
+import React, { FC, useState, useEffect } from 'react'
 
 const LEFT_PAGE = 'LEFT'
 const RIGHT_PAGE = 'RIGHT'
@@ -8,9 +7,9 @@ const RIGHT_PAGE = 'RIGHT'
  * Helper method for creating a range of numbers
  * range(1, 5) => [1, 2, 3, 4, 5]
  */
-const range = (from, to, step = 1) => {
+const range = (from: number, to: number, step = 1) => {
   let i = from
-  const range = []
+  const range = [] as number[]
 
   while (i <= to) {
     range.push(i)
@@ -20,9 +19,26 @@ const range = (from, to, step = 1) => {
   return range
 }
 
+export interface PaginationData {
+  currentPage?: number
+  totalPages?: number
+  pageLimit?: number
+  totalRecords?: number
+}
+
+interface Props {
+  totalRecords: number
+  pageLimit?: number
+  pageNeighbors?: number
+  onPageChanged?: (returnedData: PaginationData) => void
+  selectedPage?: number
+  log: (tag: string, load?: any) => void
+  styles?: string
+}
+
 // pageNeighbors can be: 0, 1 or 2
 
-const Pagination = ({
+const Pagination: FC<Props> = ({
   totalRecords,
   pageLimit = 10,
   pageNeighbors = 0,
@@ -54,11 +70,11 @@ const Pagination = ({
     }
   }, [currentPage])
 
-  const gotoPage = page => {
+  const gotoPage = (page: number) => {
     setCurrentPage(Math.max(0, Math.min(page, totalPages)))
   }
 
-  const handleClick = page => {
+  const handleClick = (page: number) => {
     log('Handle pagination page click, page: ', page)
     gotoPage(page)
   }
@@ -96,7 +112,7 @@ const Pagination = ({
       const startPage = Math.max(2, currentPage - pageNeighbors)
       const endPage = Math.min(totalPages - 1, currentPage + pageNeighbors)
 
-      let pages = range(startPage, endPage)
+      let pages = range(startPage, endPage) as (string | number)[]
 
       /**
        * hasLeftSpill: has hidden pages to the left
@@ -169,7 +185,7 @@ const Pagination = ({
           <button
             key={index}
             className={`${currentPage === page ? ' active' : ''}`}
-            onClick={() => handleClick(page)}
+            onClick={() => handleClick(page as number)}
           >
             {page}
           </button>
@@ -177,16 +193,6 @@ const Pagination = ({
       })}
     </div>
   )
-}
-
-Pagination.propTypes = {
-  totalRecords: PropTypes.number.isRequired,
-  pageLimit: PropTypes.number,
-  pageNeighbors: PropTypes.number,
-  onPageChanged: PropTypes.func,
-  selectedPage: PropTypes.number,
-  log: PropTypes.func,
-  styles: PropTypes.string,
 }
 
 export default Pagination

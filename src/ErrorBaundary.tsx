@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
 
-class ErrorBoundary extends Component {
+interface Props {}
+
+interface State {
+  hasError: boolean
+  error: Error
+}
+
+class ErrorBoundary extends Component<Props, State> {
   state = {
     hasError: false,
-    error: '',
+    error: new Error(),
   }
-  componentDidCatch(error, info) {
+  componentDidCatch(error: Error, info: any) {
     this.setState({ ...this.state, hasError: true, error })
 
     // report the details about error

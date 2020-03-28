@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 import { render, cleanup, fireEvent } from '@testing-library/react'
 import '@babel/polyfill' // TODO: not ideal find the way to move it globally, webpack
@@ -14,17 +15,17 @@ describe('<Pagination>', () => {
 
     expect(container.firstChild).toMatchSnapshot()
 
-    expect(container.firstChild.firstChild.textContent).toBe('1')
-    expect(container.firstChild.lastChild.textContent).toBe('10')
-    expect(container.firstChild.querySelectorAll('button')[1].textContent).toBe(
-      '2',
-    )
-    expect(container.firstChild.querySelectorAll('button')[2].textContent).toBe(
-      '3',
-    )
-    expect(container.firstChild.querySelectorAll('button').length).toBe(5)
+    expect(container.firstChild?.firstChild?.textContent).toBe('1')
+    expect(container.firstChild?.lastChild?.textContent).toBe('10')
     expect(
-      container.firstChild.classList.contains('PaginationContainer'),
+      container.firstChild?.querySelectorAll('button')[1].textContent,
+    ).toBe('2')
+    expect(
+      container.firstChild?.querySelectorAll('button')[2].textContent,
+    ).toBe('3')
+    expect(container.firstChild?.querySelectorAll('button').length).toBe(5)
+    expect(
+      container.firstChild?.classList!.contains('PaginationContainer'),
     ).toBeTruthy()
   })
 
@@ -35,18 +36,18 @@ describe('<Pagination>', () => {
 
     expect(container.firstChild).toMatchSnapshot()
 
-    expect(container.firstChild.firstChild.textContent).toBe('1')
+    expect(container.firstChild?.firstChild?.textContent).toBe('1')
     expect(
-      container.firstChild.firstChild.classList.contains('active'),
+      container.firstChild?.firstChild?.classList?.contains('active'),
     ).toBeTruthy()
-    expect(container.firstChild.lastChild.textContent).toBe('20')
-    expect(container.firstChild.querySelectorAll('button')[1].textContent).toBe(
-      '2',
-    )
-    expect(container.firstChild.querySelectorAll('button')[2].textContent).toBe(
-      '3',
-    )
-    expect(container.firstChild.querySelectorAll('button').length).toBe(5)
+    expect(container.firstChild?.lastChild?.textContent).toBe('20')
+    expect(
+      container.firstChild?.querySelectorAll('button')[1].textContent,
+    ).toBe('2')
+    expect(
+      container.firstChild?.querySelectorAll('button')[2].textContent,
+    ).toBe('3')
+    expect(container.firstChild?.querySelectorAll('button').length).toBe(5)
   })
 
   it('should have page neighbors 2', () => {
@@ -56,9 +57,9 @@ describe('<Pagination>', () => {
 
     expect(container.firstChild).toMatchSnapshot()
 
-    const buttons = container.firstChild.querySelectorAll('button')
-    expect(container.firstChild.firstChild.textContent).toBe('1')
-    expect(container.firstChild.lastChild.textContent).toBe('10')
+    const buttons = container.firstChild?.querySelectorAll('button')
+    expect(container.firstChild?.firstChild?.textContent).toBe('1')
+    expect(container.firstChild?.lastChild?.textContent).toBe('10')
     expect(buttons[1].textContent).toBe('2')
     expect(buttons[2].textContent).toBe('3')
     expect(buttons.length).toBe(9)
@@ -74,7 +75,7 @@ describe('<Pagination>', () => {
       />,
     )
 
-    const buttons = container.firstChild.querySelectorAll('button')
+    const buttons = container.firstChild?.querySelectorAll('button')
 
     expect(buttons[0].classList.contains('active')).toBeTruthy()
     // move right
@@ -116,7 +117,7 @@ describe('<Pagination>', () => {
       />,
     )
 
-    const buttons = container.firstChild.querySelectorAll('button')
+    const buttons = container.firstChild?.querySelectorAll('button')
 
     expect(buttons[0].classList.contains('active')).toBeTruthy()
     fireEvent.click(buttons[buttons.length - 2])
@@ -141,7 +142,7 @@ describe('<Pagination>', () => {
 
     expect(container.firstChild).toMatchSnapshot()
 
-    const buttons = container.firstChild.querySelectorAll('button')
+    const buttons = container.firstChild?.querySelectorAll('button')
 
     expect(buttons.length).toBe(5)
     expect(buttons[2].textContent).toBe('5')
@@ -157,9 +158,9 @@ describe('<Pagination>', () => {
       <Pagination totalRecords={100} log={() => {}} styles={customClass} />,
     )
 
-    expect(container.firstChild.classList.contains(customClass)).toBeTruthy()
+    expect(container.firstChild?.classList.contains(customClass)).toBeTruthy()
     expect(
-      container.firstChild.classList.contains('PaginationContainer'),
+      container.firstChild?.classList.contains('PaginationContainer'),
     ).toBeFalsy()
   })
 })

@@ -1,7 +1,6 @@
-import { formatStringToTitleCase } from '../src/utils.js'
+import { formatStringToTitleCase } from '../src/utils'
 
 describe('Utils Functions', () => {
-
   it('formatStringToTitleCase', () => {
     const finalResult = 'Foo Bar'
     expect(formatStringToTitleCase('Foo Bar')).toBe(finalResult)
@@ -15,5 +14,4 @@ describe('Utils Functions', () => {
     expect(formatStringToTitleCase('foo+Bar')).toBe(finalResult)
     expect(formatStringToTitleCase('foo~Bar')).toBe(finalResult)
   })
-
 })

@@ -7,7 +7,7 @@ import ErrorBoundary from '../src/ErrorBaundary'
 // NOTE: credit for these tests goes to @kentcdodds,
 // as I used his code and explanation https://github.com/kentcdodds/react-testing-library-course/blob/master/src/__tests__/error-boundary.js
 
-function Bomb({ shouldThrow }) {
+function Bomb({ shouldThrow }: { shouldThrow?: boolean }) {
   if (shouldThrow) {
     throw new Error('Boom')
   } else {
@@ -45,7 +45,7 @@ describe('<ErrorBoundary>', () => {
     )
 
     expect(container.firstChild).toMatchSnapshot()
-    expect(container.firstChild.firstChild.textContent).toBe(
+    expect(container.firstChild?.firstChild?.textContent).toBe(
       'Something went wrong!',
     )
 
@@ -55,7 +55,9 @@ describe('<ErrorBoundary>', () => {
     expect(console.error).toHaveBeenCalledTimes(2)
 
     // clear the mocks
+    // @ts-ignore
     console.error.mockClear()
+    // @ts-ignore
     console.log.mockClear()
 
     // check if user can recover from errors
@@ -67,7 +69,7 @@ describe('<ErrorBoundary>', () => {
 
     expect(console.log).not.toHaveBeenCalled()
     expect(console.error).not.toHaveBeenCalled()
-    expect(container.firstChild.firstChild.textContent).not.toBe(
+    expect(container.firstChild?.firstChild?.textContent).not.toBe(
       'There was a problem',
     )
   })

@@ -1,8 +1,9 @@
+// @ts-nocheck
 import React from 'react'
 import { render, cleanup, fireEvent } from '@testing-library/react'
 import '@babel/polyfill' // TODO: not ideal find the way to move it globally, webpack
 
-import { FILMS } from '../__mocks__/data'
+import { FILMS } from '../__mocks__/dataMock'
 import Table from '../src/Table'
 
 const DATA_KEYS = [
@@ -25,22 +26,24 @@ describe('<Table>', () => {
     expect(container.firstChild).toMatchSnapshot()
 
     // per page
-    expect(container.querySelector('tbody').querySelectorAll('tr')).toBeTruthy()
-    expect(container.querySelector('tbody').querySelectorAll('tr').length).toBe(
-      FILMS.length,
-    )
+    expect(
+      container.querySelector('tbody')?.querySelectorAll('tr'),
+    ).toBeTruthy()
+    expect(
+      container.querySelector('tbody')?.querySelectorAll('tr').length,
+    ).toBe(FILMS.length)
     // number of columns
-    expect(container.querySelector('thead').querySelector('tr')).toBeTruthy()
+    expect(container.querySelector('thead')?.querySelector('tr')).toBeTruthy()
     expect(
       container
-        .querySelector('thead')
-        .querySelector('tr')
-        .querySelectorAll('th').length,
+        ?.querySelector('thead')
+        ?.querySelector('tr')
+        ?.querySelectorAll('th').length,
     ).toBe(DATA_KEYS.length)
     // label formated correctly
     expect(
-      container.querySelector('thead').querySelector('tr').firstChild
-        .textContent,
+      container.querySelector('thead')?.querySelector('tr')?.firstChild
+        ?.textContent,
     ).toBe('Title')
   })
 
@@ -58,7 +61,7 @@ describe('<Table>', () => {
 
     expect(container.firstChild).toMatchSnapshot()
 
-    expect(container.querySelector('tbody').firstChild).toBeTruthy()
+    expect(container.querySelector('tbody')?.firstChild).toBeTruthy()
     fireEvent.click(container.querySelector('tbody').firstChild)
 
     expect(console.log).toHaveBeenCalledTimes(1)
@@ -94,12 +97,12 @@ describe('<Table>', () => {
 
     expect(container.firstChild).toMatchSnapshot()
 
-    const firstLabel = container.querySelector('thead').querySelector('tr')
-      .firstChild
+    const firstLabel = container.querySelector('thead')?.querySelector('tr')
+      ?.firstChild
 
     expect(firstLabel).toBeTruthy()
     expect(firstLabel).toBe(queryByText(titleLabel))
-    expect(firstLabel.textContent).toBe(queryByText(titleLabel).textContent)
+    expect(firstLabel?.textContent).toBe(queryByText(titleLabel)?.textContent)
   })
 
   it('columns component data formating', () => {
@@ -120,8 +123,8 @@ describe('<Table>', () => {
 
     expect(container.firstChild).toMatchSnapshot()
     expect(
-      container.querySelector('tbody').querySelector('tr').firstChild
-        .textContent,
+      container.querySelector('tbody')?.querySelector('tr')?.firstChild
+        ?.textContent,
     ).toBe(FILMS[0].title.toUpperCase())
   })
 
@@ -132,7 +135,7 @@ describe('<Table>', () => {
       <Table
         displayData={FILMS}
         dataKeys={[
-          { id: 'title', component: data => <Button /> },
+          { id: 'title', component: () => <Button /> },
           'episodeID',
           'openingCrawl',
           'director',
@@ -146,8 +149,8 @@ describe('<Table>', () => {
     expect(container.firstChild).toMatchSnapshot()
 
     expect(
-      container.querySelector('tbody').querySelector('tr').firstChild.firstChild
-        .textContent,
+      container.querySelector('tbody')?.querySelector('tr')?.firstChild
+        ?.firstChild?.textContent,
     ).toBe(buttonLabel)
   })
 
@@ -168,21 +171,21 @@ describe('<Table>', () => {
     expect(container.firstChild).toMatchSnapshot()
 
     expect(
-      container.querySelector('tbody').querySelector('tr').firstChild.firstChild
-        .textContent,
+      container.querySelector('tbody')?.querySelector('tr')?.firstChild
+        ?.firstChild?.textContent,
     ).toBe(buttonLabel)
     // number of columns
-    expect(container.querySelector('thead').querySelector('tr')).toBeTruthy()
+    expect(container.querySelector('thead')?.querySelector('tr')).toBeTruthy()
     expect(
       container
         .querySelector('thead')
-        .querySelector('tr')
-        .querySelectorAll('th').length,
+        ?.querySelector('tr')
+        ?.querySelectorAll('th').length,
     ).toBe(DATA_KEYS.length + 1)
     // custom column label formated correctly
     expect(
-      container.querySelector('thead').querySelector('tr').firstChild
-        .textContent,
+      container.querySelector('thead')?.querySelector('tr')?.firstChild
+        ?.textContent,
     ).toBe('Custom')
   })
 
@@ -227,14 +230,14 @@ describe('<Table>', () => {
     expect(
       container
         .querySelector('tbody')
-        .querySelector('tr')
-        .firstChild.classList.contains(customClass),
+        ?.querySelector('tr')
+        ?.firstChild?.classList?.contains(customClass),
     ).toBeTruthy()
     expect(
       container
         .querySelector('tbody')
-        .querySelector('tr')
-        .lastChild.classList.contains(customClass),
+        ?.querySelector('tr')
+        ?.lastChild?.classList.contains(customClass),
     ).toBeFalsy()
   })
 
@@ -266,14 +269,14 @@ describe('<Table>', () => {
     expect(
       container
         .querySelector('tbody')
-        .querySelector('tr')
-        .firstChild.classList.contains(customClass),
+        ?.querySelector('tr')
+        ?.firstChild?.classList.contains(customClass),
     ).toBeTruthy()
     // selects last row and first column
     expect(
       container
         .querySelector('tbody')
-        .lastChild.firstChild.classList.contains(customClass),
+        ?.lastChild?.firstChild?.classList.contains(customClass),
     ).toBeFalsy()
   })
 
@@ -299,11 +302,13 @@ describe('<Table>', () => {
       />,
     )
 
-    const headerLabel = container.querySelector('thead').firstChild.firstChild
-    fireEvent.click(headerLabel)
+    const headerLabel = container.querySelector('thead')?.firstChild?.firstChild
+    if (headerLabel) fireEvent.click(headerLabel)
 
     expect(container.firstChild).toMatchSnapshot()
-    expect(headerLabel.classList.contains('TableQL-thead-th-sort')).toBeTruthy()
+    expect(
+      headerLabel?.classList.contains('TableQL-thead-th-sort'),
+    ).toBeTruthy()
     expect(console.log).toHaveBeenCalledTimes(1)
 
     console.log.mockRestore()
@@ -330,11 +335,13 @@ describe('<Table>', () => {
       />,
     )
 
-    const headerLabel = container.querySelector('thead').firstChild.firstChild
-    fireEvent.click(headerLabel)
+    const headerLabel = container.querySelector('thead')?.firstChild?.firstChild
+    if (headerLabel) fireEvent.click(headerLabel)
 
     expect(container.firstChild).toMatchSnapshot()
-    expect(headerLabel.classList.contains('TableQL-thead-th-sort')).toBeTruthy()
+    expect(
+      headerLabel?.classList.contains('TableQL-thead-th-sort'),
+    ).toBeTruthy()
     expect(console.log).toHaveBeenCalledTimes(1)
 
     console.log.mockRestore()
@@ -358,11 +365,11 @@ describe('<Table>', () => {
       />,
     )
 
-    const headerLabel = container.querySelector('thead').firstChild.firstChild
-    fireEvent.click(headerLabel)
+    const headerLabel = container.querySelector('thead')?.firstChild?.firstChild
+    if (headerLabel) fireEvent.click(headerLabel)
 
     expect(container.firstChild).toMatchSnapshot()
-    expect(headerLabel.classList.contains('TableQL-thead-th-sort')).toBeFalsy()
+    expect(headerLabel?.classList.contains('TableQL-thead-th-sort')).toBeFalsy()
     expect(console.log).toHaveBeenCalledTimes(0)
 
     console.log.mockRestore()

@@ -1,14 +1,47 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+import React, { useState, FC } from 'react'
 
 import './index.css'
 
-import Pagination from './Pagination'
+import Pagination, { PaginationData } from './Pagination'
 import Table from './Table'
 import ErrorBoundary from './ErrorBaundary'
 import Loader from './components/Loader/Loader'
 
-const TableQL = ({
+interface Props {
+  data: object[]
+  loading?: boolean
+  error?: Error
+  errorMessage?: string
+  columns?: any[]
+  pagination?:
+    | {
+        pageLimit?: number
+        pageNeighbors?: number
+        currentPage?: number
+        onPageChanged?: (
+          currentPage?: number,
+          totalPages?: number,
+          pageLimit?: number,
+          totalRecords?: number,
+        ) => void
+        styles?: string
+      }
+    | boolean
+  styles?: {
+    table?: string
+    thead?: string
+    theadTr?: string
+    theadTh?: string
+    tbody?: string
+    tbodyTr?: string
+    tbodyTd?: string
+  }
+  onRowClick?: () => void
+  sort?: boolean
+  debug?: boolean
+}
+
+const TableQL: FC<Props> = ({
   pagination,
   debug,
   errorMessage,
@@ -16,19 +49,21 @@ const TableQL = ({
   styles,
   onRowClick,
   loading = false,
-  error = '',
+  error = new Error(),
   data,
   sort,
 }) => {
-  const [currentPage, setCurrentPage] = useState(
-    pagination && pagination.currentPage ? pagination.currentPage : 1,
+  const [currentPage, setCurrentPage] = useState<number>(
+    pagination && typeof pagination !== 'boolean' && pagination.currentPage
+      ? pagination.currentPage
+      : 1,
   )
 
-  const [displayData, setDisplayData] = useState()
-  const [fullData, setFullData] = useState()
+  const [displayData, setDisplayData] = useState<any>([])
+  const [fullData, setFullData] = useState<any>([])
 
   // traverse data to find the array of objects and return it
-  const traverseData = data => {
+  const traverseData = (data: any) => {
     log('Traverse data called.')
     for (let key in data) {
       if (Array.isArray(data)) {
@@ -39,9 +74,9 @@ const TableQL = ({
     }
   }
 
-  const getHeaderLabels = data => {
+  const getHeaderLabels = (data: any) => {
     log('Get header labels.')
-    let labels = []
+    let labels = [] as string[]
     for (let key in data) {
       // exception to eliminate meta fields
       if (!key.includes('__')) {
@@ -57,26 +92,26 @@ const TableQL = ({
     totalPages,
     pageLimit,
     totalRecords,
-  }) => {
+  }: PaginationData) => {
     log(
       `On page changed: Current Page > ${currentPage}, Total Pages > ${totalPages}, Page Limit > ${pageLimit}, Total Records > ${totalRecords}`,
     )
-    setCurrentPage(currentPage)
+    if (currentPage) setCurrentPage(currentPage)
 
     // expose the values to parent if onPageChanged is passed as part of pagination
-    if (pagination.onPageChanged) {
+    if (typeof pagination === 'object' && pagination.onPageChanged) {
       pagination.onPageChanged(currentPage, totalPages, pageLimit, totalRecords)
     }
   }
 
   // when debug true log messages and data
-  const log = (tag, load = '') => {
+  const log = (tag: string, load = '' as any) => {
     if (debug) {
       console.log(tag, load)
     }
   }
 
-  const onSort = column => {
+  const onSort = (column: any) => {
     log('Sort by column: ', column)
 
     const property = typeof column === 'string' ? column : column.id
@@ -139,12 +174,17 @@ const TableQL = ({
   let allData = traversedData
   let dataKeys = columns || getHeaderLabels(traversedData[0])
 
-  let pageLimit
+  let pageLimit = 10
   if (pagination) {
-    pageLimit = pagination.pageLimit || 10
+    pageLimit =
+      typeof pagination !== 'boolean' && pagination.pageLimit
+        ? pagination.pageLimit
+        : 10
     const offset =
       (currentPage - 1) *
-      (pagination.pageLimit ? pagination.pageLimit : pageLimit)
+      (typeof pagination !== 'boolean' && pagination.pageLimit
+        ? pagination.pageLimit
+        : pageLimit)
 
     let dataToDisplay = displayData
       ? fullData.slice(offset).slice(0, pageLimit)
@@ -168,6 +208,7 @@ const TableQL = ({
     <ErrorBoundary>
       <Table
         displayData={displayData}
+        // @ts-ignore
         dataKeys={dataKeys}
         styles={styles}
         log={log}
@@ -180,49 +221,23 @@ const TableQL = ({
         <Pagination
           totalRecords={allData.length}
           pageLimit={pageLimit}
-          pageNeighbors={pagination.pageNeighbors}
+          pageNeighbors={
+            typeof pagination !== 'boolean'
+              ? pagination.pageNeighbors
+              : undefined
+          }
           selectedPage={currentPage}
-          onPageChanged={returnedData => onPageChanged(returnedData)}
-          styles={pagination.styles}
+          onPageChanged={(returnedData: PaginationData) =>
+            onPageChanged(returnedData)
+          }
+          styles={
+            typeof pagination !== 'boolean' ? pagination.styles : undefined
+          }
           log={log}
         />
       )}
     </ErrorBoundary>
   )
-}
-
-TableQL.propTypes = {
-  data: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.object).isRequired,
-    PropTypes.object,
-  ]),
-  loading: PropTypes.bool,
-  error: PropTypes.object,
-  errorMessage: PropTypes.string,
-  columns: PropTypes.array,
-  pagination: PropTypes.oneOfType([
-    PropTypes.shape({
-      pageLimit: PropTypes.number,
-      pageNeighbors: PropTypes.number,
-      currentPage: PropTypes.number,
-      onPageChanged: PropTypes.func,
-      styles: PropTypes.string,
-    }),
-    PropTypes.bool,
-  ]),
-  errorMessage: PropTypes.string,
-  styles: PropTypes.shape({
-    table: PropTypes.string,
-    thead: PropTypes.string,
-    theadTr: PropTypes.string,
-    theadTh: PropTypes.string,
-    tbody: PropTypes.string,
-    tbodyTr: PropTypes.string,
-    tbodyTd: PropTypes.string,
-  }),
-  onRowClick: PropTypes.func,
-  sort: PropTypes.bool,
-  debug: PropTypes.bool,
 }
 
 export default TableQL

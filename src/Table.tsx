@@ -1,9 +1,27 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FC } from 'react'
 
 import SortArrows from './components/SortArrows/SortArrows'
 
-const Table = ({
+interface Props {
+  log: (tag: string, load?: any) => void
+  displayData: { [key: string]: any }[]
+  dataKeys: (string | any)[]
+  styles?: {
+    table?: string
+    thead?: string
+    theadTr?: string
+    theadTh?: string
+    tbody?: string
+    tbodyTr?: string
+    tbodyTd?: string
+  }
+  onRowClick?: (data: any) => void
+  sort?: boolean
+  debug?: boolean
+  onSort?: (column: any) => void
+}
+
+const Table: FC<Props> = ({
   log,
   styles = {},
   displayData,
@@ -15,24 +33,33 @@ const Table = ({
   /*
     Formating passed string to be title case, where each word starts with a upper case letter
   */
-  const formatLabel = label => {
+  const formatLabel = (label: string) => {
     log('Format label called.')
     // insert spaces in between words in camel case
-    let formatedLabel = label
+    // let formatedLabel = label
+    //   .replace(/([a-z\d])([A-Z])/g, '$1' + ' ' + '$2')
+    //   .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + ' ' + '$2')
+    //   .replace(/([-,_,~,=,+])/g, ' ') // replace unwanted characters with spaces
+    //
+    // // title case the label (make first letters of words capital)
+    // formatedLabel = formatedLabel.split(' ')
+    // formatedLabel = formatedLabel.map(
+    //   (label: string) => label.charAt(0).toUpperCase() + label.slice(1),
+    // )
+    //
+    // return formatedLabel.join(' ')
+
+    return label
       .replace(/([a-z\d])([A-Z])/g, '$1' + ' ' + '$2')
       .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + ' ' + '$2')
       .replace(/([-,_,~,=,+])/g, ' ') // replace unwanted characters with spaces
-
-    // title case the label (make first letters of words capital)
-    formatedLabel = formatedLabel.split(' ')
-    formatedLabel = formatedLabel.map(
-      label => label.charAt(0).toUpperCase() + label.slice(1),
-    )
-
-    return formatedLabel.join(' ')
+      .split(' ')
+      .map((label: string) => label.charAt(0).toUpperCase() + label.slice(1))
+      .join(' ')
   }
 
-  const getNodeValue = (column, data) => {
+  // TODO create Columns type and insert it here
+  const getNodeValue = (column: any, data: any) => {
     // if customColumn then ignore search for data
     if (column.customColumn) {
       // component is required when customColumn true
@@ -47,21 +74,22 @@ const Table = ({
     let value = data // will hold the final return value
     const keys = column.id ? column.id.split('.') : column.split('.')
 
-    keys.forEach(key => {
+    keys.forEach((key: string | number) => {
+      // TODO check here might be just string
       value = value[key]
     })
 
     return column.component ? column.component(value) : String(value)
   }
 
-  const renderTableRows = (displayData, dataKeys) => {
-    return displayData.map(data => (
+  const renderTableRows = (displayData: any, dataKeys: any[]) => {
+    return displayData.map((data: any) => (
       <tr
         key={`TableQLRow${JSON.stringify(data)}`}
         className={styles.tbodyTr || 'TableQL-tr'}
-        onClick={onRowClick ? () => onRowClick(data) : null}
+        onClick={onRowClick ? () => onRowClick(data) : undefined}
       >
-        {dataKeys.map((column, columnIndex) => (
+        {dataKeys.map((column: any, columnIndex: number) => (
           <td
             className={`
             ${styles.tbodyTd || 'TableQL-td'}
@@ -76,8 +104,8 @@ const Table = ({
     ))
   }
 
-  const renderTableHeader = dataKeys => {
-    return dataKeys.map((column, columnIndex) => (
+  const renderTableHeader = (dataKeys: any) => {
+    return dataKeys.map((column: any, columnIndex: number) => (
       <th
         className={`${styles.theadTh ||
           'TableQL-thead-th'} ${column.headerStyle || ''} ${
@@ -85,8 +113,9 @@ const Table = ({
         }`}
         key={`TableQLHeader${column + columnIndex}`}
         onClick={() => {
-          if (!column.sort && !sort) return
+          if (!column.sort && !sort && onSort === undefined) return
           log('Header sort was clicked: ', column)
+          // @ts-ignore
           onSort(column)
         }}
       >
@@ -99,7 +128,7 @@ const Table = ({
   }
 
   // when nodeStyle is a function that is selective styling as function decides should and which css class will be returned.
-  const getNodeStyle = ({ nodeStyle }, data) => {
+  const getNodeStyle = ({ nodeStyle }, data: any) => {
     if (!nodeStyle) {
       return ''
     }
@@ -123,22 +152,22 @@ const Table = ({
   )
 }
 
-Table.propTypes = {
-  log: PropTypes.func.isRequired,
-  styles: PropTypes.shape({
-    table: PropTypes.string,
-    thead: PropTypes.string,
-    theadTr: PropTypes.string,
-    theadTh: PropTypes.string,
-    tbody: PropTypes.string,
-    tbodyTr: PropTypes.string,
-    tbodyTd: PropTypes.string,
-  }),
-  displayData: PropTypes.array.isRequired,
-  dataKeys: PropTypes.array.isRequired,
-  onRowClick: PropTypes.func,
-  onSort: PropTypes.func,
-  sort: PropTypes.bool,
-}
+// Table.propTypes = {
+//   log: PropTypes.func.isRequired,
+//   styles: PropTypes.shape({
+//     table: PropTypes.string,
+//     thead: PropTypes.string,
+//     theadTr: PropTypes.string,
+//     theadTh: PropTypes.string,
+//     tbody: PropTypes.string,
+//     tbodyTr: PropTypes.string,
+//     tbodyTd: PropTypes.string,
+//   }),
+//   displayData: PropTypes.array.isRequired,
+//   dataKeys: PropTypes.array.isRequired,
+//   onRowClick: PropTypes.func,
+//   onSort: PropTypes.func,
+//   sort: PropTypes.bool,
+// }
 
 export default Table
