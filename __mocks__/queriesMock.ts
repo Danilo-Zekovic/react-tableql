@@ -1,3 +1,5 @@
+import { DocumentNode } from 'graphql'
+
 // queries for mocked API
 export const GET_ALL_FILMS = `
 {
@@ -7,7 +9,7 @@ export const GET_ALL_FILMS = `
     releaseDate
   }
 }
-` as string
+` as string & DocumentNode
 
 export const GET_ALL_PEOPLE = `
 {
@@ -20,7 +22,7 @@ export const GET_ALL_PEOPLE = `
     skinColor
   }
 }
-`
+` as string & DocumentNode
 // bad query
 export const FALSE = `
 {

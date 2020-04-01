@@ -8,7 +8,7 @@ module.exports = {
     libraryTarget: 'commonjs2', // THIS IS THE MOST IMPORTANT LINE!
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    extensions: ['.ts', '.tsx'],
   },
   module: {
     rules: [
