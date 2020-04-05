@@ -34,7 +34,7 @@ export interface Props {
   pageNeighbors?: number
   onPageChanged?: (returnedData: PaginationData) => void
   selectedPage?: number
-  log: (tag: string, load?: any) => void
+  log: (tag: string, load?: unknown) => void
   styles?: string
 }
 

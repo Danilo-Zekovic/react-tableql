@@ -3,35 +3,15 @@ import { useQuery, QueryHookOptions } from 'react-apollo'
 import gql from 'graphql-tag'
 import { DocumentNode } from 'graphql'
 
-import TableQL from '../TableQL/TableQL'
+import TableQL, { PaginationConfig } from '../TableQL/TableQL'
+import { Styles, ColumnConfig } from '../components/Table/Table'
 
 export interface ComponentProps {
   query: DocumentNode | string
-  columns?: any[]
-  pagination?:
-    | {
-        pageLimit?: number
-        pageNeighbors?: number
-        currentPage?: number
-        onPageChanged?: (
-          currentPage?: number,
-          totalPages?: number,
-          pageLimit?: number,
-          totalRecords?: number,
-        ) => void
-        styles?: string
-      }
-    | boolean
-  styles?: {
-    table?: string
-    thead?: string
-    theadTr?: string
-    theadTh?: string
-    tbody?: string
-    tbodyTr?: string
-    tbodyTd?: string
-  }
-  onRowClick?: (data: any) => void
+  columns?: (string | ColumnConfig)[]
+  pagination?: PaginationConfig | boolean
+  styles?: Styles
+  onRowClick?: (data: { [key: string]: unknown }) => void
   errorMessage?: string
   debug?: boolean
   sort?: boolean

@@ -3,40 +3,32 @@ import React, { useState, FC } from 'react'
 import '../index.css'
 
 import Pagination, { PaginationData } from '../components/Pagination/Pagination'
-import Table from '../components/Table/Table'
+import Table, { Styles, ColumnConfig } from '../components/Table/Table'
 import ErrorBoundary from '../components/ErrorBaundary/ErrorBaundary'
 import Loader from '../components/Loader/Loader'
+
+export interface PaginationConfig {
+  pageLimit?: number
+  pageNeighbors?: number
+  currentPage?: number
+  onPageChanged?: (
+    currentPage?: number,
+    totalPages?: number,
+    pageLimit?: number,
+    totalRecords?: number,
+  ) => void
+  styles?: string
+}
 
 export interface Props {
   data: object[]
   loading?: boolean
   error?: Error
   errorMessage?: string
-  columns?: any[]
-  pagination?:
-    | {
-        pageLimit?: number
-        pageNeighbors?: number
-        currentPage?: number
-        onPageChanged?: (
-          currentPage?: number,
-          totalPages?: number,
-          pageLimit?: number,
-          totalRecords?: number,
-        ) => void
-        styles?: string
-      }
-    | boolean
-  styles?: {
-    table?: string
-    thead?: string
-    theadTr?: string
-    theadTh?: string
-    tbody?: string
-    tbodyTr?: string
-    tbodyTd?: string
-  }
-  onRowClick?: (data: any) => void
+  columns?: (string | ColumnConfig)[]
+  pagination?: PaginationConfig | boolean
+  styles?: Styles
+  onRowClick?: (data: { [key: string]: unknown }) => void
   sort?: boolean
   debug?: boolean
 }
@@ -59,8 +51,8 @@ const TableQL: FC<Props> = ({
       : 1,
   )
 
-  const [displayData, setDisplayData] = useState<any>([])
-  const [fullData, setFullData] = useState<any>([])
+  const [displayData, setDisplayData] = useState<any[]>([])
+  const [fullData, setFullData] = useState<any[]>([])
 
   // traverse data to find the array of objects and return it
   const traverseData = (data: any) => {
@@ -111,16 +103,27 @@ const TableQL: FC<Props> = ({
     }
   }
 
-  const onSort = (column: any) => {
+  const onSort = (column: string | ColumnConfig) => {
     log('Sort by column: ', column)
 
     const property = typeof column === 'string' ? column : column.id
-    let newOrder = [...fullData]
+    let newOrder = [...fullData] as any
 
-    if (column.sort && typeof column.sort === 'function') {
+    if (
+      typeof column !== 'string' &&
+      column.sort &&
+      typeof column.sort === 'function'
+    ) {
       newOrder = column.sort(newOrder, property)
-    } else if ((column.sort && typeof column.sort === 'boolean') || sort) {
-      newOrder.sort((a, b) => (a[property] > b[property] ? 1 : -1))
+    } else if (
+      (typeof column !== 'string' &&
+        column.sort &&
+        typeof column.sort === 'boolean') ||
+      sort
+    ) {
+      newOrder.sort((a: unknown[], b: unknown[]) =>
+        a[property] > b[property] ? 1 : -1,
+      )
     }
 
     if (JSON.stringify(newOrder) === JSON.stringify(fullData)) {
@@ -172,7 +175,7 @@ const TableQL: FC<Props> = ({
   }
 
   let allData = traversedData
-  let dataKeys = columns || getHeaderLabels(traversedData[0])
+  let dataKeys = columns || getHeaderLabels(traversedData[0]) // TODO probably should rename this variable as it does not hold only keys
 
   let pageLimit = 10
   if (pagination) {

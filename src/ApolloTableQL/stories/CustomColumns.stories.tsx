@@ -41,7 +41,7 @@ export const Component = () => (
       'releaseDate',
       {
         id: 'title',
-        component: data => data.toUpperCase(),
+        component: (data: any) => data.toUpperCase(),
       },
     ]}
   />
@@ -113,7 +113,7 @@ export const SelectiveStyling = () => (
       'releaseDate',
       {
         id: 'title',
-        nodeStyle: data => {
+        nodeStyle: (data: any) => {
           if (data.title.length <= 19) return 'bg-color'
         },
       },

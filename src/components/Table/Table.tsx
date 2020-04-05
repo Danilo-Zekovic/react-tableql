@@ -1,26 +1,38 @@
-import React, { FC } from 'react'
+import React, { FC, ReactNode } from 'react'
 
 import SortArrows from '../SortArrows/SortArrows'
 
 import '../../index.css'
 
+export interface ColumnConfig {
+  id: string
+  label?: string
+  component?: (data: unknown) => void
+  customColumn?: boolean
+  headerStyle?: string
+  nodeStyle?: string | ((data: unknown) => void)
+  sort?: boolean | ((newOrder: any, property: string) => void)
+}
+
+export interface Styles {
+  table?: string
+  thead?: string
+  theadTr?: string
+  theadTh?: string
+  tbody?: string
+  tbodyTr?: string
+  tbodyTd?: string
+}
+
 export interface Props {
-  log: (tag: string, load?: any) => void
-  displayData: { [key: string]: any }[]
-  dataKeys: (string | any)[]
-  styles?: {
-    table?: string
-    thead?: string
-    theadTr?: string
-    theadTh?: string
-    tbody?: string
-    tbodyTr?: string
-    tbodyTd?: string
-  }
-  onRowClick?: (data: any) => void
+  log: (tag: string, load?: unknown) => void
+  displayData: { [key: string]: unknown }[]
+  dataKeys: (string | ColumnConfig)[]
+  styles?: Styles
+  onRowClick?: (data: { [key: string]: unknown }) => void
   sort?: boolean
   debug?: boolean
-  onSort?: (column: any) => void
+  onSort?: (column: ColumnConfig | string) => void
 }
 
 const Table: FC<Props> = ({
@@ -47,10 +59,14 @@ const Table: FC<Props> = ({
       .join(' ')
   }
 
-  // TODO create Columns type and insert it here
-  const getNodeValue = (column: any, data: any) => {
+  // TODO solve return type
+  const getNodeValue: string | ReactNode | any = (
+    column: string | ColumnConfig,
+    data: any,
+  ) => {
+    // if (typeof column === 'string') return
     // if customColumn then ignore search for data
-    if (column.customColumn) {
+    if (typeof column !== 'string' && column.customColumn) {
       // component is required when customColumn true
       if (!column.component) {
         throw new Error(
@@ -61,30 +77,38 @@ const Table: FC<Props> = ({
     }
 
     let value = data // will hold the final return value
-    const keys = column.id ? column.id.split('.') : column.split('.')
+    const keys =
+      typeof column === 'string' ? column.split('.') : column.id.split('.')
 
     keys.forEach((key: string | number) => {
       // TODO check here might be just string
       value = value[key]
     })
 
-    return column.component ? column.component(value) : String(value)
+    return typeof column !== 'string' && column.component
+      ? column.component(value)
+      : String(value)
   }
 
-  const renderTableRows = (displayData: any, dataKeys: any[]) => {
-    return displayData.map((data: any) => (
+  const renderTableRows = (
+    displayData: { [key: string]: unknown }[],
+    dataKeys: (string | ColumnConfig)[],
+  ) => {
+    return displayData.map((data: { [key: string]: unknown }) => (
       <tr
         key={`TableQLRow${JSON.stringify(data)}`}
         className={styles.tbodyTr || 'TableQL-tr'}
         onClick={onRowClick ? () => onRowClick(data) : undefined}
       >
-        {dataKeys.map((column: any, columnIndex: number) => (
+        {dataKeys.map((column: string | ColumnConfig, columnIndex: number) => (
           <td
             className={`
             ${styles.tbodyTd || 'TableQL-td'}
             ${getNodeStyle(column, data)}
             `}
-            key={`TableQLNode${column + columnIndex}`}
+            key={`TableQLNode${(typeof column === 'string'
+              ? column
+              : column.id) + columnIndex}`}
           >
             {getNodeValue(column, data)}
           </td>
@@ -93,38 +117,59 @@ const Table: FC<Props> = ({
     ))
   }
 
-  const renderTableHeader = (dataKeys: any) => {
-    return dataKeys.map((column: any, columnIndex: number) => (
-      <th
-        className={`${styles.theadTh ||
-          'TableQL-thead-th'} ${column.headerStyle || ''} ${
-          column.sort || sort ? 'TableQL-thead-th-sort' : ''
-        }`}
-        key={`TableQLHeader${column + columnIndex}`}
-        onClick={() => {
-          if (!column.sort && !sort && onSort === undefined) return
-          log('Header sort was clicked: ', column)
-          // @ts-ignore
-          onSort(column)
-        }}
-      >
-        {typeof column === 'string'
-          ? formatLabel(column)
-          : column.label || formatLabel(column.id)}
-        {(column.sort || sort) && <SortArrows />}
-      </th>
-    ))
+  const renderTableHeader = (dataKeys: (string | ColumnConfig)[]) => {
+    return dataKeys.map(
+      (column: string | ColumnConfig, columnIndex: number) => (
+        <th
+          className={`${styles.theadTh || 'TableQL-thead-th'} ${
+            column && typeof column !== 'string' && column.headerStyle
+              ? column.headerStyle
+              : ''
+          } ${
+            (column && typeof column !== 'string' && column.sort) || sort
+              ? 'TableQL-thead-th-sort'
+              : ''
+          }`}
+          key={`TableQLHeader${
+            typeof column === 'string' ? column : column.id + columnIndex
+          }`}
+          onClick={() => {
+            if (
+              typeof column !== 'string' &&
+              !column.sort &&
+              !sort &&
+              onSort === undefined
+            )
+              return
+            log('Header sort was clicked: ', column)
+
+            onSort !== undefined && onSort(column)
+          }}
+        >
+          {typeof column === 'string'
+            ? formatLabel(column)
+            : column.label || formatLabel(column.id)}
+          {((typeof column !== 'string' && column.sort) || sort) && (
+            <SortArrows />
+          )}
+        </th>
+      ),
+    )
   }
 
   // when nodeStyle is a function that is selective styling as function decides should and which css class will be returned.
-  const getNodeStyle = ({ nodeStyle }, data: any) => {
-    if (!nodeStyle) {
+  const getNodeStyle = (column: string | ColumnConfig, data: any) => {
+    if (!column || typeof column === 'string') {
       return ''
     }
 
-    return nodeStyle && typeof nodeStyle == 'string'
-      ? nodeStyle
-      : nodeStyle(data)
+    const { nodeStyle } = column
+
+    if (!nodeStyle) return ''
+
+    if (typeof nodeStyle === 'function') return nodeStyle(data)
+
+    return nodeStyle
   }
 
   return (
