@@ -102,6 +102,9 @@
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "<rootDir>/__mocks__/styleMock.js"
     },
+    "testMatch": [
+      "**/?(*.)+(test).ts?(x)"
+    ],
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/build/"
