@@ -38,5 +38,7 @@ module.exports = {
   externals: {
     react: 'commonjs react', // this line is just to use the React dependency of our parent-testing-project instead of using our own React.
     'react-apollo': 'commonjs react-apollo',
+    graphql: 'commonjs graphql',
+    'graphql-tag': 'commonjs graphql-tag',
   },
 }
