@@ -58,7 +58,6 @@ https://www.apollographql.com/docs/react/essentials/get-started.html
 These packages are required to be able to use TableQL and ApolloTableQL:
 
 - React
-- ReactDOM
 
 ```
 npm install --save react react-dom
@@ -72,6 +71,10 @@ Additionally for ApolloTableQL:
 ```
 npm install --save graphql apollo-boost react-apollo
 ```
+
+## TypeScript
+
+react-tableql supports type definitions for TypeScript out of the box. It ships with definitions in its npm package, so installation should be done for you after the library is included in your project.
 
 ### [Scripts for running this project are at the bottom!](#scripts)
 

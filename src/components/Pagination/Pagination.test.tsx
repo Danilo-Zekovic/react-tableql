@@ -163,4 +163,18 @@ describe('<Pagination>', () => {
       container.firstChild?.classList.contains('PaginationContainer'),
     ).toBeFalsy()
   })
+
+  // TODO this one seams like a cheat
+  it('button calculation one last page selected', () => {
+    const { container } = render(
+      <Pagination
+        totalRecords={100}
+        log={() => {}}
+        pageLimit={10}
+        selectedPage={10}
+      />,
+    )
+
+    expect(container.firstChild).toMatchSnapshot()
+  })
 })

@@ -1,5 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Pagination> button calculation one last page selected 1`] = `
+<div
+  class="PaginationContainer"
+  data-testid="pagination"
+>
+  <button
+    class=""
+  >
+    1
+  </button>
+  <button
+    aria-label="Previous"
+  >
+    «
+  </button>
+  <button
+    class=""
+  >
+    8
+  </button>
+  <button
+    class=""
+  >
+    9
+  </button>
+  <button
+    class=" active"
+  >
+    10
+  </button>
+</div>
+`;
+
 exports[`<Pagination> current page to be 5 1`] = `
 <div
   class="PaginationContainer"
