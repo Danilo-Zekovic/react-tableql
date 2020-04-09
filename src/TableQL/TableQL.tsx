@@ -211,7 +211,6 @@ const TableQL: FC<Props> = ({
     <ErrorBoundary>
       <Table
         displayData={displayData}
-        // @ts-ignore
         dataKeys={dataKeys}
         styles={styles}
         log={log}

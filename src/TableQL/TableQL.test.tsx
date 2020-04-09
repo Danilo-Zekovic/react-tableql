@@ -155,8 +155,6 @@ describe('<TableQL>', () => {
   it('sort', () => {
     const { container } = render(<TableQL data={FILMS} sort />)
 
-    // const firstChild = container.firstChild
-
     expect(container.firstChild).toMatchSnapshot()
 
     expect(

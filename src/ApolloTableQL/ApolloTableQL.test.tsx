@@ -87,7 +87,6 @@ describe('<ApolloTableQL>', () => {
 
     await wait(() => {
       expect(container).toMatchSnapshot()
-      // @ts-ignore
       expect(
         container.querySelector('tbody')?.querySelectorAll('tr'),
       ).toBeTruthy()
