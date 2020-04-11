@@ -1,7 +1,7 @@
 import React from 'react'
 
 import TableQL from './TableQL'
-import { FILMS } from '../../__mocks__/dataMock'
+import { FILMS } from '../../__mocks__/data'
 import { STORYBOOK_SECTIONS } from '../../stories/constants'
 
 export default {

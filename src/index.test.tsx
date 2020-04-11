@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from '@testing-library/react'
 
 import TableQL from './index'
-import { FILMS } from '../__mocks__/dataMock'
+import { FILMS } from '../__mocks__/data'
 
 describe('index', () => {
   it('TableQL', () => {

@@ -6,8 +6,8 @@ import gql from 'graphql-tag'
 import '@babel/polyfill' // TODO: not ideal find the way to move it globally, webpack
 
 import ApolloTableQL from './ApolloTableQL'
-import { testMocks } from '../../__mocks__/mocksData'
-import { GET_ALL_FILMS } from '../../__mocks__/queriesMock'
+import { testMocks } from '../../__mocks__/mocks'
+import { GET_ALL_FILMS } from '../../__mocks__/queries'
 
 const Default = () => (
   <ApolloTableQL query={GET_ALL_FILMS as DocumentNode & string} />

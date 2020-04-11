@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Table from './Table'
-import { FILMS } from '../../../__mocks__/dataMock'
+import { FILMS } from '../../../__mocks__/data'
 import { STORYBOOK_SECTIONS } from '../../../stories/constants'
 
 const DATA_KEYS = [

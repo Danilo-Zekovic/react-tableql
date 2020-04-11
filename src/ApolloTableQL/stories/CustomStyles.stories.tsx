@@ -1,7 +1,7 @@
 import React from 'react'
 
 import ApolloTableQL from '../ApolloTableQL'
-import { GET_ALL_FILMS } from '../../../__mocks__/queriesMock'
+import { GET_ALL_FILMS } from '../../../__mocks__/queries'
 import { STORYBOOK_SECTIONS } from '../../../stories/constants'
 
 import './customStyles.css'
