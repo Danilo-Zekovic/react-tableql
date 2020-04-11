@@ -72,9 +72,9 @@ Additionally for ApolloTableQL:
 npm install --save graphql apollo-boost react-apollo
 ```
 
-## TypeScript
+## TypeScript (Cooming soon, curently available only on GitHub)
 
-react-tableql supports type definitions for TypeScript out of the box. It ships with definitions in its npm package, so installation should be done for you after the library is included in your project.
+react-tableql supports type definitions for TypeScript out of the box. It ships with definitions in its npm package, so installation should be done for you after the library is included in your project. Will be available from version v0.1.0
 
 ### [Scripts for running this project are at the bottom!](#scripts)
 
