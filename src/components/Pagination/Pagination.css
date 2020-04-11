@@ -1,0 +1,43 @@
+.PaginationContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.PaginationContainer button {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  margin: 0;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  outline: 0;
+  background-color: white;
+}
+
+.PaginationContainer button.active {
+  background-color: gray;
+  color: white;
+  border: 1px solid gray;
+}
+
+.PaginationContainer button:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.PaginationContainer button:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.PaginationContainer button:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.PaginationContainer button:disabled {
+  background-color: lightgray;
+}

@@ -1,11 +1,14 @@
 const path = require('path')
 module.exports = {
   mode: 'production',
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'index.js',
     libraryTarget: 'commonjs2', // THIS IS THE MOST IMPORTANT LINE!
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx'],
   },
   module: {
     rules: [
@@ -26,10 +29,16 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.ts$|.tsx$/,
+        use: 'ts-loader',
+      },
     ],
   },
   externals: {
     react: 'commonjs react', // this line is just to use the React dependency of our parent-testing-project instead of using our own React.
     'react-apollo': 'commonjs react-apollo',
+    graphql: 'commonjs graphql',
+    'graphql-tag': 'commonjs graphql-tag',
   },
 }

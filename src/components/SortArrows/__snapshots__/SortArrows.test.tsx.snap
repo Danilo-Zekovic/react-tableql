@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SortArrows> default snapshot 1`] = `
+<div
+  class="TableQL-thead-th-sort-arrows"
+>
+  <div
+    class="TableQL-thead-th-sort-arrow-up"
+  />
+  <div
+    class="TableQL-thead-th-sort-arrow-down"
+  />
+</div>
+`;
