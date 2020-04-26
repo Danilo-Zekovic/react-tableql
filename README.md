@@ -8,7 +8,7 @@
 
 Easy to use React components for creating data grids with zero to no configuration. Simple way to display your data.
 
-If this project helped you improve and simplify your application, consider supporting it by [feeding me some pizza.](https://www.paypal.me/danilozekovic)
+If this project helped you improve and simplify your application, consider supporting it by [buying me a beer.](https://www.paypal.me/danilozekovic)
 
 Official React TableQL Storybook: https://danilo-zekovic.github.io/react-tableql/
 
