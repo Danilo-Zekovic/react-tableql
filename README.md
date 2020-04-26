@@ -4,14 +4,15 @@
 
 [![stars](https://img.shields.io/github/stars/Danilo-Zekovic/react-tableql.svg?style=social&label=Star)](https://github.com/Danilo-Zekovic/react-tableql) [![fork](https://img.shields.io/github/forks/Danilo-Zekovic/react-tableql.svg?style=social&label=Fork)](https://github.com/Danilo-Zekovic/react-tableql) [![watch](https://img.shields.io/github/watchers/Danilo-Zekovic/react-tableql.svg?style=social&label=Watch)](https://github.com/Danilo-Zekovic/react-tableql)
 
-React table component that is harnessing the power GraphQL. Simple way to display your data.
+![Twitter Follow](https://img.shields.io/twitter/follow/danilo_zekovic?label=Follow&style=social)
+
+Easy to use React components for creating data grids with zero to no configuration. Simple way to display your data.
+
+If this project helped you improve and simplify your application, consider supporting it by [feeding me some pizza.](https://www.paypal.me/danilozekovic)
 
 Official React TableQL Storybook: https://danilo-zekovic.github.io/react-tableql/
 
 Demo app: https://github.com/Danilo-Zekovic/react-tableql-example-app
-
-> **Disclaimer**:
-> This components are still under development and may not perform as expected. Use at your own risk.
 
 If you have any suggestions please let me know or join the project.
 
@@ -60,7 +61,7 @@ These packages are required to be able to use TableQL and ApolloTableQL:
 - React
 
 ```
-npm install --save react react-dom
+npm install --save react
 ```
 
 Additionally for ApolloTableQL:
