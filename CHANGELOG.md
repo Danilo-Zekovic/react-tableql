@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.1.0 (Coming soon)
+## v0.1.0-beta.0
 
 new:
 
