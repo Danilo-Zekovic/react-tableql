@@ -1,6 +1,6 @@
 {
   "name": "react-tableql",
-  "version": "0.0.10",
+  "version": "0.1.0-beta.0",
   "description": "React table component that is integrated with Apollo Client and GraphQL",
   "main": "build/index.js",
   "typings": "build/src/index.d.ts",
