@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from 'react'
 import { render, cleanup, fireEvent } from '@testing-library/react'
-import '@babel/polyfill' // TODO: not ideal find the way to move it globally, webpack
+// import '@babel/polyfill' // TODO: not ideal find the way to move it globally, webpack
 
 import Pagination from './Pagination'
 
