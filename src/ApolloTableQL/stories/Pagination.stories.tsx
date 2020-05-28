@@ -5,6 +5,7 @@ import { GET_ALL_PEOPLE } from '../../../__mocks__/queries'
 import { STORYBOOK_SECTIONS } from '../../../stories/constants'
 
 import './customStyles.css'
+import { PaginationData } from '../../components/Pagination/Pagination'
 
 export default {
   title: `${STORYBOOK_SECTIONS.apolloTableQl}|Pagination`,
@@ -49,12 +50,12 @@ export const OnPageChanged = () => (
   <ApolloTableQL
     query={GET_ALL_PEOPLE}
     pagination={{
-      onPageChanged: (
-        currentPage?: number,
-        totalPages?: number,
-        pageLimit?: number,
-        totalRecords?: number,
-      ) =>
+      onPageChanged: ({
+        currentPage,
+        totalPages,
+        pageLimit,
+        totalRecords,
+      }: PaginationData) =>
         alert(
           'FUNCTION PASSED AS PROP, RETURNED VALUES: ' +
             'Current Page > ' +

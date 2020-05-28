@@ -11,12 +11,7 @@ export interface PaginationConfig {
   pageLimit?: number
   pageNeighbors?: number
   currentPage?: number
-  onPageChanged?: (
-    currentPage?: number,
-    totalPages?: number,
-    pageLimit?: number,
-    totalRecords?: number,
-  ) => void
+  onPageChanged?: (paginationData: PaginationData) => void
   styles?: string
 }
 
@@ -92,7 +87,12 @@ const TableQL: FC<Props> = ({
 
     // expose the values to parent if onPageChanged is passed as part of pagination
     if (typeof pagination === 'object' && pagination.onPageChanged) {
-      pagination.onPageChanged(currentPage, totalPages, pageLimit, totalRecords)
+      pagination.onPageChanged({
+        currentPage,
+        totalPages,
+        pageLimit,
+        totalRecords,
+      })
     }
   }
 

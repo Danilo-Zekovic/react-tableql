@@ -5,6 +5,7 @@ import { render, cleanup, fireEvent } from '@testing-library/react'
 
 import TableQL from './TableQL'
 import { FILMS, PEOPLE } from '../../__mocks__/data'
+import { PaginationData } from '../components/Pagination/Pagination'
 
 describe('<TableQL>', () => {
   afterEach(cleanup)
@@ -110,12 +111,13 @@ describe('<TableQL>', () => {
         data={PEOPLE}
         pagination={{
           currentPage: 3,
-          onPageChanged: (
-            currentPage?: number,
-            totalPages?: number,
-            pageLimit?: number,
-            totalRecords?: number,
-          ) => console.log(currentPage, totalPages, pageLimit, totalRecords),
+          onPageChanged: ({
+            currentPage,
+            totalPages,
+            pageLimit,
+            totalRecords,
+          }: PaginationData) =>
+            console.log(currentPage, totalPages, pageLimit, totalRecords),
           pageLimit,
         }}
       />,

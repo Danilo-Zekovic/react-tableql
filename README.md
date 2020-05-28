@@ -365,7 +365,7 @@ Example:
       pageLimit: 5,
       pageNeighbors: 2,
       currentPage: 1,
-      onPageChanged: (currentPage, totalPages, pageLimit, totalRecords) => {
+      onPageChanged: ({currentPage, totalPages, pageLimit, totalRecords}) => {
         alert(currentPage)
       }
     }
