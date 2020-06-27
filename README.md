@@ -87,7 +87,7 @@ react-tableql supports type definitions for TypeScript out of the box. It ships 
 | Prop                                    | Required | Type              | Default Value | Description                                                                                                     | TabelQL            | ApolloTableQL      |
 | --------------------------------------- | -------- | ----------------- | ------------- | --------------------------------------------------------------------------------------------------------------- | ------------------ | ------------------ |
 | [**query**](#query)                     | Yes      | String            | -             | Graphql query                                                                                                   | :x:                | :white_check_mark: |
-| [**data**](#data)                       | Yes      | Array             | -             | Data to be parsed and rendered                                                                                  | :white_check_mark: | :x:                |
+| [**data**](#data)                       | Yes      | Array or Object   | -             | Data to be parsed and rendered                                                                                  | :white_check_mark: | :x:                |
 | [**columns**](#columns)                 | No       | Array             | `null`        | Customization of columns                                                                                        | :white_check_mark: | :white_check_mark: |
 | [**pagination**](#pagination)           | No       | Object or Boolean | `false`       | Adds pagination                                                                                                 | :white_check_mark: | :white_check_mark: |
 | [**onRowClick**](#onrowclick)           | No       | Function          | `null`        | Handle row click                                                                                                | :white_check_mark: | :white_check_mark: |
@@ -128,7 +128,7 @@ This is the minimum requirement for ApolloTableQL to work, rest of the props are
 
 ## data
 
-It should be an array of objects. TableQL will take it and parse it.
+It should be an array of objects, or an object which has at least one property that is an array. TableQL will take it and parse it.
 
 Example:
 

@@ -1,4 +1,4 @@
-import React, { useState, FC, useEffect } from 'react'
+import React, { useState, FC } from 'react'
 
 import '../index.css'
 
