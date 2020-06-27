@@ -270,7 +270,7 @@ describe('<TableQL>', () => {
   })
 
   it('pagination with no data', () => {
-    const { container } = render(<TableQL data={[]} pagination />)
+    const { container } = render(<TableQL data={{ data: [] }} pagination />)
 
     expect(getByText(container, 'No data found!')).toBeTruthy()
   })
