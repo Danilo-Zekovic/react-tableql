@@ -10,3 +10,16 @@ export default {
 }
 
 export const Default = () => <TableQL data={FILMS} />
+
+export const NoData = () => (
+  <TableQL
+    data={{ data: [] }}
+    columns={[
+      { id: 'foo', label: 'Foo', sort: true },
+      { id: 'bar', label: 'Bar', sort: false },
+    ]}
+    pagination
+  />
+)
+
+export const IncorectData = () => <TableQL data={{ data: 'asd' }} />

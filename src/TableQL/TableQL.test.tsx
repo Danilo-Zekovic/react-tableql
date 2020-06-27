@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from 'react'
-import { render, cleanup, fireEvent } from '@testing-library/react'
+import { render, cleanup, fireEvent, getByText } from '@testing-library/react'
 // import '@babel/polyfill' // TODO: not ideal find the way to move it globally, webpack
 
 import TableQL from './TableQL'
@@ -151,7 +151,7 @@ describe('<TableQL>', () => {
 
     expect(container.firstChild).toMatchSnapshot()
     expect(console.log).toBeCalled()
-    expect(console.log).toHaveBeenCalledTimes(19)
+    expect(console.log).toHaveBeenCalledTimes(17)
   })
 
   it('sort', () => {
@@ -267,5 +267,11 @@ describe('<TableQL>', () => {
     ).toBe('Ackbar')
 
     expect(container.firstChild).toMatchSnapshot()
+  })
+
+  it('pagination with no data', () => {
+    const { container } = render(<TableQL data={{ data: [] }} pagination />)
+
+    expect(getByText(container, 'No data found!')).toBeTruthy()
   })
 })

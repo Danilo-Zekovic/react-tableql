@@ -6,6 +6,7 @@ import Pagination, { PaginationData } from '../components/Pagination/Pagination'
 import Table, { Styles, ColumnConfig } from '../components/Table/Table'
 import ErrorBoundary from '../components/ErrorBaundary/ErrorBaundary'
 import Loader from '../components/Loader/Loader'
+import { traverseObjectForArray } from '../utils'
 
 export interface PaginationConfig {
   pageLimit?: number
@@ -16,7 +17,7 @@ export interface PaginationConfig {
 }
 
 export interface Props {
-  data: object[]
+  data: object[] | object | []
   loading?: boolean
   error?: Error
   errorMessage?: string
@@ -46,20 +47,8 @@ const TableQL: FC<Props> = ({
       : 1,
   )
 
-  const [displayData, setDisplayData] = useState<any[]>([])
-  const [fullData, setFullData] = useState<any[]>([])
-
-  // traverse data to find the array of objects and return it
-  const traverseData = (data: any) => {
-    log('Traverse data called.')
-    for (let key in data) {
-      if (Array.isArray(data)) {
-        return data
-      } else {
-        return traverseData(data[key])
-      }
-    }
-  }
+  const [displayData, setDisplayData] = useState<any[]>()
+  const [fullData, setFullData] = useState<any[]>()
 
   const getHeaderLabels = (data: any) => {
     log('Get header labels.')
@@ -107,7 +96,7 @@ const TableQL: FC<Props> = ({
     log('Sort by column: ', column)
 
     const property = typeof column === 'string' ? column : column.id
-    let newOrder = [...fullData] as any
+    let newOrder = fullData ? ([...fullData] as any) : []
 
     if (
       typeof column !== 'string' &&
@@ -156,7 +145,7 @@ const TableQL: FC<Props> = ({
   }
 
   // TODO consider having something different when there is no data compared to empty array
-  if (data.length === 0) {
+  if (Array.isArray(data) && data.length === 0) {
     log('No data found!', data.length)
     return <p>{`No data found!`}</p>
   }
@@ -164,13 +153,13 @@ const TableQL: FC<Props> = ({
   log('Data: ', data)
 
   // let displayData = traverseData(data)
-  let traversedData = traverseData(data)
+  const traversedData = traverseObjectForArray(data)
   // TODO this is not going to be good, potential infinte loop here
-  if (displayData.length === 0) {
+  if (displayData === undefined) {
     setDisplayData(traversedData)
   }
 
-  if (fullData.length === 0) {
+  if (fullData === undefined) {
     setFullData(traversedData)
   }
 
@@ -189,9 +178,14 @@ const TableQL: FC<Props> = ({
         ? pagination.pageLimit
         : pageLimit)
 
-    let dataToDisplay = displayData
-      ? fullData.slice(offset).slice(0, pageLimit)
-      : traversedData.slice(offset).slice(0, pageLimit)
+    if (!displayData || displayData.length === 0) {
+      log('No data found to paginate!', displayData)
+      return <p>{`No data found!`}</p>
+    }
+    let dataToDisplay =
+      displayData && fullData
+        ? fullData.slice(offset).slice(0, pageLimit)
+        : traversedData.slice(offset).slice(0, pageLimit)
 
     // it is ugly, but it will do it for now
     if (JSON.stringify(displayData) !== JSON.stringify(dataToDisplay)) {
