@@ -220,7 +220,7 @@ describe('<TableQL>', () => {
       <TableQL
         data={FILMS}
         columns={[
-          { id: 'title', sort: data => data.reverse() },
+          { id: 'title', sort: (data) => data.reverse() },
           'episodeID',
           'openingCrawl',
           'director',

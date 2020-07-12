@@ -111,7 +111,7 @@ describe('<Pagination>', () => {
       <Pagination
         totalRecords={100}
         log={() => {}}
-        onPageChanged={data => {
+        onPageChanged={(data) => {
           console.log(data)
         }}
       />,

@@ -5,7 +5,8 @@ export const formatStringToTitleCase = (text: string) =>
     .replace(/([-,_,~,=,+])/g, ' ') // replace unwanted characters with spaces
     .replace(
       /\w\S*/g,
-      word => `${word.charAt(0).toUpperCase()}${word.substr(1).toLowerCase()}`,
+      (word) =>
+        `${word.charAt(0).toUpperCase()}${word.substr(1).toLowerCase()}`,
     ) // make first letters upper case
 
 // TODO make it so it takes the array of higher level first

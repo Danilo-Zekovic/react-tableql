@@ -55,7 +55,7 @@ export const ReactComponent = () => (
       'releaseDate',
       {
         id: 'title',
-        component: data => <Button data={data} />,
+        component: (data) => <Button data={data} />,
       },
     ]}
   />
@@ -70,7 +70,7 @@ export const CustomColumn = () => (
       'title',
       {
         id: 'actions',
-        component: props => <Button data={props} />,
+        component: (props) => <Button data={props} />,
         customColumn: true,
       },
     ]}

@@ -54,7 +54,7 @@ describe('<Table>', () => {
       <Table
         displayData={FILMS}
         dataKeys={DATA_KEYS}
-        onRowClick={data => console.log(data)}
+        onRowClick={(data) => console.log(data)}
         log={() => {}}
       />,
     )
@@ -110,7 +110,7 @@ describe('<Table>', () => {
       <Table
         displayData={FILMS}
         dataKeys={[
-          { id: 'title', component: data => data.toUpperCase() },
+          { id: 'title', component: (data) => data.toUpperCase() },
           'episodeID',
           'openingCrawl',
           'director',
@@ -249,7 +249,7 @@ describe('<Table>', () => {
         dataKeys={[
           {
             id: 'title',
-            nodeStyle: data => {
+            nodeStyle: (data) => {
               if (data.title <= FILMS[0].title) return customClass
             },
           },
@@ -296,7 +296,7 @@ describe('<Table>', () => {
         ]}
         log={() => {}}
         sort
-        onSort={column => {
+        onSort={(column) => {
           console.log(column)
         }}
       />,
@@ -329,7 +329,7 @@ describe('<Table>', () => {
           'releaseDate',
         ]}
         log={() => {}}
-        onSort={column => {
+        onSort={(column) => {
           console.log(column)
         }}
       />,

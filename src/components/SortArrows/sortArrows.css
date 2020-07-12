@@ -5,12 +5,12 @@
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   height: 100%;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .TableQL-thead-th-sort-arrow-up {
@@ -20,7 +20,7 @@
   border-right: 5px solid transparent;
   border-top: 5px solid transparent;
 
-  border-bottom: 5px solid #787C80;
+  border-bottom: 5px solid #787c80;
   margin-bottom: 1px;
 }
 
@@ -30,6 +30,6 @@
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
 
-  border-top: 5px solid #787C80;
+  border-top: 5px solid #787c80;
   margin-top: 1px;
 }

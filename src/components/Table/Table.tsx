@@ -106,9 +106,9 @@ const Table: FC<Props> = ({
             ${styles.tbodyTd || 'TableQL-td'}
             ${getNodeStyle(column, data)}
             `}
-            key={`TableQLNode${(typeof column === 'string'
-              ? column
-              : column.id) + columnIndex}`}
+            key={`TableQLNode${
+              (typeof column === 'string' ? column : column.id) + columnIndex
+            }`}
           >
             {getNodeValue(column, data)}
           </td>

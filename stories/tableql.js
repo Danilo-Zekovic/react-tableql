@@ -27,6 +27,8 @@ export const BASIC_TABLEQL = storiesOf('2. TableQL|Basic', module)
 
 export const WRAPPER_EXAMPLES = storiesOf('2. TableQL|Wrapped Examples', module)
   .add('apollo client', () => (
-    <Query query={gql(GET_ALL_FILMS)}>{props => <TableQL {...props} />}</Query>
+    <Query query={gql(GET_ALL_FILMS)}>
+      {(props) => <TableQL {...props} />}
+    </Query>
   ))
   .add('axios', () => <h1>Coming soon...</h1>)
