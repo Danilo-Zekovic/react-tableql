@@ -133,6 +133,10 @@ const TableQL: FC<Props> = ({
     onRowClick,
   })
 
+  if (typeof window === 'undefined') {
+    return <></>
+  }
+
   if (loading) {
     log('Loading: ', loading)
     return <Loader />
