@@ -124,6 +124,11 @@ const TableQL: FC<Props> = ({
     setDisplayData(newOrder)
   }
 
+  if (!(window !== undefined) || !(document !== undefined)) {
+    log('Window or document are not defined.')
+    return null
+  }
+
   log('Props: ', {
     pagination,
     debug,
@@ -132,10 +137,6 @@ const TableQL: FC<Props> = ({
     styles,
     onRowClick,
   })
-
-  if (typeof window === 'undefined') {
-    return <></>
-  }
 
   if (loading) {
     log('Loading: ', loading)

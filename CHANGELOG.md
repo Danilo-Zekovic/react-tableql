@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.1.0-beta.4
+
+new:
+
+- export Loader component
+
+bugfix:
+
+- when document does not exist do not try render of TableQL
+
 ## v0.1.0-beta.3
 
 bugfix:
