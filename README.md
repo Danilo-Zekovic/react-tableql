@@ -12,8 +12,9 @@ If this project helped you improve and simplify your application, consider suppo
 
 Official React TableQL Storybook: https://danilo-zekovic.github.io/react-tableql/
 
-Demo app: https://github.com/Danilo-Zekovic/react-tableql-example-app  
-TypeScript demo app: https://github.com/Danilo-Zekovic/react-tableql-typescript-example-app
+Example app: https://github.com/Danilo-Zekovic/react-tableql-example-app  
+TypeScript example app: https://github.com/Danilo-Zekovic/react-tableql-typescript-example-app   
+Next.js example app: https://github.com/Danilo-Zekovic/react-tableql-nextjs-example-app
 
 If you have any suggestions please let me know or join the project.
 
