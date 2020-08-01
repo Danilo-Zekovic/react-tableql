@@ -81,6 +81,27 @@ react-tableql supports type definitions for TypeScript out of the box. It ships 
 
 ### [Scripts for running this project are at the bottom!](#scripts)
 
+## Server-Side Rendering (SSR)
+
+As react-tableql for now does not support ssr out of the box, to use it it needs to be imported dynamically once the document is available.
+
+### Next.js
+
+```
+import dynamic from 'next/dynamic'
+
+const ApolloTableQL = dynamic(() => import('react-tableql').then((m) => {
+  const { ApolloTableQL } = m
+  return ApolloTableQL
+}), { ssr: false })
+```
+
+```
+import dynamic from 'next/dynamic'
+
+const TableQL = dynamic(() => import('react-tableql'), { ssr: false })
+```
+
 ---
 
 # Props
