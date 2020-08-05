@@ -12,8 +12,9 @@ If this project helped you improve and simplify your application, consider suppo
 
 Official React TableQL Storybook: https://danilo-zekovic.github.io/react-tableql/
 
-Demo app: https://github.com/Danilo-Zekovic/react-tableql-example-app  
-TypeScript demo app: https://github.com/Danilo-Zekovic/react-tableql-typescript-example-app
+Example app: https://github.com/Danilo-Zekovic/react-tableql-example-app  
+TypeScript example app: https://github.com/Danilo-Zekovic/react-tableql-typescript-example-app   
+Next.js example app: https://github.com/Danilo-Zekovic/react-tableql-nextjs-example-app
 
 If you have any suggestions please let me know or join the project.
 
@@ -79,6 +80,25 @@ npm install --save graphql apollo-boost react-apollo
 react-tableql supports type definitions for TypeScript out of the box. It ships with definitions in its npm package, so installation should be done for you after the library is included in your project. Available from version v0.1.0-beta.0
 
 ### [Scripts for running this project are at the bottom!](#scripts)
+
+## Server-Side Rendering (SSR)
+
+#### Next.js
+
+```
+import dynamic from 'next/dynamic'
+
+const ApolloTableQL = dynamic(() => import('react-tableql').then((m) => {
+  const { ApolloTableQL } = m
+  return ApolloTableQL
+}), { ssr: false })
+```
+
+```
+import dynamic from 'next/dynamic'
+
+const TableQL = dynamic(() => import('react-tableql'), { ssr: false })
+```
 
 ---
 
