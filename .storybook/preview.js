@@ -6,7 +6,8 @@ import { addReadme } from 'storybook-readme'
 import '@storybook/addon-console'
 import { withConsole } from '@storybook/addon-console'
 // mock Apollo, it uses graphql-tools in the background
-import apolloStorybookDecorator from 'apollo-storybook-react'
+// import apolloStorybookDecorator from 'apollo-storybook-react'
+import apolloStorybookDecorator from './apollo-react'
 import { mocks } from './../__mocks__/mocks'
 import { typeDefs } from './../__mocks__/typeDefs' // set jsx decorator for all the stories
 

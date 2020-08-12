@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, cleanup, wait } from '@testing-library/react'
-import { MockedProvider } from '@apollo/react-testing'
+import { MockedProvider } from '@apollo/client/testing'
 import { DocumentNode } from 'graphql'
 import gql from 'graphql-tag'
 // import '@babel/polyfill' // TODO: not ideal find the way to move it globally, webpack

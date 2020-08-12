@@ -42,6 +42,7 @@ const web = {
     'react-apollo': 'commonjs react-apollo',
     graphql: 'commonjs graphql',
     'graphql-tag': 'commonjs graphql-tag',
+    '@apollo/client': 'commonjs @apllo/client',
   },
 }
 
