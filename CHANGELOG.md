@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.0-beta.5
+
+new:
+
+- update `graphql` dependency from v14 to v15
+
 ## v0.1.0-beta.4
 
 new:
