@@ -16,6 +16,10 @@ export interface PaginationConfig {
   styles?: string
 }
 
+export interface FailSafe {
+  reason: string
+}
+
 export interface Props {
   data: object[] | object | []
   loading?: boolean
@@ -27,6 +31,7 @@ export interface Props {
   onRowClick?: (data: { [key: string]: unknown }) => void
   sort?: boolean
   debug?: boolean
+  onEmpty?: FC<FailSafe>
 }
 
 const TableQL: FC<Props> = ({
@@ -40,6 +45,7 @@ const TableQL: FC<Props> = ({
   error,
   data,
   sort,
+  onEmpty,
 }) => {
   const [currentPage, setCurrentPage] = useState<number>(
     pagination && typeof pagination !== 'boolean' && pagination.currentPage
@@ -152,6 +158,9 @@ const TableQL: FC<Props> = ({
   // TODO consider having something different when there is no data compared to empty array
   if (Array.isArray(data) && data.length === 0) {
     log('No data found!', data.length)
+    if (onEmpty) {
+      return onEmpty({ reason: 'No data found!' })
+    }
     return <p>{`No data found!`}</p>
   }
 
@@ -185,6 +194,9 @@ const TableQL: FC<Props> = ({
 
     if (!displayData || displayData.length === 0) {
       log('No data found to paginate!', displayData)
+      if (onEmpty) {
+        return onEmpty({ reason: 'No data found to paginate!' })
+      }
       return <p>{`No data found!`}</p>
     }
     let dataToDisplay =
@@ -204,6 +216,9 @@ const TableQL: FC<Props> = ({
   // TODO probably bad idea not to display empty table
   if (!displayData || displayData.length == 0) {
     log('No data found!', displayData)
+    if (onEmpty) {
+      return onEmpty({ reason: 'No data found!' })
+    }
     return <p>{`No data found!`}</p>
   }
   return (
