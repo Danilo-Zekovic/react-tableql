@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 import { useQuery, QueryHookOptions, gql } from '@apollo/client'
-// import gql from 'graphql-tag'
 import { DocumentNode } from 'graphql'
 
 import TableQL, { PaginationConfig } from '../TableQL/TableQL'

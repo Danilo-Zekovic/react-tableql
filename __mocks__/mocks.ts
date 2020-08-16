@@ -1,7 +1,7 @@
 import { FILMS, PEOPLE } from './data'
 import { GET_ALL_FILMS, GET_ALL_PEOPLE } from './queries'
 
-import gql from 'graphql-tag'
+import { gql } from '@apollo/client'
 
 // mocking graphql for Storybook
 export const mocks = {
