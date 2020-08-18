@@ -110,20 +110,21 @@ const TableQL = dynamic(() => import('react-tableql'), { ssr: false })
 
 # Props
 
-| Prop                                    | Required | Type              | Default Value | Description                                                                                                     | TabelQL            | ApolloTableQL      |
-| --------------------------------------- | -------- | ----------------- | ------------- | --------------------------------------------------------------------------------------------------------------- | ------------------ | ------------------ |
-| [**query**](#query)                     | Yes      | String            | -             | Graphql query                                                                                                   | :x:                | :white_check_mark: |
-| [**data**](#data)                       | Yes      | Array or Object   | -             | Data to be parsed and rendered                                                                                  | :white_check_mark: | :x:                |
-| [**columns**](#columns)                 | No       | Array             | `null`        | Customization of columns                                                                                        | :white_check_mark: | :white_check_mark: |
-| [**pagination**](#pagination)           | No       | Object or Boolean | `false`       | Adds pagination                                                                                                 | :white_check_mark: | :white_check_mark: |
-| [**onRowClick**](#onrowclick)           | No       | Function          | `null`        | Handle row click                                                                                                | :white_check_mark: | :white_check_mark: |
-| [**styles**](#styles)                   | No       | Object            | `{}`          | Change the look of part of a table                                                                              | :white_check_mark: | :white_check_mark: |
-| [**debug**](#debug)                     | No       | Boolean           | `false`       | Turns on and off the debug mode                                                                                 | :white_check_mark: | :white_check_mark: |
-| [**loading**](#loading)                 | No       | Boolean           | `false`       | Indicates if data is loading                                                                                    | :white_check_mark: | :x:                |
-| [**error**](#error)                     | No       | Error             | `''`          | Error object                                                                                                    | :white_check_mark: | :x:                |
-| [**sort**](#sort)                       | No       | Boolean           | `false`       | All columns can be sorted by                                                                                    | :white_check_mark: | :white_check_mark: |
-| **errorMessage**                        | No       | String            | ''            | When error occurs display this message                                                                          | :white_check_mark: | :white_check_mark: |
-| [**_Apollo Options_**](#Apollo_Options) | No       | -                 | -             | See [Apollo Client](https://www.apollographql.com/docs/react/essentials/get-started.html) site for more details | :x:                | :white_check_mark: |
+| Prop                                    | Required | Type                       | Default Value | Description                                                                                                     | TabelQL            | ApolloTableQL      |
+| --------------------------------------- | -------- | -------------------------- | ------------- | --------------------------------------------------------------------------------------------------------------- | ------------------ | ------------------ |
+| [**query**](#query)                     | Yes      | String                     | -             | Graphql query                                                                                                   | :x:                | :white_check_mark: |
+| [**data**](#data)                       | Yes      | Array or Object            | -             | Data to be parsed and rendered                                                                                  | :white_check_mark: | :x:                |
+| [**columns**](#columns)                 | No       | Array                      | `null`        | Customization of columns                                                                                        | :white_check_mark: | :white_check_mark: |
+| [**pagination**](#pagination)           | No       | Object or Boolean          | `false`       | Adds pagination                                                                                                 | :white_check_mark: | :white_check_mark: |
+| [**onRowClick**](#onrowclick)           | No       | Function                   | `null`        | Handle row click                                                                                                | :white_check_mark: | :white_check_mark: |
+| [**onEmpty**](#onempty)                 | No       | React Functional Component | `null`        | Component to render if data is empty                                                                            | :white_check_mark: | :white_check_mark: |
+| [**styles**](#styles)                   | No       | Object                     | `{}`          | Change the look of part of a table                                                                              | :white_check_mark: | :white_check_mark: |
+| [**debug**](#debug)                     | No       | Boolean                    | `false`       | Turns on and off the debug mode                                                                                 | :white_check_mark: | :white_check_mark: |
+| [**loading**](#loading)                 | No       | Boolean                    | `false`       | Indicates if data is loading                                                                                    | :white_check_mark: | :x:                |
+| [**error**](#error)                     | No       | Error                      | `''`          | Error object                                                                                                    | :white_check_mark: | :x:                |
+| [**sort**](#sort)                       | No       | Boolean                    | `false`       | All columns can be sorted by                                                                                    | :white_check_mark: | :white_check_mark: |
+| **errorMessage**                        | No       | String                     | ''            | When error occurs display this message                                                                          | :white_check_mark: | :white_check_mark: |
+| [**_Apollo Options_**](#Apollo_Options) | No       | -                          | -             | See [Apollo Client](https://www.apollographql.com/docs/react/essentials/get-started.html) site for more details | :x:                | :white_check_mark: |
 
 > NOTE: ApolloTabelQL has yet to be tested for all the options that Apollo Client has to offer. See the once that have been tested in the section Apollo Options bellow.
 
@@ -408,6 +409,20 @@ Example:
 <ApolloTableQL
   query={GET_ALL_FILMS}
   onRowClick={data => alert(data)} />
+```
+
+## onEmpty
+
+If you need to render another component in case of an empty table, TableQL will do so calling onEmpty, a React Functional Component, with "reason" (string) as a prop.
+
+Example:
+
+```
+const FailSafe = ({reason}) => <h3>You don't have data yet<h3>;
+
+<ApolloTableQL
+  query={GET_ALL_FILMS}
+  onEmpty={FailSafe} />
 ```
 
 ## loading

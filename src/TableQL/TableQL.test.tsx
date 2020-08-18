@@ -75,6 +75,26 @@ describe('<TableQL>', () => {
     expect(container.getAllByText('No data found!').length).toBe(1)
   })
 
+  it('no data found with onEmptyComponent', () => {
+    const emptyState = ({ reason }) => <h3>You have no data!</h3>
+    const container = render(<TableQL data={[]} onEmpty={emptyState} />)
+
+    expect(container).toMatchSnapshot()
+    expect(container.getByText('You have no data!')).toBeTruthy()
+    expect(typeof container.getByText('You have no data!')).toBe('object')
+    expect(container.getAllByText('You have no data!').length).toBe(1)
+  })
+
+  it('no data found with onEmptyComponent and using props', () => {
+    const emptyState = ({ reason }) => <h3>{reason}</h3>
+    const container = render(<TableQL data={[]} onEmpty={emptyState} />)
+
+    expect(container).toMatchSnapshot()
+    expect(container.getByText('No data found!')).toBeTruthy()
+    expect(typeof container.getByText('No data found!')).toBe('object')
+    expect(container.getAllByText('No data found!').length).toBe(1)
+  })
+
   it('should have pagination', () => {
     const { container, queryAllByTestId, findByTestId } = render(
       <TableQL data={PEOPLE} pagination={true} />,
