@@ -1,6 +1,16 @@
 # Changelog
 
+## v0.1.0-beta.6
+
+new:
+
+- onEmpty option added
+
 ## v0.1.0-beta.5
+
+breaking:
+
+- move from `react-apollo` to `@apollo/client`
 
 new:
 

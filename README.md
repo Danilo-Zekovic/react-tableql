@@ -418,7 +418,7 @@ If you need to render another component in case of an empty table, TableQL will 
 Example:
 
 ```
-const FailSafe = ({reason}) => <h3>You don't have data yet<h3>;
+const FailSafe = ({reason}) => <h3>You don't have data yet</h3>;
 
 <ApolloTableQL
   query={GET_ALL_FILMS}

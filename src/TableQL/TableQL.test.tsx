@@ -69,30 +69,59 @@ describe('<TableQL>', () => {
   it('no data found', () => {
     const container = render(<TableQL data={[]} />)
 
+    const labelText = 'No data found!'
+
     expect(container).toMatchSnapshot()
-    expect(container.getByText('No data found!')).toBeTruthy()
-    expect(typeof container.getByText('No data found!')).toBe('object')
-    expect(container.getAllByText('No data found!').length).toBe(1)
+    expect(container.getByText(labelText)).toBeTruthy()
+    expect(typeof container.getByText(labelText)).toBe('object')
+    expect(container.getAllByText(labelText).length).toBe(1)
   })
 
   it('no data found with onEmptyComponent', () => {
-    const emptyState = ({ reason }) => <h3>You have no data!</h3>
+    const onEmptyLabel = 'You have no data!'
+    const emptyState = ({ reason }) => <h3>{onEmptyLabel}</h3>
     const container = render(<TableQL data={[]} onEmpty={emptyState} />)
 
-    expect(container).toMatchSnapshot()
-    expect(container.getByText('You have no data!')).toBeTruthy()
-    expect(typeof container.getByText('You have no data!')).toBe('object')
-    expect(container.getAllByText('You have no data!').length).toBe(1)
+    expect(container.getByText(onEmptyLabel)).toBeTruthy()
+    expect(typeof container.getByText(onEmptyLabel)).toBe('object')
+    expect(container.getAllByText(onEmptyLabel).length).toBe(1)
   })
 
   it('no data found with onEmptyComponent and using props', () => {
     const emptyState = ({ reason }) => <h3>{reason}</h3>
     const container = render(<TableQL data={[]} onEmpty={emptyState} />)
 
-    expect(container).toMatchSnapshot()
-    expect(container.getByText('No data found!')).toBeTruthy()
-    expect(typeof container.getByText('No data found!')).toBe('object')
-    expect(container.getAllByText('No data found!').length).toBe(1)
+    const labelText = 'No data found!'
+
+    expect(container.getByText(labelText)).toBeTruthy()
+    expect(typeof container.getByText(labelText)).toBe('object')
+    expect(container.getAllByText(labelText).length).toBe(1)
+  })
+
+  it('no data in aray as property of an object ', () => {
+    const emptyState = ({ reason }) => <h3>{reason}</h3>
+    const container = render(
+      <TableQL data={{ foo: [] }} onEmpty={emptyState} />,
+    )
+
+    const labelText = 'No data found!'
+
+    expect(container.getByText(labelText)).toBeTruthy()
+    expect(typeof container.getByText(labelText)).toBe('object')
+    expect(container.getAllByText(labelText).length).toBe(1)
+  })
+
+  it('no data in aray as property of an object when pagination true', () => {
+    const emptyState = ({ reason }) => <h3>{reason}</h3>
+    const container = render(
+      <TableQL data={{ foo: [] }} onEmpty={emptyState} pagination />,
+    )
+
+    const labelText = 'No data found to paginate!'
+
+    expect(container.getByText(labelText)).toBeTruthy()
+    expect(typeof container.getByText(labelText)).toBe('object')
+    expect(container.getAllByText(labelText).length).toBe(1)
   })
 
   it('should have pagination', () => {

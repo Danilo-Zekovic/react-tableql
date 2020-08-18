@@ -17,7 +17,7 @@ export const traverseObjectForArray = (
   defaultReturn: any[] | boolean = [],
 ) => {
   if (Array.isArray(data)) return data
-  if (typeof data !== 'object') return defaultReturn || false
+  if (typeof data !== 'object') return defaultReturn // || false // <-- I think this false is never reached
 
   for (let key in data) {
     if (Array.isArray(data[key])) {

@@ -22,4 +22,15 @@ export const NoData = () => (
   />
 )
 
+export const OnEmpty = () => (
+  <TableQL
+    data={{ data: [] }}
+    columns={[
+      { id: 'foo', label: 'Foo', sort: true },
+      { id: 'bar', label: 'Bar', sort: false },
+    ]}
+    onEmpty={({ reason }) => <h3>You don't have data yet. Reason {reason}</h3>}
+  />
+)
+
 export const IncorectData = () => <TableQL data={{ data: 'asd' }} />
