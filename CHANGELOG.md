@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.0-beta.7
+
+bugfix:
+
+- fix spelling of `@apollo/client` in webpack externals
+
 ## v0.1.0-beta.6
 
 new:
