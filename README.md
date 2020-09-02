@@ -110,7 +110,7 @@ const TableQL = dynamic(() => import('react-tableql'), { ssr: false })
 
 # Props
 
-| Prop                                    | Required | Type                       | Default Value | Description                                                                                                     | TabelQL            | ApolloTableQL      |
+| Prop                                    | Required | Type                       | Default Value | Description                                                                                                     | TableQL            | ApolloTableQL      |
 | --------------------------------------- | -------- | -------------------------- | ------------- | --------------------------------------------------------------------------------------------------------------- | ------------------ | ------------------ |
 | [**query**](#query)                     | Yes      | String                     | -             | Graphql query                                                                                                   | :x:                | :white_check_mark: |
 | [**data**](#data)                       | Yes      | Array or Object            | -             | Data to be parsed and rendered                                                                                  | :white_check_mark: | :x:                |
@@ -126,7 +126,7 @@ const TableQL = dynamic(() => import('react-tableql'), { ssr: false })
 | **errorMessage**                        | No       | String                     | ''            | When error occurs display this message                                                                          | :white_check_mark: | :white_check_mark: |
 | [**_Apollo Options_**](#Apollo_Options) | No       | -                          | -             | See [Apollo Client](https://www.apollographql.com/docs/react/essentials/get-started.html) site for more details | :x:                | :white_check_mark: |
 
-> NOTE: ApolloTabelQL has yet to be tested for all the options that Apollo Client has to offer. See the once that have been tested in the section Apollo Options bellow.
+> NOTE: ApolloTableQL has yet to be tested for all the options that Apollo Client has to offer. See the once that have been tested in the section Apollo Options bellow.
 
 ## query
 
