@@ -1,5 +1,11 @@
 # Changelog
 
+## next
+
+update:
+
+- update TypeScript to v4
+
 ## v0.1.0-beta.7
 
 bugfix:
