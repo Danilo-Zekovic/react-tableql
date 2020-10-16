@@ -16,7 +16,7 @@ export interface ComponentProps {
   sort?: boolean
 }
 
-type Props = QueryHookOptions & ComponentProps
+type Props = ComponentProps & Omit<QueryHookOptions, 'query'>
 
 const ApolloTableQL: FC<Props> = ({ query, ...props }) => {
   const { loading, error, data } = useQuery(
