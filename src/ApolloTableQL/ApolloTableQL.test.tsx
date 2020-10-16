@@ -9,15 +9,11 @@ import ApolloTableQL from './ApolloTableQL'
 import { testMocks } from '../../__mocks__/mocks'
 import { GET_ALL_FILMS } from '../../__mocks__/queries'
 
-const Default = () => (
-  <ApolloTableQL query={GET_ALL_FILMS as DocumentNode & string} />
-)
-const Pagination = () => (
-  <ApolloTableQL query={GET_ALL_FILMS as DocumentNode & string} pagination />
-)
+const Default = () => <ApolloTableQL query={GET_ALL_FILMS} />
+const Pagination = () => <ApolloTableQL query={GET_ALL_FILMS} pagination />
 const CustomColumn = () => (
   <ApolloTableQL
-    query={GET_ALL_FILMS as DocumentNode & string}
+    query={GET_ALL_FILMS}
     columns={[
       { id: 'episodeID', label: 'Episode Identification' },
       'releaseDate',
@@ -35,7 +31,7 @@ describe('<ApolloTableQL>', () => {
   it('testing loading state', () => {
     const { container } = render(
       <MockedProvider mocks={testMocks} addTypename={false}>
-        <ApolloTableQL query={GET_ALL_FILMS as DocumentNode & string} />
+        <ApolloTableQL query={GET_ALL_FILMS} />
       </MockedProvider>,
     )
 
