@@ -2,9 +2,32 @@
 
 ## next
 
-update:
+## v0.1.1
 
-- update TypeScript to v4
+bugfix:
+- fix type for query prop so it accepts string
+
+## v0.1.0
+
+new: 
+
+- TypeScript
+- Loader component `import { Loader } from 'react-tableql'`
+- `onEmtpy` option/prop
+
+breaking:
+
+- move from `react-apollo` to `@apollo/client`
+- `onPageChanged` pagination configuration parameter takes in the function with one object containing four values as parameter, instead of four separate values
+
+update:
+ 
+- move `graphql` dependency from v14 to v15
+
+bugfix:
+
+- fix so TableQL component can properly handle empty array nested in an object
+
 
 ## v0.1.0-beta.7
 
