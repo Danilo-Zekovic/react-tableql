@@ -2,14 +2,21 @@
 
 ## next
 
+## v0.2.0
+
+update:
+
+- bump `react` to v17
+
 ## v0.1.1
 
 bugfix:
+
 - fix type for query prop so it accepts string
 
 ## v0.1.0
 
-new: 
+new:
 
 - TypeScript
 - Loader component `import { Loader } from 'react-tableql'`
@@ -21,13 +28,12 @@ breaking:
 - `onPageChanged` pagination configuration parameter takes in the function with one object containing four values as parameter, instead of four separate values
 
 update:
- 
+
 - move `graphql` dependency from v14 to v15
 
 bugfix:
 
 - fix so TableQL component can properly handle empty array nested in an object
-
 
 ## v0.1.0-beta.7
 
