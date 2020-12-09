@@ -7,7 +7,7 @@ import { STORYBOOK_SECTIONS } from '../../../stories/constants'
 import './customStyles.css'
 
 export default {
-  title: `${STORYBOOK_SECTIONS.apolloTableQl}|Custom Styles`,
+  title: `${STORYBOOK_SECTIONS.apolloTableQl}/Custom Styles`,
   component: ApolloTableQL,
 }
 

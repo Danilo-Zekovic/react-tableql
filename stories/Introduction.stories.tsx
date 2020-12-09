@@ -4,7 +4,7 @@ import { Welcome, StorybookDirections } from './customStories'
 import { STORYBOOK_SECTIONS } from './constants'
 
 export default {
-  title: `${STORYBOOK_SECTIONS.gettingStarted}|Introduction`,
+  title: `${STORYBOOK_SECTIONS.gettingStarted}/Introduction`,
   id: 0,
 }
 

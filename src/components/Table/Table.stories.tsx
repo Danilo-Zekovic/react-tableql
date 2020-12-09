@@ -14,7 +14,7 @@ const DATA_KEYS = [
 ]
 
 export default {
-  title: `${STORYBOOK_SECTIONS.buildingBlocks}|Table`,
+  title: `${STORYBOOK_SECTIONS.buildingBlocks}/Table`,
   component: Table,
 }
 

@@ -8,11 +8,10 @@ module.exports = {
     '../stories/**/*.stories.tsx',
   ],
   addons: [
-    '@storybook/preset-typescript',
     '@storybook/addon-actions',
     'storybook-addon-jsx',
     'storybook-readme/register',
     '@storybook/addon-links',
-    '@storybook/addon-a11y/register',
+    '@storybook/addon-a11y',
   ],
 }

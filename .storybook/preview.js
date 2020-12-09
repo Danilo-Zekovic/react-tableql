@@ -1,6 +1,6 @@
 import { addDecorator, addParameters } from '@storybook/react'
 import { jsxDecorator } from 'storybook-addon-jsx'
-import { withA11y } from '@storybook/addon-a11y'
+// import { withA11y } from '@storybook/addon-a11y'
 import { addReadme } from 'storybook-readme'
 // all the console.logs, errors, warnings, and so on print to the Actions
 import '@storybook/addon-console'
@@ -17,7 +17,7 @@ addDecorator(jsxDecorator)
 addDecorator((storyFn, context) => withConsole()(storyFn)(context))
 
 // compliance of stories with web accessibility standards
-addDecorator(withA11y)
+// addDecorator(withA11y)
 
 // adds possibility to add docs in markdown format for each story
 addDecorator(addReadme)

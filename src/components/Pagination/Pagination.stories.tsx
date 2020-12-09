@@ -4,7 +4,7 @@ import Pagination from './Pagination'
 import { STORYBOOK_SECTIONS } from '../../../stories/constants'
 
 export default {
-  title: `${STORYBOOK_SECTIONS.buildingBlocks}|Pagination`,
+  title: `${STORYBOOK_SECTIONS.buildingBlocks}/Pagination`,
   component: Pagination,
 }
 

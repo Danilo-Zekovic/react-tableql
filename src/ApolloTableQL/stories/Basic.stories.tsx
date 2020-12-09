@@ -5,7 +5,7 @@ import { GET_ALL_FILMS } from '../../../__mocks__/queries'
 import { STORYBOOK_SECTIONS } from '../../../stories/constants'
 
 export default {
-  title: `${STORYBOOK_SECTIONS.apolloTableQl}|Basic`,
+  title: `${STORYBOOK_SECTIONS.apolloTableQl}/Basic`,
   component: ApolloTableQL,
 }
 

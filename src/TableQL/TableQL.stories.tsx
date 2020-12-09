@@ -5,7 +5,7 @@ import { FILMS } from '../../__mocks__/data'
 import { STORYBOOK_SECTIONS } from '../../stories/constants'
 
 export default {
-  title: `${STORYBOOK_SECTIONS.tableQl}|Basic`,
+  title: `${STORYBOOK_SECTIONS.tableQl}/Basic`,
   component: TableQL,
 }
 

@@ -8,7 +8,7 @@ import './customStyles.css'
 import { PaginationData } from '../../components/Pagination/Pagination'
 
 export default {
-  title: `${STORYBOOK_SECTIONS.apolloTableQl}|Pagination`,
+  title: `${STORYBOOK_SECTIONS.apolloTableQl}/Pagination`,
   component: ApolloTableQL,
 }
 

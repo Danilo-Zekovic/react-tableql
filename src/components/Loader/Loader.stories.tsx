@@ -4,7 +4,7 @@ import Loader from './Loader'
 import { STORYBOOK_SECTIONS } from '../../../stories/constants'
 
 export default {
-  title: `${STORYBOOK_SECTIONS.buildingBlocks}|Loader`,
+  title: `${STORYBOOK_SECTIONS.buildingBlocks}/Loader`,
   component: Loader,
 }
 

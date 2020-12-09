@@ -11,7 +11,7 @@ const Button = ({ data }) => (
 )
 
 export default {
-  title: `${STORYBOOK_SECTIONS.apolloTableQl}|Custom Columns`,
+  title: `${STORYBOOK_SECTIONS.apolloTableQl}/Custom Columns`,
   component: ApolloTableQL,
 }
 
