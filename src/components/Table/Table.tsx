@@ -1,6 +1,7 @@
 import React, { FC, ReactNode } from 'react'
 
 import SortArrows from '../SortArrows/SortArrows'
+import TableCell from '../TableCell'
 
 import '../../index.css'
 
@@ -60,35 +61,35 @@ const Table: FC<Props> = ({
   }
 
   // TODO solve return type
-  const getNodeValue: string | ReactNode | any = (
-    column: string | ColumnConfig,
-    data: any,
-  ) => {
-    // if (typeof column === 'string') return
-    // if customColumn then ignore search for data
-    if (typeof column !== 'string' && column.customColumn) {
-      // component is required when customColumn true
-      if (!column.component) {
-        throw new Error(
-          'When customColumn true, component property must be provided!',
-        )
-      }
-      return column.component(data)
-    }
-
-    let value = data // will hold the final return value
-    const keys =
-      typeof column === 'string' ? column.split('.') : column.id.split('.')
-
-    keys.forEach((key: string | number) => {
-      // TODO check here might be just string
-      value = value[key]
-    })
-
-    return typeof column !== 'string' && column.component
-      ? column.component(value)
-      : String(value)
-  }
+  // const getNodeValue: string | ReactNode | any = (
+  //   column: string | ColumnConfig,
+  //   data: any,
+  // ) => {
+  //   // if (typeof column === 'string') return
+  //   // if customColumn then ignore search for data
+  //   if (typeof column !== 'string' && column.customColumn) {
+  //     // component is required when customColumn true
+  //     if (!column.component) {
+  //       throw new Error(
+  //         'When customColumn true, component property must be provided!',
+  //       )
+  //     }
+  //     return column.component(data)
+  //   }
+  //
+  //   let value = data // will hold the final return value
+  //   const keys =
+  //     typeof column === 'string' ? column.split('.') : column.id.split('.')
+  //
+  //   keys.forEach((key: string | number) => {
+  //     // TODO check here might be just string
+  //     value = value[key]
+  //   })
+  //
+  //   return typeof column !== 'string' && column.component
+  //     ? column.component(value)
+  //     : String(value)
+  // }
 
   const renderTableRows = (
     displayData: { [key: string]: unknown }[],
@@ -101,17 +102,23 @@ const Table: FC<Props> = ({
         onClick={onRowClick ? () => onRowClick(data) : undefined}
       >
         {dataKeys.map((column: string | ColumnConfig, columnIndex: number) => (
-          <td
-            className={`
-            ${styles.tbodyTd || 'TableQL-td'}
-            ${getNodeStyle(column, data)}
-            `}
-            key={`TableQLNode${
-              (typeof column === 'string' ? column : column.id) + columnIndex
-            }`}
-          >
-            {getNodeValue(column, data)}
-          </td>
+          <TableCell
+            column={column}
+            styles={styles}
+            columnIndex={columnIndex}
+            data={data}
+          />
+          // <td
+          //   className={`
+          //     ${styles.tbodyTd || 'TableQL-td'}
+          //     ${getNodeStyle(column, data)}
+          //   `}
+          //   key={`TableQLNode${
+          //     (typeof column === 'string' ? column : column.id) + columnIndex
+          //   }`}
+          // >
+          //   {getNodeValue(column, data)}
+          // </td>
         ))}
       </tr>
     ))
@@ -158,19 +165,19 @@ const Table: FC<Props> = ({
   }
 
   // when nodeStyle is a function that is selective styling as function decides should and which css class will be returned.
-  const getNodeStyle = (column: string | ColumnConfig, data: any) => {
-    if (!column || typeof column === 'string') {
-      return ''
-    }
-
-    const { nodeStyle } = column
-
-    if (!nodeStyle) return ''
-
-    if (typeof nodeStyle === 'function') return nodeStyle(data)
-
-    return nodeStyle
-  }
+  // const getNodeStyle = (column: string | ColumnConfig, data: any) => {
+  //   if (!column || typeof column === 'string') {
+  //     return ''
+  //   }
+  //
+  //   const { nodeStyle } = column
+  //
+  //   if (!nodeStyle) return ''
+  //
+  //   if (typeof nodeStyle === 'function') return nodeStyle(data)
+  //
+  //   return nodeStyle
+  // }
 
   return (
     <table className={styles.table || 'TableQL'}>
