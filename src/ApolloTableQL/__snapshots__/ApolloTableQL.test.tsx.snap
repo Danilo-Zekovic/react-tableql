@@ -36,25 +36,25 @@ exports[`<ApolloTableQL> pass gql\`query\` 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           A New Hope
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           4
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1977-05-25
         </td>
@@ -64,25 +64,25 @@ exports[`<ApolloTableQL> pass gql\`query\` 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           Attack of the Clones
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2002-05-16
         </td>
@@ -92,25 +92,25 @@ exports[`<ApolloTableQL> pass gql\`query\` 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           The Phantom Menace
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1999-05-19
         </td>
@@ -120,25 +120,25 @@ exports[`<ApolloTableQL> pass gql\`query\` 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           Revenge of the Sith
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           3
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2005-05-19
         </td>
@@ -148,25 +148,25 @@ exports[`<ApolloTableQL> pass gql\`query\` 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           Return of the Jedi
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           6
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1983-05-25
         </td>
@@ -176,25 +176,25 @@ exports[`<ApolloTableQL> pass gql\`query\` 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           The Empire Strikes Back
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           5
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1980-05-17
         </td>
@@ -204,25 +204,25 @@ exports[`<ApolloTableQL> pass gql\`query\` 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           The Force Awakens
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           7
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2015-12-11
         </td>
@@ -268,25 +268,25 @@ exports[`<ApolloTableQL> pass gql\`query\` 2`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           A New Hope
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           4
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1977-05-25
         </td>
@@ -296,25 +296,25 @@ exports[`<ApolloTableQL> pass gql\`query\` 2`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           Attack of the Clones
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2002-05-16
         </td>
@@ -324,25 +324,25 @@ exports[`<ApolloTableQL> pass gql\`query\` 2`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           The Phantom Menace
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1999-05-19
         </td>
@@ -352,25 +352,25 @@ exports[`<ApolloTableQL> pass gql\`query\` 2`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           Revenge of the Sith
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           3
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2005-05-19
         </td>
@@ -380,25 +380,25 @@ exports[`<ApolloTableQL> pass gql\`query\` 2`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           Return of the Jedi
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           6
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1983-05-25
         </td>
@@ -408,25 +408,25 @@ exports[`<ApolloTableQL> pass gql\`query\` 2`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           The Empire Strikes Back
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           5
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1980-05-17
         </td>
@@ -436,25 +436,25 @@ exports[`<ApolloTableQL> pass gql\`query\` 2`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           The Force Awakens
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           7
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2015-12-11
         </td>
@@ -500,25 +500,25 @@ exports[`<ApolloTableQL> snapshot custom columns 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           4
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1977-05-25
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           A New Hope
         </td>
@@ -528,25 +528,25 @@ exports[`<ApolloTableQL> snapshot custom columns 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2002-05-16
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           Attack of the Clones
         </td>
@@ -556,25 +556,25 @@ exports[`<ApolloTableQL> snapshot custom columns 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1999-05-19
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           The Phantom Menace
         </td>
@@ -584,25 +584,25 @@ exports[`<ApolloTableQL> snapshot custom columns 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           3
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2005-05-19
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           Revenge of the Sith
         </td>
@@ -612,25 +612,25 @@ exports[`<ApolloTableQL> snapshot custom columns 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           6
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1983-05-25
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           Return of the Jedi
         </td>
@@ -640,25 +640,25 @@ exports[`<ApolloTableQL> snapshot custom columns 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           5
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1980-05-17
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           The Empire Strikes Back
         </td>
@@ -668,25 +668,25 @@ exports[`<ApolloTableQL> snapshot custom columns 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           7
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2015-12-11
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           The Force Awakens
         </td>
@@ -732,25 +732,25 @@ exports[`<ApolloTableQL> snapshot default 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           A New Hope
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           4
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1977-05-25
         </td>
@@ -760,25 +760,25 @@ exports[`<ApolloTableQL> snapshot default 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           Attack of the Clones
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2002-05-16
         </td>
@@ -788,25 +788,25 @@ exports[`<ApolloTableQL> snapshot default 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           The Phantom Menace
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1999-05-19
         </td>
@@ -816,25 +816,25 @@ exports[`<ApolloTableQL> snapshot default 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           Revenge of the Sith
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           3
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2005-05-19
         </td>
@@ -844,25 +844,25 @@ exports[`<ApolloTableQL> snapshot default 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           Return of the Jedi
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           6
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1983-05-25
         </td>
@@ -872,25 +872,25 @@ exports[`<ApolloTableQL> snapshot default 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           The Empire Strikes Back
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           5
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1980-05-17
         </td>
@@ -900,25 +900,25 @@ exports[`<ApolloTableQL> snapshot default 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           The Force Awakens
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           7
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2015-12-11
         </td>
@@ -964,25 +964,25 @@ exports[`<ApolloTableQL> snapshot default pagination 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           A New Hope
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           4
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1977-05-25
         </td>
@@ -992,25 +992,25 @@ exports[`<ApolloTableQL> snapshot default pagination 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           Attack of the Clones
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2002-05-16
         </td>
@@ -1020,25 +1020,25 @@ exports[`<ApolloTableQL> snapshot default pagination 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           The Phantom Menace
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1999-05-19
         </td>
@@ -1048,25 +1048,25 @@ exports[`<ApolloTableQL> snapshot default pagination 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           Revenge of the Sith
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           3
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2005-05-19
         </td>
@@ -1076,25 +1076,25 @@ exports[`<ApolloTableQL> snapshot default pagination 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           Return of the Jedi
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           6
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1983-05-25
         </td>
@@ -1104,25 +1104,25 @@ exports[`<ApolloTableQL> snapshot default pagination 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           The Empire Strikes Back
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           5
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           1980-05-17
         </td>
@@ -1132,25 +1132,25 @@ exports[`<ApolloTableQL> snapshot default pagination 1`] = `
       >
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           The Force Awakens
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           7
         </td>
         <td
           class="
-            TableQL-td
-            
-            "
+        TableQL-td
+        
+      "
         >
           2015-12-11
         </td>

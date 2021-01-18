@@ -2,6 +2,10 @@
 
 ## next
 
+- Refactor, break table into smaller more independent components. Export them all so user can use any of them independently.
+- TableQLProvider - React provider that will hold the data about table configuration in one place
+- themes and configuring the table in one place for the entire app
+
 ## v0.2.0
 
 update:
