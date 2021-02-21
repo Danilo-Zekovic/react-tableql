@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/Danilo-Zekovic/react-tableql#readme",
   "files": [
-    "build/**/*"
+    "build/index.js",
+    "build/src/**/*"
   ],
   "peerDependencies": {
     "@apollo/client": "^3.0.0",
