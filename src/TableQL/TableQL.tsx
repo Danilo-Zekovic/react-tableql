@@ -187,23 +187,6 @@ const TableQL: FC<Props> = ({
 
   log('Data: ', data)
 
-  // let displayData = traverseData(data)
-
-  // TODO rename this thing to something more meaningful: arrayOfData, traversedDataArray...
-  // const traversedData = traverseObjectForArray(data)
-  // TODO this is not going to be good, potential infinte loop here
-  // if (displayData === undefined) {
-  //   setDisplayData(traversedData)
-  // }
-
-  // if (fullData === undefined) {
-  //   setFullData(traversedData)
-  // }
-
-  // TODO allData is used just for the pagination, consider removing it and using fullData instead
-  // const allData = traversedData
-  // const dataKeys = columns || getHeaderLabels(traversedData[0]) // TODO probably should rename this variable as it does not hold only keys
-
   let pageLimit = 10
   if (pagination && fullData && displayData) {
     pageLimit =

@@ -10,7 +10,7 @@
 
 bugfix:
 
-- fix on data change table does not refresh displayed data
+- fix on data change table does not refresh displayed data ([#62](https://github.com/Danilo-Zekovic/react-tableql/issues/62))
 - fix unique key for TableCell
 
 ## v0.2.0
