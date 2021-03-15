@@ -103,6 +103,7 @@ const Table: FC<Props> = ({
       >
         {dataKeys.map((column: string | ColumnConfig, columnIndex: number) => (
           <TableCell
+            key={`TableCell${JSON.stringify(column)}`}
             column={column}
             styles={styles}
             columnIndex={columnIndex}

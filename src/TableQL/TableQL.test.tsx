@@ -200,7 +200,7 @@ describe('<TableQL>', () => {
 
     expect(container.firstChild).toMatchSnapshot()
     expect(console.log).toBeCalled()
-    expect(console.log).toHaveBeenCalledTimes(17)
+    expect(console.log).toHaveBeenCalledTimes(14)
   })
 
   it('sort', () => {

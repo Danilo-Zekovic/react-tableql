@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react'
+import React, { useState, FC, useEffect, useCallback, useMemo } from 'react'
 
 import '../index.css'
 
@@ -53,8 +53,29 @@ const TableQL: FC<Props> = ({
       : 1,
   )
 
+  // Data that is visible to user
   const [displayData, setDisplayData] = useState<any[]>()
-  const [fullData, setFullData] = useState<any[]>()
+  // All data that is important when pagination true, because in that case not all of the data is visible
+  const [fullData, setFullData] = useState<any[]>([])
+
+  const [dataKeys, setDataKeys] = useState<(string | ColumnConfig)[]>([])
+
+  const isEmpty = useMemo(
+    () =>
+      (!displayData || displayData.length === 0) &&
+      !loading &&
+      displayData !== undefined,
+    [displayData, loading],
+  )
+
+  useEffect(() => {
+    log('Data or columns changed: ', { data, columns })
+    const traversedData = data ? traverseObjectForArray(data) : []
+
+    setDisplayData(traversedData)
+    setFullData(traversedData)
+    setDataKeys(columns || getHeaderLabels(traversedData[0]))
+  }, [data, columns])
 
   const getHeaderLabels = (data: any) => {
     log('Get header labels.')
@@ -144,7 +165,7 @@ const TableQL: FC<Props> = ({
     onRowClick,
   })
 
-  if (loading) {
+  if (loading || displayData === undefined || data === undefined) {
     log('Loading: ', loading)
     return <Loader />
   }
@@ -154,7 +175,7 @@ const TableQL: FC<Props> = ({
       <p>{errorMessage || `Error while loading TableQL: ${error.message}`}</p>
     )
   }
-
+  // ======================
   // TODO consider having something different when there is no data compared to empty array
   if (Array.isArray(data) && data.length === 0) {
     log('No data found!', data.length)
@@ -166,22 +187,8 @@ const TableQL: FC<Props> = ({
 
   log('Data: ', data)
 
-  // let displayData = traverseData(data)
-  const traversedData = traverseObjectForArray(data)
-  // TODO this is not going to be good, potential infinte loop here
-  if (displayData === undefined) {
-    setDisplayData(traversedData)
-  }
-
-  if (fullData === undefined) {
-    setFullData(traversedData)
-  }
-
-  let allData = traversedData
-  let dataKeys = columns || getHeaderLabels(traversedData[0]) // TODO probably should rename this variable as it does not hold only keys
-
   let pageLimit = 10
-  if (pagination) {
+  if (pagination && fullData && displayData) {
     pageLimit =
       typeof pagination !== 'boolean' && pagination.pageLimit
         ? pagination.pageLimit
@@ -199,10 +206,12 @@ const TableQL: FC<Props> = ({
       }
       return <p>{`No data found!`}</p>
     }
-    let dataToDisplay =
-      displayData && fullData
-        ? fullData.slice(offset).slice(0, pageLimit)
-        : traversedData.slice(offset).slice(0, pageLimit)
+    // let dataToDisplay =
+    //   displayData && fullData
+    //     ? fullData.slice(offset).slice(0, pageLimit)
+    //     : traversedData.slice(offset).slice(0, pageLimit)
+
+    const dataToDisplay = fullData.slice(offset).slice(0, pageLimit)
 
     // it is ugly, but it will do it for now
     if (JSON.stringify(displayData) !== JSON.stringify(dataToDisplay)) {
@@ -214,13 +223,15 @@ const TableQL: FC<Props> = ({
   log('Data keys: ', dataKeys)
 
   // TODO probably bad idea not to display empty table
-  if (!displayData || displayData.length == 0) {
-    log('No data found!', displayData)
+  // if ((!displayData || displayData.length === 0) && !loading && displayData !== undefined) {
+  if (isEmpty) {
+    log('No data found! I am dumb shit', displayData)
     if (onEmpty) {
       return onEmpty({ reason: 'No data found!' })
     }
     return <p>{`No data found!`}</p>
   }
+
   return (
     <ErrorBoundary>
       <Table
@@ -235,7 +246,7 @@ const TableQL: FC<Props> = ({
 
       {pagination && (
         <Pagination
-          totalRecords={allData.length}
+          totalRecords={fullData.length}
           pageLimit={pageLimit}
           pageNeighbors={
             typeof pagination !== 'boolean'
