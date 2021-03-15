@@ -1,7 +1,6 @@
 import React from 'react'
 import { render, cleanup, wait } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
-import { DocumentNode } from 'graphql'
 import { gql } from '@apollo/client'
 // import '@babel/polyfill' // TODO: not ideal find the way to move it globally, webpack
 
@@ -36,6 +35,18 @@ describe('<ApolloTableQL>', () => {
     )
 
     expect(container).toMatchSnapshot()
+  })
+
+  it('snapshot dummy', async () => {
+    const { container } = render(
+      <MockedProvider mocks={testMocks} addTypename={false}>
+        <Default />
+      </MockedProvider>,
+    )
+
+    await wait(() => {
+      expect(container).toMatchSnapshot()
+    })
   })
 
   it('snapshot default', async () => {

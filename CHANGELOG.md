@@ -6,6 +6,13 @@
 - TableQLProvider - React provider that will hold the data about table configuration in one place
 - themes and configuring the table in one place for the entire app
 
+## v0.2.1
+
+bugfix:
+
+- fix on data change table does not refresh displayed data
+- fix unique key for TableCell
+
 ## v0.2.0
 
 update:
