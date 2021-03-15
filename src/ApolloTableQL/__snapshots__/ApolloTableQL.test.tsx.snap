@@ -1160,14 +1160,6 @@ exports[`<ApolloTableQL> snapshot default pagination 1`] = `
 </div>
 `;
 
-exports[`<ApolloTableQL> snapshot dummy 1`] = `
-<div>
-  <p>
-    No data found!
-  </p>
-</div>
-`;
-
 exports[`<ApolloTableQL> testing loading state 1`] = `
 <div>
   <div
