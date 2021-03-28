@@ -2,7 +2,7 @@ import React from 'react'
 import { render, cleanup } from '@testing-library/react'
 // import '@babel/polyfill' // TODO: not ideal find the way to move it globally, webpack
 
-import ErrorBoundary from './ErrorBaundary'
+import ErrorBoundary from './ErrorBoundary'
 
 // NOTE: credit for these tests goes to @kentcdodds,
 // as I used his code and explanation https://github.com/kentcdodds/react-testing-library-course/blob/master/src/__tests__/error-boundary.js

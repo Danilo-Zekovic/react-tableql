@@ -110,6 +110,9 @@
       "src/**/*.{ts,tsx}",
       "!**/*.stories.*"
     ],
+    "coveragePathIgnorePatterns": [
+      "src/index.ts"
+    ],
     "coverageThreshold": {
       "global": {
         "statements": 90,

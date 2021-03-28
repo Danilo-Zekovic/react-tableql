@@ -4,7 +4,7 @@ import '../index.css'
 
 import Pagination, { PaginationData } from '../components/Pagination/Pagination'
 import Table, { Styles, ColumnConfig } from '../components/Table/Table'
-import ErrorBoundary from '../components/ErrorBaundary/ErrorBaundary'
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'
 import Loader from '../components/Loader/Loader'
 import { traverseObjectForArray } from '../utils'
 

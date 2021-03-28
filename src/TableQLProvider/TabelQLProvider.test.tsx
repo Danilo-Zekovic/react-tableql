@@ -1,6 +1,5 @@
 import React, { FC, useEffect } from 'react'
 import { render, screen, fireEvent, getByText } from '@testing-library/react'
-// import userEvent from "@testing-library/user-event";
 
 import {
   TableQLProvider,
@@ -8,7 +7,8 @@ import {
   useTableQLState,
   useTableQLDispatch,
 } from './TableQLProvider'
-import ErrorBoundary from '../components/ErrorBaundary/ErrorBaundary'
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'
+import { defaultDarkTheme, defaultTheme } from '../themes'
 
 const changeThemeButtonText = 'Change Theme'
 const updateThemeButtonText = 'Update Theme'
@@ -31,13 +31,13 @@ const ExamplePage: FC = () => {
     context({
       // @ts-expect-error
       type: 'incorrectAction',
-      theme: { header: { background: 'blue' } },
+      theme: defaultTheme,
     })
   }
 
   return (
     <div>
-      <span>{theme?.header?.background}</span>
+      <span>{theme && theme.header && theme?.header?.background}</span>
       <button onClick={handleClick}>{changeThemeButtonText}</button>
       <button onClick={handleThemeUpdate}>{updateThemeButtonText}</button>
       <button onClick={handleBreak}>{breakButtonText}</button>
@@ -95,7 +95,7 @@ describe('<TableQLProvider>', () => {
           context({
             // @ts-expect-error
             type: 'incorrectAction',
-            theme: { header: { background: 'blue' } },
+            theme: defaultDarkTheme,
           })
         }, [])
 
@@ -135,7 +135,7 @@ describe('<TableQLProvider>', () => {
       expect(getByText(container, 'Something went wrong!')).toBeTruthy()
     })
 
-    it('tabelQLReducer error', () => {
+    it('tableQLReducer error', () => {
       fireEvent.click(screen.getByText(breakButtonText))
       expect(screen.getByText('Something went wrong!')).toBeTruthy()
     })
