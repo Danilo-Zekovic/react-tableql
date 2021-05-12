@@ -97,8 +97,9 @@ describe('<Table>', () => {
 
     expect(container.firstChild).toMatchSnapshot()
 
-    const firstLabel = container.querySelector('thead')?.querySelector('tr')
-      ?.firstChild
+    const firstLabel = container
+      .querySelector('thead')
+      ?.querySelector('tr')?.firstChild
 
     expect(firstLabel).toBeTruthy()
     expect(firstLabel).toBe(queryByText(titleLabel))
