@@ -5,8 +5,6 @@ node_js:
   - '13'
   - '12'
   # - '11' # prettier uses global this and for some reason this error: ReferenceError: globalThis is not defined
-  # - '10'
-  # - '9'
 
 install:
   - npm install
