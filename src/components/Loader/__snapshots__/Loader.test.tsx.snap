@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<Loader> default 1`] = `
-<div
-  class="rtql-loader"
-/>
-`;

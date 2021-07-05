@@ -1,9 +1,7 @@
 {
-  "name": "react-tableql",
+  "name": "react-tableql-root",
   "version": "0.2.1",
   "description": "React table component that is integrated with Apollo Client and GraphQL",
-  "main": "build/index.js",
-  "typings": "build/src/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -22,100 +20,24 @@
     "url": "https://github.com/Danilo-Zekovic/react-tableql/issues"
   },
   "homepage": "https://github.com/Danilo-Zekovic/react-tableql#readme",
-  "files": [
-    "build/**/*"
+  "private": true,
+  "workspaces": [
+    "examples/**/*",
+    "lib/**/*"
   ],
-  "peerDependencies": {
-    "@apollo/client": "^3.0.0",
-    "react": "^17.0.0",
-    "graphql": "^15.0.0"
-  },
-  "dependencies": {},
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "start": "webpack --watch",
-    "build": "webpack",
-    "build:all": "webpack && build-storybook -o docs",
     "format": "prettier --write src stories",
-    "format:check": "prettier --check src stories",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o docs"
+    "format:check": "prettier --check examples lib",
+    "bootstrap": "lerna bootstrap",
+    "bootstrap:clean": "rm -rf yarn.lock && find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' + && lerna clean && lerna bootstrap"
   },
   "author": {
-    "name": "Danilo Zekovic",
-    "email": "danilozeka93@gmail.com"
+    "name": "Danilo Zekovic"
   },
   "devDependencies": {
-    "@apollo/client": "^3.3.20",
-    "@babel/core": "^7.14.6",
-    "@babel/plugin-proposal-class-properties": "^7.14.5",
-    "@babel/plugin-proposal-object-rest-spread": "^7.14.7",
-    "@babel/plugin-transform-react-jsx": "^7.14.5",
-    "@babel/polyfill": "^7.12.1",
-    "@babel/preset-env": "^7.14.7",
-    "@babel/preset-react": "^7.14.5",
-    "@storybook/addon-a11y": "^6.3.2",
-    "@storybook/addon-actions": "^6.3.2",
-    "@storybook/addon-console": "^1.2.2",
-    "@storybook/addon-links": "^6.3.2",
-    "@storybook/addons": "^6.3.2",
-    "@storybook/preset-typescript": "^3.0.0",
-    "@storybook/react": "^6.3.2",
-    "@testing-library/react": "^9.5.0",
-    "@types/jest": "^26.0.23",
-    "@types/react": "^17.0.12",
-    "apollo-cache-inmemory": "^1.6.6",
-    "apollo-storybook-react": "^0.2.4",
-    "babel-jest": "^26.6.3",
-    "babel-loader": "^8.2.1",
-    "core-js": "^3.15.2",
-    "css-loader": "^5.2.6",
-    "fork-ts-checker-webpack-plugin": "^6.2.12",
-    "graphql": "^15.5.1",
-    "graphql-tools": "^4.0.8",
     "husky": "^4.3.7",
-    "jest": "^26.6.3",
+    "lerna": "^4.0.0",
     "prettier": "^2.3.2",
-    "pretty-quick": "^3.1.1",
-    "react": "^17.0.1",
-    "storybook-addon-jsx": "^7.3.12",
-    "storybook-readme": "^5.0.9",
-    "style-loader": "^2.0.0",
-    "ts-jest": "^26.5.6",
-    "ts-loader": "^8.3.0",
-    "typescript": "^4.3.5",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^4.7.2",
-    "webpack-node-externals": "^3.0.0"
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "jsdom",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx"
-    ],
-    "moduleNameMapper": {
-      "\\.(css|less|scss)$": "<rootDir>/__mocks__/styleMock.js"
-    },
-    "testMatch": [
-      "**/?(*.)+(test).ts?(x)"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}",
-      "!**/*.stories.*"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "statements": 90,
-        "branches": 90,
-        "functions": 90,
-        "lines": 90
-      }
-    }
+    "pretty-quick": "^3.1.1"
   }
 }

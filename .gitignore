@@ -1,4 +1,4 @@
-# Logs
+# Logs, debug
 logs
 *.log
 npm-debug.log*
@@ -16,6 +16,7 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
+/coverage
 
 # nyc test coverage
 .nyc_output
@@ -35,6 +36,8 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+/.pnp
+.pnp.js
 
 # TypeScript v1 declaration files
 typings/
@@ -54,14 +57,27 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
+# local environment variables file; misc
+.DS_Store
+*.pem
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # next.js build output
 .next
 
 # build output for publish
 build
+/build
 
 # vs code
 .vscode
+
+# next.js
+/.next/
+/out/
+
+# vercel
+.vercel
