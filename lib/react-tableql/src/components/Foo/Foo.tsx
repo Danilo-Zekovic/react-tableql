@@ -18,7 +18,8 @@ const Foo: FC<FooProps> = ({ foo }) => {
   }, [foo])
 
   return (
-    <div onClick={halo} className={`foo Foo`}>
+    <div className={`foo Foo`}>
+      <button onClick={halo}>Click me</button>
       Hello World! {foo} is the best, but you knew that already.
     </div>
   )

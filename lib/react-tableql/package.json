@@ -87,7 +87,8 @@
       "**/?(*.)+(test).ts?(x)"
     ],
     "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}"
+      "src/**/*.{ts,tsx}",
+      "!src/**/index.ts"
     ],
     "coverageThreshold": {
       "global": {

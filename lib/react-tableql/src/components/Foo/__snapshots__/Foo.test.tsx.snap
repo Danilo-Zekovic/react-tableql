@@ -1,9 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<SortArrows> default snapshot 1`] = `
+exports[`<Foo> default snapshot 1`] = `
 <div
   class="foo Foo"
 >
+  <button>
+    Click me
+  </button>
   Hello World! 
   asd
    is the best, but you knew that already.

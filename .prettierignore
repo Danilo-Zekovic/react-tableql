@@ -4,3 +4,10 @@
 # build
 build
 dist
+
+# test snapshots
+__snapshots__
+*.snap
+
+# test coverage
+coverage

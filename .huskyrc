@@ -1,5 +1,5 @@
 {
   "hooks": {
-    "pre-commit": "pretty-quick --staged && yarn run format:check && yarn run eslint lib"
+    "pre-commit": "pretty-quick --staged && yarn run format:check && yarn run eslint lib && lerna run test:coverage"
   }
 }
