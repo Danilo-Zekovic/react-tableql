@@ -34,4 +34,12 @@ module.exports = {
     },
   },
   ignorePatterns: ['**/build/**'],
+  overrides: [
+    {
+      files: ['*.config.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 0,
+      },
+    },
+  ],
 }

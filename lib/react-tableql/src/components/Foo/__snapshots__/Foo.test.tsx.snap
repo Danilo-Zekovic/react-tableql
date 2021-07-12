@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SortArrows> default snapshot 1`] = `
+<div
+  class="foo Foo"
+>
+  Hello World! 
+  asd
+   is the best, but you knew that already.
+</div>
+`;

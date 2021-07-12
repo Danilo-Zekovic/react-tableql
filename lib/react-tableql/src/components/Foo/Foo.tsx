@@ -1,12 +1,16 @@
 import React, { FC, useEffect } from 'react'
 
+import logStuff from '../../utils/logStuff'
+
+import './Foo.css'
+
 interface FooProps {
   foo: string
 }
 
 const Foo: FC<FooProps> = ({ foo }) => {
   const halo = (): void => {
-    console.log('foo bar')
+    logStuff('foo bar')
   }
 
   useEffect(() => {
@@ -14,7 +18,7 @@ const Foo: FC<FooProps> = ({ foo }) => {
   }, [foo])
 
   return (
-    <div onClick={halo}>
+    <div onClick={halo} className={`foo Foo`}>
       Hello World! {foo} is the best, but you knew that already.
     </div>
   )
