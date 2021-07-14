@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react'
 
-import logStuff from '../../utils/logStuff'
+import { logStuff } from '../../utils'
 
 import './Foo.css'
 

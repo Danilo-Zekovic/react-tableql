@@ -27,6 +27,8 @@ module.exports = {
     'react/prop-types': 0,
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
+    // '@typescript-eslint/ban-ts-comment':
+    'ts-expect-error': 0, //'allow-with-comment',
   },
   settings: {
     react: {

@@ -1,8 +1,15 @@
-import Foo from 'react-tableql'
+import { useEffect } from 'react'
+import Foo, { useTableQL } from 'react-tableql'
 import logo from './logo.svg'
 import './App.css'
 
 function App() {
+  const { theme } = useTableQL()
+
+  useEffect(() => {
+    console.log('THEME', theme)
+  }, [theme])
+
   return (
     <div className="App">
       <header className="App-header">

@@ -1,12 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { TableQLProvider } from 'react-tableql'
+
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <TableQLProvider theme={{ primary: 'tomato' }}>
+      <App />
+    </TableQLProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 )

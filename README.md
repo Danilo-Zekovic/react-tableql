@@ -2,7 +2,7 @@
   <a href="https://danilo-zekovic.github.io/react-tableql" rel="noopener" target="_blank"><img width="300" src="docs/media/react-tableql-logo.png" alt="react-tableql logo"></a>
 </p>
 <h1 align="center">react-tableql</h1>
-<h6 align="center">React component for generating tables from data sets or GraphQL calls</h6>
+<h6 align="center">Easy to use React components for creating data grids with zero to no configuration. Simple way to display your data.</h6>
 <div align="center">
   <img alt="Travis CI Build" src="https://travis-ci.com/Danilo-Zekovic/react-tableql.svg?branch=master">
   <img alt="CodeCov" src="https://codecov.io/gh/Danilo-Zekovic/react-tableql/branch/master/graph/badge.svg">
