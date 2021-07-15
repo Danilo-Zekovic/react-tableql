@@ -1,17 +1,17 @@
-import { TableQLTheme } from './types'
+import { TableQLProviderTheme } from '../TableQLProvider/types'
 
-export const defaultTheme: TableQLTheme = {
+export const defaultTheme: TableQLProviderTheme = {
   header: {
     color: '#000',
-    background: 'transparent',
+    background: '#fff',
   },
   rows: {
     color: '#000',
-    background: 'transparent',
+    background: '#fff',
     hover: '#f1f3f5',
     stripes: {
       color: '#000',
-      background: 'string',
+      background: '#fff',
       hover: '#f1f3f5',
     },
   },

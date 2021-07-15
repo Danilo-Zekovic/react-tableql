@@ -1,5 +1,6 @@
 import React, {
   createContext,
+  FC,
   ReactElement,
   useContext,
   useReducer,
@@ -13,10 +14,10 @@ import { Dispatch, State, TableQLProviderProps, UseTableQL } from './types'
 const TableQLStateContext = createContext<State>({ theme: defaultTheme })
 const TableQLDispatchContext = createContext<Dispatch | undefined>(undefined)
 
-const TableQLProvider = ({
+const TableQLProvider: FC<TableQLProviderProps> = ({
   children,
   theme = defaultTheme,
-}: TableQLProviderProps): ReactElement => {
+}): ReactElement => {
   const [state, dispatch] = useReducer(tableQLReducer, {
     theme,
   })
