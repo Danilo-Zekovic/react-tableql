@@ -20,6 +20,8 @@ If you have any suggestions please let me know or join the project.
 
 > Latest code can be found on [GitHub](https://github.com/Danilo-Zekovic/react-tableql)
 
+NOTE: rewrite is in progress, check out the rewrite branch https://github.com/Danilo-Zekovic/react-tableql/tree/rewrite
+
 ## Installing and Using react-tableql
 
 First install it:
