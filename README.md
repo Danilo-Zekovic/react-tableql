@@ -68,3 +68,11 @@ For detailed examples and API visit the documentation.
 `bootstrap` - lerna bootstrap, install all dependencies and make necessary connections.
 
 `bootstrap:clean` - remove all yarn.lock files and node_modules before running lerna bootstrap
+
+`build` - build all packages
+
+`test` - run all test scripts
+
+`graph` - open interactive visualization. [Lerna docs on visualizing](https://lerna.js.org/docs/getting-started#visualizing-workspace)
+
+[skip cashing for now](https://lerna.js.org/docs/getting-started#caching)

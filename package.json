@@ -29,7 +29,10 @@
     "format": "prettier --write src stories",
     "format:check": "prettier --check examples lib",
     "bootstrap": "lerna bootstrap",
-    "bootstrap:clean": "rm -rf yarn.lock && find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' + && lerna clean && lerna bootstrap"
+    "bootstrap:clean": "rm -rf yarn.lock && find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' + && lerna clean && lerna bootstrap",
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "graph": "yarn nx graph"
   },
   "author": {
     "name": "Danilo Zekovic"
@@ -42,7 +45,7 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^4.3.7",
-    "lerna": "^4.0.0",
+    "lerna": "^6.0.3",
     "prettier": "^2.3.2",
     "pretty-quick": "^3.1.1",
     "typescript": "^4.3.5"
