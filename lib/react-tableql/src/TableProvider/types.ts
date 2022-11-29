@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { TableQLTheme } from '../shared/types'
 
 interface TableQLProviderTheme {
@@ -34,4 +35,5 @@ export type Dispatch = (action: Action) => void
 
 export interface TableProviderProps {
   theme?: TableQLTheme
+  children?: ReactNode
 }
