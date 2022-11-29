@@ -1,11 +1,13 @@
 import { useEffect } from 'react'
-import Foo, { useTableQL } from 'react-tableql'
+import TableQL, { useTableQL, Foo } from 'react-tableql'
 import logo from './logo.svg'
 import './App.css'
 
 function App() {
+  // TODO rm
   const { theme } = useTableQL()
 
+  // TODO rm
   useEffect(() => {
     console.log('THEME', theme)
   }, [theme])
@@ -27,6 +29,10 @@ function App() {
         </a>
       </header>
       <Foo foo="bar" />
+
+      <div style={{ margin: '10rem' }}>
+        <TableQL />
+      </div>
     </div>
   )
 }

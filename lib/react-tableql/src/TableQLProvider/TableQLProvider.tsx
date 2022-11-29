@@ -12,7 +12,7 @@ import { tableQLReducer } from './reducer'
 import { Dispatch, State, TableQLProviderProps, UseTableQL } from './types'
 
 const TableQLStateContext = createContext<State>({ theme: defaultTheme })
-const TableQLDispatchContext = createContext<Dispatch | undefined>(undefined)
+const TableQLDispatchContext = createContext<Dispatch>({} as Dispatch)
 
 const TableQLProvider: FC<TableQLProviderProps> = ({
   children,

@@ -6,6 +6,11 @@
 - TableQLProvider - React provider that will hold the data about table configuration in one place
 - themes and configuring the table in one place for the entire app
 
+- class name for header cells changed from `TableQL-thead-th` --> `TableQL-th`
+- added TableQLProvider that allows for app wide configuration of tables.
+- add table caption, some sort of table title
+- responsiveness, when width smaller than 740px table get rearranged into card format where number of cards matches number of rows.
+
 ## v0.2.1
 
 bugfix:

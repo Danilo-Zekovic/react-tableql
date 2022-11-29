@@ -18,6 +18,7 @@ interface TableQLProviderTheme {
   grid: {
     horizontal: string
     vertical: string
+    frame: string
   }
 }
 

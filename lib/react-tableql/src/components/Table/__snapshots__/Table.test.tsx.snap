@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Table> default snapshot 1`] = `
+<table
+  class="TableQL"
+>
+  <caption
+    class="TableQL-caption"
+  >
+    Statement Summary
+  </caption>
+  <thead
+    class="TableQL-thead"
+  >
+    <tr
+      class="TableQL-tr"
+    >
+      <th
+        class="TableQL-th"
+        scope="col"
+      >
+        Account
+      </th>
+      <th
+        class="TableQL-th"
+        scope="col"
+      >
+        Due Date
+      </th>
+      <th
+        class="TableQL-th"
+        scope="col"
+      >
+        Amount
+      </th>
+      <th
+        class="TableQL-th"
+        scope="col"
+      >
+        Period
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    class="TableQL-tbody"
+  >
+    <tr
+      class="TableQL-tr"
+    >
+      <td
+        class="TableQL-td"
+        data-label="Account"
+      >
+        Visa - 3412
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="Due Date"
+      >
+        04/01/2016
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="Amount"
+      >
+        $1,190
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="Period"
+      >
+        03/01/2016 - 03/31/2016
+      </td>
+    </tr>
+    <tr
+      class="TableQL-tr"
+    >
+      <td
+        class="TableQL-td"
+        data-label="Account"
+        scope="row"
+      >
+        Visa - 6076
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="Due Date"
+      >
+        03/01/2016
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="Amount"
+      >
+        $2,443
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="Period"
+      >
+        02/01/2016 - 02/29/2016
+      </td>
+    </tr>
+    <tr
+      class="TableQL-tr"
+    >
+      <td
+        class="TableQL-td"
+        data-label="Account"
+        scope="row"
+      >
+        Corporate AMEX
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="Due Date"
+      >
+        03/01/2016
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="Amount"
+      >
+        $1,181
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="Period"
+      >
+        02/01/2016 - 02/29/2016
+      </td>
+    </tr>
+    <tr
+      class="TableQL-tr"
+    >
+      <td
+        class="TableQL-td"
+        data-label="Acount"
+        scope="row"
+      >
+        Visa - 3412
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="Due Date"
+      >
+        02/01/2016
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="Amount"
+      >
+        $842
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="Period"
+      >
+        01/01/2016 - 01/31/2016
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

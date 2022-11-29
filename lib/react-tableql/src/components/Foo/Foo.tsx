@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from 'react'
+import { TableProvider, useTableState } from '../../TableProvider'
 
 import { logStuff } from '../../utils'
 
@@ -7,15 +8,17 @@ import './Foo.css'
 interface FooProps {
   foo: string
 }
-
+// TODO remove this component entirely
 const Foo: FC<FooProps> = ({ foo }) => {
+  const { theme } = useTableState()
+
   const halo = (): void => {
     logStuff('foo bar')
   }
 
   useEffect(() => {
-    console.log('hi', foo)
-  }, [foo])
+    console.log('hi', foo, theme)
+  }, [foo, theme])
 
   return (
     <div className={`foo Foo`}>
@@ -25,4 +28,12 @@ const Foo: FC<FooProps> = ({ foo }) => {
   )
 }
 
-export default Foo
+const FooWithProvider: FC<FooProps> = ({ foo }) => {
+  return (
+    <TableProvider>
+      <Foo foo={foo} />
+    </TableProvider>
+  )
+}
+
+export default FooWithProvider

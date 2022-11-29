@@ -58,3 +58,13 @@ For detailed examples and API visit the documentation.
 [Documentation Content](docs/README.md)
 
 - Coming soon
+
+## Scripts
+
+`format` - format the code using prettier
+
+`format:check` - check formatting with prettier, do not make changes.
+
+`bootstrap` - lerna bootstrap, install all dependencies and make necessary connections.
+
+`bootstrap:clean` - remove all yarn.lock files and node_modules before running lerna bootstrap

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TableHeader> default snapshot 1`] = `
+<tr
+  class="TableQL-tr"
+>
+  <th
+    class="TableQL-th"
+    scope="col"
+  >
+    Account
+  </th>
+  <th
+    class="TableQL-th"
+    scope="col"
+  >
+    Due Date
+  </th>
+  <th
+    class="TableQL-th"
+    scope="col"
+  >
+    Amount
+  </th>
+  <th
+    class="TableQL-th"
+    scope="col"
+  >
+    Period
+  </th>
+</tr>
+`;

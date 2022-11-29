@@ -30,7 +30,7 @@ const formattedBasicTheme = ({
   const {
     header,
     rows,
-    grid: { horizontal, vertical },
+    grid: { horizontal, vertical, frame },
   } = defaultTheme
 
   return {
@@ -51,6 +51,7 @@ const formattedBasicTheme = ({
     grid: {
       horizontal: grid || horizontal,
       vertical: grid || vertical,
+      frame: grid || frame,
     },
   }
 }

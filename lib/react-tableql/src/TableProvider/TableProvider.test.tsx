@@ -108,6 +108,7 @@ describe('<TableProvider> getFormattedTheme', () => {
         },
       },
       grid: {
+        frame: '#dee2e6',
         horizontal: '#dee2e6',
         vertical: '#dee2e6',
       },

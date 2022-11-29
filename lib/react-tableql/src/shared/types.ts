@@ -16,6 +16,7 @@ export interface TableQLThemeAdvanced {
   grid?: {
     horizontal?: string
     vertical?: string
+    frame?: string
   }
 }
 
