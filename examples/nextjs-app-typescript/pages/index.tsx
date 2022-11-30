@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Foo from 'react-tableql'
+import { Foo } from 'react-tableql'
 
 export default function Home() {
   return (
@@ -19,7 +19,7 @@ export default function Home() {
 
         <p className={styles.description}>
           Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          <code className={styles.code}>pages/index.tsx</code>
         </p>
 
         <div className={styles.grid}>
@@ -34,7 +34,7 @@ export default function Home() {
           </a>
 
           <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
+            href="https://github.com/vercel/next.js/tree/canary/examples"
             className={styles.card}
           >
             <h2>Examples &rarr;</h2>
@@ -43,6 +43,8 @@ export default function Home() {
 
           <a
             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
             className={styles.card}
           >
             <h2>Deploy &rarr;</h2>
@@ -51,8 +53,9 @@ export default function Home() {
             </p>
           </a>
         </div>
-        <Foo foo="bar" />
       </main>
+
+      <Foo foo="bar" />
 
       <footer className={styles.footer}>
         <a
