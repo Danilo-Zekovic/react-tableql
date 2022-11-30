@@ -32,7 +32,8 @@
     "bootstrap:clean": "rm -rf yarn.lock && find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' + && lerna clean && lerna bootstrap",
     "build": "lerna run build",
     "test": "lerna run test",
-    "graph": "yarn nx graph"
+    "graph": "yarn nx graph",
+    "lint": "eslint \"{lib,examples}/**/*.tsx\" --fix"
   },
   "author": {
     "name": "Danilo Zekovic"
