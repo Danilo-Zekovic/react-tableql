@@ -22,87 +22,74 @@ All new features must:
 
 ## Scripts
 
-##### start
+##### bootstrap
 
-Builds the component with hot reload. Useful when developing and working on the TableQL.
+Install all the dependencies for all the packages.
+
+##### bootstrap:clean
+
+Before installing all the dependencies first remove all the lock files and node_modules.
+
+##### dev
+
+Run all the example apps and the libraries in the watch mode (hot reload). All the process will be started in the background. NOTE: for this command to work [pm2](https://pm2.keymetrics.io/docs/usage/quick-start/) needs to be installed globally!
+
+Optional flags:
+
+- `-i` install dependencies.
+- `-c` clean node packages and lock files before installing dependencies.
+- `-h` help; list all the options
+
+##### devLife
+
+Run Docker container with all examples and libraries in the watch mode (see `dev` command). Note: Docker has to be installed for the script to work.
+
+##### graph
+
+To see the graph of relations in the monorepo.
+
+##### lint
+
+Run eslint and fix all auto fixable problems.
 
 ##### build
 
 Builds production ready component using Webpack.
 
-##### build:all
-
-Builds production ready component using Webpack, and builds static Storybook files that will be used on GitHub pages as [online TableQL documentation and component demonstration](https://danilo-zekovic.github.io/react-tableql/).
-
 ##### test
 
-Run all the tests.
-
-##### test:watch
-
-Runs tests in watch mode.
-
-##### test:coverage
-
-Check how much of the code do tests cover. To see it visually and explore what is not covered open `./coverage/lcov-report/index.html` in your browser.
+Run all the tests, in every example and library.
 
 ##### format
 
-Formats the code using Prettier by rules defined in Pretier config file.
+Formats the code using Prettier by rules defined in Prettier config file.
 
 ##### format:check
 
-Checks if all the formating follows the defined rules.
-
-##### storybook
-
-Starts Storybook locally on port 6006, http://localhost:6006/
-
-##### build-storybook
-
-Builds static Storybook files that will be used on GitHub pages as [online TableQL documentation and component demonstration](https://danilo-zekovic.github.io/react-tableql/).
+Checks if all the formatting follows the defined rules. Throw error if rules are not followed.
 
 ## Development
 
-When doing development on the component on local machine follow next steps to make your time more productive:
+When doing development on the component on the local machine there are three recommended approaches:
 
-Start [Storybook]('https://storybook.js.org/'):
+1. Dev mode
+2. Docker container
+3. Manual setup
 
-`npm run storybook`
+Before I explain all three of the approaches it is important to understand all of the components in thi monorepo project. There are two major parts `examples` and `lib`. In examples one can locate all of the example apps in different react frameworks (next.js, create react app...), and the API app that is feeding those front-end apps. And in the lib folder we can find the react-tableql library source code (more libraries in the future).
 
-Create a story in Storybook where you can test your feature, and to see if it will impact existing features.
+#### Dev mode
 
-OR
+Requirements: `pm2`, `docker`
 
-Hot-reload
+run `yarn dev` or `yarn dev -i` (if dependencies are not installed), it will start all the example apps and the component itself in the background. All the changes will show automatically in example apps. TO quit it press `Ctrl` + `C`, it will stop all the processes in the background.
 
-```
-npm start
-```
+#### Docker
 
-Linking react-tableql in local:
-First run
+Requirements: `docker`
 
-```
-npm link
-```
+Run `yarn devLife`, it will start the dev mode in docker container using docker-compose.
 
-inside the react-tableql directory, then in the project that you wish to test the component
+#### Manual setup
 
-```
-npm link react-tableql
-```
-
-Check is everything formatted by the set rules in Prettier:
-
-```
-npm run format:check
-```
-
-And to format everything run:
-
-```
-npm run format
-```
-
-My advice would be to set up your editor to format code on save.
+First install all the dependencies `yarn bootstrap`. Next, go to `./lib/react-tableql` and run the component in watch mode `yarn dev`. To see the changes to the library, run one of the example apps or all of them. To run the example apps go to `./examples` folder, first start the `api` app. In `./examples/api` run `yarn start`. Then go to the example app of your choice and run it (See README.md located in respective example app).

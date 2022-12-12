@@ -54,8 +54,8 @@ export default function Home() {
           </a>
         </div>
       </main>
-
-      <Foo foo="bar" />
+      {/* TODO figure out what is the issue with this. it throws document is not defined error */}
+      {/* <Foo foo="bar" /> */}
 
       <footer className={styles.footer}>
         <a

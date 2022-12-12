@@ -75,4 +75,8 @@ For detailed examples and API visit the documentation.
 
 `graph` - open interactive visualization. [Lerna docs on visualizing](https://lerna.js.org/docs/getting-started#visualizing-workspace)
 
+`dev` - start the development environment. It includes all example apps and react-tableql library in watch mode.
+
+`devLife` - start the development environment in a docker container. Patient, it might take a little to start everything.
+
 [skip cashing for now](https://lerna.js.org/docs/getting-started#caching)
