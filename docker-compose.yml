@@ -5,10 +5,11 @@ services:
     ports:
       - '3000:3000' # CRA
       - '4000:4000' # Next.js
-      - '5000:5000' # Gatsby.js
-      - '6000:6000' # Remix.js
-      - '7000:7000' # Vite.js
-      - '8000:8000' # API
+      - '5000:5000' # Gatsby.js (not yet implemented)
+      - '6000:6000' # Remix.js (not yet implemented)
+      - '7000:7000' # Vite.js (not yet implemented)
+      - '8000:8000' # not sure yet
+      - '8080:8080' # API (in progress)
     volumes:
       # - .:/app
       # - /app

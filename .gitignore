@@ -81,3 +81,5 @@ build
 
 # vercel
 .vercel
+
+dist
