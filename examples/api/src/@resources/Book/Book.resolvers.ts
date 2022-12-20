@@ -1,4 +1,3 @@
-import { receiveMessageOnPort } from 'worker_threads'
 import Book from './Book.model'
 
 // Resolvers define how to fetch the types defined in your schema.
@@ -19,14 +18,19 @@ const bookResolvers = {
         book: {
           title: string
           author: string
-          pageNumber: number
+          yearWritten: number
+          edition: string
+          price: number
         }
       },
     ) => {
+      // TODO needs some data validation
       const createdBook = new Book({
         title: book.title,
         author: book.author,
-        pageNumber: book.pageNumber,
+        yearWritten: book.yearWritten,
+        edition: book.edition,
+        price: book.price,
         createdAt: new Date().toISOString(),
       })
 
@@ -44,7 +48,13 @@ const bookResolvers = {
         book,
       }: {
         id: string
-        book: { title?: string; author?: string; pageNumber?: number }
+        book: {
+          title?: string
+          author?: string
+          yearWritten?: number
+          edition?: string
+          price?: number
+        }
       },
     ) => {
       // TODO

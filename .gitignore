@@ -83,3 +83,5 @@ build
 .vercel
 
 dist
+
+db_data

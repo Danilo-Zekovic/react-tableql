@@ -3,8 +3,10 @@ const bookTypeDefs = `#graphql
     id: ID
     title: String
     author: String
-    pageNumber: Int
     createdAt: String
+    yearWritten: Int
+    edition: String
+    price: Float
   }
 
   type Query {
@@ -15,7 +17,9 @@ const bookTypeDefs = `#graphql
   input BookInput {
     title: String
     author: String
-    pageNumber: Int
+    yearWritten: Int
+    edition: String
+    price: Float
   }
 
   type Mutation {
