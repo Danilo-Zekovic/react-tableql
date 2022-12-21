@@ -4,7 +4,7 @@
 set -m
 # kill all the pm2 processes runnning in the background on exit (control + C) 
 # `2> /dev/null` redirects errors to nowhere when there is no processes to be killed
-trap "pm2 delete cra nextjs react-tableql api 2> /dev/null" EXIT
+trap "pm2 delete cra nextjs react-tableql api 2> /dev/null && docker kill api-db-1" EXIT
 
 echo ">>>> ReactTableQL Dev enviroment <<<<\n"
 
@@ -12,8 +12,10 @@ echo "For additional options run: \"sh dev.sh -h\" or \"yarn dev -h\"\n"
 
 install="false"
 cleanInstall="false"
+seed="false"
+container="false"
 
-while getopts "icsha:" OPTION; do
+while getopts "icshma:" OPTION; do
   case $OPTION in
     i)
       install="true"
@@ -25,6 +27,10 @@ while getopts "icsha:" OPTION; do
     #   avalue="$OPTARG"
     #   echo "example when argument passed to flag $OPTARG"
     #   ;;
+    m)
+      echo "==== Starting a MongoDB in Docker container ===="
+      yarn run lerna run container
+      ;;
     s)
       echo "==== Running seed ===="
       yarn run lerna run seed
@@ -35,9 +41,10 @@ while getopts "icsha:" OPTION; do
       echo "  -i    Install dependencies"
       echo "  -c    Install dependencies but first remove all the packages and lock files"
       echo "  -s    Run seed"
+      echo "  -m    Start a MongoDB in a Docker container"
       echo "  -h    Help"
       echo "\nExample 1: yarn dev -i"
-      echo "Example 2: yarn dev -ih\n"
+      echo "Example 2 (start the db and run seeds): yarn dev -ms\n"
       exit
       ;;
   esac
