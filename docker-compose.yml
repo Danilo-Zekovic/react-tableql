@@ -14,11 +14,14 @@ services:
       # - .:/app
       # - /app
       - './:/app' # HOT Reload enabled
-  # mongodb:
-  #   image: mongo:6
-  #   container_name: mongodb
-  #   restart: always
-  #   ports:
-  #     - 27017:27017
-  #   volumes:
-  #     - ./data:/data/db
+    links:
+      - db
+    environment:
+      DATABASE_URL: mongodb://db:27017
+  db:
+    image: mongo:6
+    # restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./examples/api/db_data:/data/db

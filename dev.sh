@@ -2,15 +2,18 @@
   
 # turn on bash's job control
 set -m
-# kill all the pm2 processes runnning in the background on exit (control + C)
-trap "pm2 delete cra nextjs react-tableql" EXIT
+# kill all the pm2 processes runnning in the background on exit (control + C) 
+# `2> /dev/null` redirects errors to nowhere when there is no processes to be killed
+trap "pm2 delete cra nextjs react-tableql api 2> /dev/null" EXIT
 
 echo ">>>> ReactTableQL Dev enviroment <<<<\n"
+
+echo "For additional options run: \"sh dev.sh -h\" or \"yarn dev -h\"\n"
 
 install="false"
 cleanInstall="false"
 
-while getopts "icha:" OPTION; do
+while getopts "icsha:" OPTION; do
   case $OPTION in
     i)
       install="true"
@@ -22,27 +25,37 @@ while getopts "icha:" OPTION; do
     #   avalue="$OPTARG"
     #   echo "example when argument passed to flag $OPTARG"
     #   ;;
+    s)
+      echo "==== Running seed ===="
+      yarn run lerna run seed
+      ;;
     h)
-      echo "Usage: sh dev.sh <flags>\n"
+      echo "Usage: \"sh dev.sh <flags>\" or \"yarn dev <flags>\"\n"
       echo "Options: \n"
       echo "  -i    Install dependencies"
       echo "  -c    Install dependencies but first remove all the packages and lock files"
+      echo "  -s    Run seed"
       echo "  -h    Help"
+      echo "\nExample 1: yarn dev -i"
+      echo "Example 2: yarn dev -ih\n"
       exit
       ;;
   esac
 done
 
 if $cleanInstall ; then
-  echo "clean install of dependencies"
+  echo "==== Clean install of dependencies ===="
   yarn bootstrap:clean
   break
 elif $install ; then
-  echo "install dependencies"
+  echo "==== Installing dependencies ===="
   yarn bootstrap
   break
 fi
 
+# Start API separatly for now as it skips it sometimes for some reason
+echo "Run API instance as background process:"
+yarn run lerna run dockerDevApi
 
 echo "Run all the instances as background process:"
 yarn run lerna run dockerDev

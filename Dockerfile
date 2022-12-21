@@ -3,12 +3,9 @@ WORKDIR /app
 RUN npm install pm2 -g
 COPY package.json .
 COPY yarn.lock .
+# this install so we have lerna installed before we werun bootstrap
 RUN yarn install
 COPY . .
 RUN yarn bootstrap
-# RUN yarn run lerna run dockerDev
-# RUN cd examples/create-react-app-typescript && yarn dockerDev
-# RUN cd examples/nextjs-app-typescript && yarn dockerDev
-# RUN pm2 ps
-# CMD [ "yarn", "run", "lerna", "run", "dockerDev" ]
-CMD [ "sh", "dev.sh" ] 
+
+CMD [ "sh", "dev.sh", "-s" ] 

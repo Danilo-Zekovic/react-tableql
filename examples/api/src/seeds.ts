@@ -1,8 +1,12 @@
 import mongoose from 'mongoose'
 import Book from './@resources/Book/Book.model'
 
+const DATABASE_URL = process.env.DATABASE_URL || 'mongodb://localhost:27017'
+
+console.log('DATABASE_URL', DATABASE_URL)
+
 mongoose
-  .connect('mongodb://localhost:27017/tableql', {
+  .connect(DATABASE_URL, {
     dbName: 'react-tableql',
     appName: 'react-tableql',
   })

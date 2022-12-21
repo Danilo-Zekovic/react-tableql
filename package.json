@@ -35,7 +35,7 @@
     "graph": "yarn nx graph",
     "lint": "eslint \"{lib,examples}/**/*.tsx\" --fix",
     "dev": "sh dev.sh",
-    "devLife": "docker build --tag tableql-dev . && docker run --init --rm -p 3000:3000 -p 4000:4000 tableql-dev"
+    "devLife": "docker-compose up"
   },
   "author": {
     "name": "Danilo Zekovic"

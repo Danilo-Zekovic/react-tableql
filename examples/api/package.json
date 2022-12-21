@@ -8,8 +8,9 @@
     "compile": "tsc",
     "start": "yarn run compile && node ./dist/index.js",
     "dev": "ts-node-dev src/index.ts",
-    "container": "docker run --name mongodb -d --init --rm -p 27017:27017 mongo:6",
-    "seed": "ts-node-dev src/seeds.ts"
+    "container": "docker run --name db -d --init --rm -p 27017:27017 mongo:6",
+    "seed": "ts-node-dev src/seeds.ts",
+    "dockerDevApi": "echo \"-- Starting API --\" && pm2 --name api start yarn --interpreter sh -- dev"
   },
   "keywords": [],
   "author": "",

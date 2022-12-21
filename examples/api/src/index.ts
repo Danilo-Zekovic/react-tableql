@@ -5,7 +5,7 @@ import mongoose from 'mongoose'
 import typeDefs from './typeDefs'
 import resolvers from './resolvers'
 
-const DATABASE_URL = 'mongodb://localhost:27017/tableql'
+const DATABASE_URL = process.env.DATABASE_URL || 'mongodb://localhost:27017'
 
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.

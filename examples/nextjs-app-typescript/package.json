@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "dockerDev": "pm2 --name nextjs start yarn --interpreter sh -- run next dev -p 4000"
+    "dockerDev": "echo \"-- Starting NextJS --\" && pm2 --name nextjs start yarn --interpreter sh -- run next dev -p 4000"
   },
   "dependencies": {
     "@types/node": "18.11.9",

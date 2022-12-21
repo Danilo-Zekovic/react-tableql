@@ -31,7 +31,7 @@
     "test:coverage": "jest --coverage",
     "start": "webpack --watch",
     "build": "webpack",
-    "dockerDev": "pm2 --name react-tableql start yarn --interpreter sh -- start"
+    "dockerDev": "echo \"-- Starting react-tableql --\" && pm2 --name react-tableql start yarn --interpreter sh -- start"
   },
   "peerDependencies": {
     "@apollo/client": "^3.0.0",
