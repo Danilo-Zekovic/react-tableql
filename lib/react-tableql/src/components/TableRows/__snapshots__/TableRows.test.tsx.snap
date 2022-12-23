@@ -6,27 +6,58 @@ exports[`<TableRows> default snapshot 1`] = `
 >
   <td
     class="TableQL-td"
-    data-label="Account"
+    data-label="author"
   >
-    Visa - 3412
+    Austen, Jane
   </td>
   <td
     class="TableQL-td"
-    data-label="Due Date"
+    data-label="title"
   >
-    04/01/2016
+    Northanger Abbey
   </td>
   <td
     class="TableQL-td"
-    data-label="Amount"
+    data-label="id"
   >
-    $1,190
+    63a32284072b2e31190bd81d
   </td>
   <td
     class="TableQL-td"
-    data-label="Period"
+    data-label="edition"
   >
-    03/01/2016 - 03/31/2016
+    Penguin
+  </td>
+  <td
+    class="TableQL-td"
+    data-label="price"
+  >
+    18.2
+  </td>
+  <td
+    class="TableQL-td"
+    data-label="yearWritten"
+  >
+    1814
+  </td>
+</tr>
+`;
+
+exports[`<TableRows> when columns config passed 1`] = `
+<tr
+  class="TableQL-tr"
+>
+  <td
+    class="TableQL-td"
+    data-label="author"
+  >
+    Austen, Jane
+  </td>
+  <td
+    class="TableQL-td"
+    data-label="title"
+  >
+    Northanger Abbey
   </td>
 </tr>
 `;

@@ -1,16 +1,37 @@
 import { useEffect } from 'react'
+import { useQuery, gql } from '@apollo/client'
 import TableQL, { useTableQL, Foo } from 'react-tableql'
+
 import logo from './logo.svg'
 import './App.css'
+
+const GET_BOOKS = gql`
+  query Books {
+    books {
+      author
+      title
+      id
+      edition
+      price
+      yearWritten
+    }
+  }
+`
 
 function App() {
   // TODO rm
   const { theme } = useTableQL()
+  const { data } = useQuery(GET_BOOKS)
 
   // TODO rm
   useEffect(() => {
-    console.log('THEME', theme)
+    // console.log('THEME', theme)
   }, [theme])
+
+  // TODO rm
+  useEffect(() => {
+    // console.log('BOOKS', data)
+  }, [data])
 
   return (
     <div className="App">
@@ -31,7 +52,10 @@ function App() {
       <Foo foo="bar" />
 
       <div style={{ margin: '10rem' }}>
-        <TableQL />
+        <TableQL
+          data={data}
+          columns={['author', 'title', 'yearWritten', 'price']}
+        />
       </div>
     </div>
   )

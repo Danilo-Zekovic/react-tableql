@@ -7,11 +7,13 @@ import { tableReducer } from './reducer'
 import { getFormattedTheme } from './getFormattedTheme'
 
 const MockPage = (): JSX.Element => {
-  const { theme } = useTableState()
+  const { theme, data, dataKeys } = useTableState()
 
   return (
     <>
       <h1>Theme: {JSON.stringify(theme)}</h1>
+      <h2>Data: {JSON.stringify(data)}</h2>
+      <h3>Data Keys: {JSON.stringify(dataKeys)}</h3>
     </>
   )
 }
@@ -19,7 +21,7 @@ const MockPage = (): JSX.Element => {
 describe('<TableProvider>', () => {
   it('useTable theme', () => {
     render(
-      <TableProvider>
+      <TableProvider data={[]}>
         <MockPage />
       </TableProvider>,
     )
@@ -31,7 +33,7 @@ describe('<TableProvider>', () => {
 
   it('pass theme', () => {
     render(
-      <TableProvider theme={{ primary: 'tomato' }}>
+      <TableProvider theme={{ primary: 'tomato' }} data={[]}>
         <MockPage />
       </TableProvider>,
     )
@@ -48,6 +50,18 @@ describe('<TableProvider>', () => {
       ),
     ).toBeTruthy()
   })
+
+  it('useTable data', () => {
+    render(
+      <TableProvider data={[{ name: 'Danilo' }]}>
+        <MockPage />
+      </TableProvider>,
+    )
+
+    expect(
+      screen.getByText(`Data: ${JSON.stringify([{ name: 'Danilo' }])}`),
+    ).toBeTruthy()
+  })
 })
 
 describe('<TableProvider> reducer', () => {
@@ -61,26 +75,29 @@ describe('<TableProvider> reducer', () => {
     }
 
     expect(
-      tableReducer({ theme: defaultTheme }, { type: 'setTheme', theme }),
-    ).toEqual({ theme })
+      tableReducer(
+        { theme: defaultTheme, data: [], dataKeys: [] },
+        { type: 'setTheme', payload: { theme } },
+      ),
+    ).toEqual({ theme, data: [], dataKeys: [] })
   })
 
   it('no theme passed', () => {
     expect(
       tableReducer(
-        { theme: defaultTheme },
+        { theme: defaultTheme, data: [], dataKeys: [] },
         // @ts-expect-error testing for when there is no theme passed down
-        { type: 'setTheme', theme: undefined },
+        { type: 'setTheme', payload: { theme: undefined } },
       ),
-    ).toEqual({ theme: defaultTheme })
+    ).toEqual({ theme: defaultTheme, data: [], dataKeys: [] })
   })
 
   it('wrong action type passed', () => {
     function throwError(): void {
       tableReducer(
-        { theme: defaultTheme },
+        { theme: defaultTheme, data: [], dataKeys: [] },
         // @ts-expect-error testing for when there is no theme passed down
-        { type: 'invalidActionType', theme: defaultTheme },
+        { type: 'invalidActionType', payload: { theme: defaultTheme } },
       )
     }
 

@@ -30,3 +30,16 @@ export interface TableQLThemeBasic {
 }
 
 export type TableQLTheme = TableQLThemeAdvanced | TableQLThemeBasic
+
+export type Data = object[] | object | []
+export interface ColumnConfig {
+  id: string
+  label?: string
+  component?: (data: unknown) => void
+  customColumn?: boolean
+  headerStyle?: string
+  nodeStyle?: string | ((data: unknown) => void)
+  sort?: boolean | ((newOrder: unknown, property: string) => void)
+}
+
+export type Column = string | ColumnConfig

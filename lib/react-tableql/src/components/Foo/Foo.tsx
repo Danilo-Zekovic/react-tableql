@@ -30,7 +30,7 @@ const Foo: FC<FooProps> = ({ foo }) => {
 
 const FooWithProvider: FC<FooProps> = ({ foo }) => {
   return (
-    <TableProvider>
+    <TableProvider data={[]}>
       <Foo foo={foo} />
     </TableProvider>
   )

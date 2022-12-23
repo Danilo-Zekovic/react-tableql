@@ -8,25 +8,56 @@ exports[`<TableHeader> default snapshot 1`] = `
     class="TableQL-th"
     scope="col"
   >
-    Account
+    Author
   </th>
   <th
     class="TableQL-th"
     scope="col"
   >
-    Due Date
+    Title
   </th>
   <th
     class="TableQL-th"
     scope="col"
   >
-    Amount
+    Id
   </th>
   <th
     class="TableQL-th"
     scope="col"
   >
-    Period
+    Edition
+  </th>
+  <th
+    class="TableQL-th"
+    scope="col"
+  >
+    Price
+  </th>
+  <th
+    class="TableQL-th"
+    scope="col"
+  >
+    Year Written
+  </th>
+</tr>
+`;
+
+exports[`<TableHeader> when columns config passed 1`] = `
+<tr
+  class="TableQL-tr"
+>
+  <th
+    class="TableQL-th"
+    scope="col"
+  >
+    Author
+  </th>
+  <th
+    class="TableQL-th"
+    scope="col"
+  >
+    Title
   </th>
 </tr>
 `;

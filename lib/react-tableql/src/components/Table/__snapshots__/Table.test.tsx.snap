@@ -19,25 +19,37 @@ exports[`<Table> default snapshot 1`] = `
         class="TableQL-th"
         scope="col"
       >
-        Account
+        Author
       </th>
       <th
         class="TableQL-th"
         scope="col"
       >
-        Due Date
+        Title
       </th>
       <th
         class="TableQL-th"
         scope="col"
       >
-        Amount
+        Id
       </th>
       <th
         class="TableQL-th"
         scope="col"
       >
-        Period
+        Edition
+      </th>
+      <th
+        class="TableQL-th"
+        scope="col"
+      >
+        Price
+      </th>
+      <th
+        class="TableQL-th"
+        scope="col"
+      >
+        Year Written
       </th>
     </tr>
   </thead>
@@ -49,56 +61,39 @@ exports[`<Table> default snapshot 1`] = `
     >
       <td
         class="TableQL-td"
-        data-label="Account"
+        data-label="author"
       >
-        Visa - 3412
+        Austen, Jane
       </td>
       <td
         class="TableQL-td"
-        data-label="Due Date"
+        data-label="title"
       >
-        04/01/2016
+        Northanger Abbey
       </td>
       <td
         class="TableQL-td"
-        data-label="Amount"
+        data-label="id"
       >
-        $1,190
+        63a32284072b2e31190bd81d
       </td>
       <td
         class="TableQL-td"
-        data-label="Period"
+        data-label="edition"
       >
-        03/01/2016 - 03/31/2016
-      </td>
-    </tr>
-    <tr
-      class="TableQL-tr"
-    >
-      <td
-        class="TableQL-td"
-        data-label="Account"
-        scope="row"
-      >
-        Visa - 6076
+        Penguin
       </td>
       <td
         class="TableQL-td"
-        data-label="Due Date"
+        data-label="price"
       >
-        03/01/2016
+        18.2
       </td>
       <td
         class="TableQL-td"
-        data-label="Amount"
+        data-label="yearWritten"
       >
-        $2,443
-      </td>
-      <td
-        class="TableQL-td"
-        data-label="Period"
-      >
-        02/01/2016 - 02/29/2016
+        1814
       </td>
     </tr>
     <tr
@@ -106,28 +101,39 @@ exports[`<Table> default snapshot 1`] = `
     >
       <td
         class="TableQL-td"
-        data-label="Account"
-        scope="row"
+        data-label="author"
       >
-        Corporate AMEX
+        Tolstoy, Leo
       </td>
       <td
         class="TableQL-td"
-        data-label="Due Date"
+        data-label="title"
       >
-        03/01/2016
+        War and Peace
       </td>
       <td
         class="TableQL-td"
-        data-label="Amount"
+        data-label="id"
       >
-        $1,181
+        63a32284072b2e31190bd81e
       </td>
       <td
         class="TableQL-td"
-        data-label="Period"
+        data-label="edition"
       >
-        02/01/2016 - 02/29/2016
+        Penguin
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="price"
+      >
+        12.7
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="yearWritten"
+      >
+        1865
       </td>
     </tr>
     <tr
@@ -135,28 +141,439 @@ exports[`<Table> default snapshot 1`] = `
     >
       <td
         class="TableQL-td"
-        data-label="Acount"
-        scope="row"
+        data-label="author"
       >
-        Visa - 3412
+        Tolstoy, Leo
       </td>
       <td
         class="TableQL-td"
-        data-label="Due Date"
+        data-label="title"
       >
-        02/01/2016
+        Anna Karenina
       </td>
       <td
         class="TableQL-td"
-        data-label="Amount"
+        data-label="id"
       >
-        $842
+        63a32284072b2e31190bd81f
       </td>
       <td
         class="TableQL-td"
-        data-label="Period"
+        data-label="edition"
       >
-        01/01/2016 - 01/31/2016
+        Penguin
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="price"
+      >
+        13.5
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="yearWritten"
+      >
+        1875
+      </td>
+    </tr>
+    <tr
+      class="TableQL-tr"
+    >
+      <td
+        class="TableQL-td"
+        data-label="author"
+      >
+        Woolf, Virginia
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="title"
+      >
+        Mrs. Dalloway
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="id"
+      >
+        63a32284072b2e31190bd820
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="edition"
+      >
+        Harcourt Brace
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="price"
+      >
+        25
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="yearWritten"
+      >
+        1925
+      </td>
+    </tr>
+    <tr
+      class="TableQL-tr"
+    >
+      <td
+        class="TableQL-td"
+        data-label="author"
+      >
+        Cunnningham, Michael
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="title"
+      >
+        The Hours
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="id"
+      >
+        63a32284072b2e31190bd821
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="edition"
+      >
+        Harcourt Brace
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="price"
+      >
+        12.35
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="yearWritten"
+      >
+        1999
+      </td>
+    </tr>
+    <tr
+      class="TableQL-tr"
+    >
+      <td
+        class="TableQL-td"
+        data-label="author"
+      >
+        Twain, Mark
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="title"
+      >
+        Huckleberry Finn
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="id"
+      >
+        63a32284072b2e31190bd822
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="edition"
+      >
+        Penguin
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="price"
+      >
+        5.76
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="yearWritten"
+      >
+        1865
+      </td>
+    </tr>
+    <tr
+      class="TableQL-tr"
+    >
+      <td
+        class="TableQL-td"
+        data-label="author"
+      >
+        Dickens, Charles
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="title"
+      >
+        Bleak House
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="id"
+      >
+        63a32284072b2e31190bd823
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="edition"
+      >
+        Random House
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="price"
+      >
+        5.75
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="yearWritten"
+      >
+        1870
+      </td>
+    </tr>
+    <tr
+      class="TableQL-tr"
+    >
+      <td
+        class="TableQL-td"
+        data-label="author"
+      >
+        Twain, Mark
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="title"
+      >
+        Tom Sawyer
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="id"
+      >
+        63a32284072b2e31190bd824
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="edition"
+      >
+        Random House
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="price"
+      >
+        7.75
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="yearWritten"
+      >
+        1862
+      </td>
+    </tr>
+    <tr
+      class="TableQL-tr"
+    >
+      <td
+        class="TableQL-td"
+        data-label="author"
+      >
+        Woolf, Virginia
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="title"
+      >
+        A Room of One's Own
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="id"
+      >
+        63a32284072b2e31190bd825
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="edition"
+      >
+        Penguin
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="price"
+      >
+        29
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="yearWritten"
+      >
+        1922
+      </td>
+    </tr>
+    <tr
+      class="TableQL-tr"
+    >
+      <td
+        class="TableQL-td"
+        data-label="author"
+      >
+        Rowling, J.K.
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="title"
+      >
+        Harry Potter
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="id"
+      >
+        63a32284072b2e31190bd826
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="edition"
+      >
+        Harcourt Brace
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="price"
+      >
+        19.95
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="yearWritten"
+      >
+        2000
+      </td>
+    </tr>
+    <tr
+      class="TableQL-tr"
+    >
+      <td
+        class="TableQL-td"
+        data-label="author"
+      >
+        Marquez
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="title"
+      >
+        One Hundred Years of Solitude
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="id"
+      >
+        63a32284072b2e31190bd827
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="edition"
+      >
+        Harper  Perennial
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="price"
+      >
+        14
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="yearWritten"
+      >
+        1967
+      </td>
+    </tr>
+    <tr
+      class="TableQL-tr"
+    >
+      <td
+        class="TableQL-td"
+        data-label="author"
+      >
+        Shakespeare
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="title"
+      >
+        Hamlet, Prince of Denmark
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="id"
+      >
+        63a32284072b2e31190bd828
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="edition"
+      >
+        Signet  Classics
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="price"
+      >
+        7.95
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="yearWritten"
+      >
+        1603
+      </td>
+    </tr>
+    <tr
+      class="TableQL-tr"
+    >
+      <td
+        class="TableQL-td"
+        data-label="author"
+      >
+        Tolkien, J.R.
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="title"
+      >
+        Lord of the Rings
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="id"
+      >
+        63a32284072b2e31190bd829
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="edition"
+      >
+        Penguin
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="price"
+      >
+        27.45
+      </td>
+      <td
+        class="TableQL-td"
+        data-label="yearWritten"
+      >
+        1937
       </td>
     </tr>
   </tbody>

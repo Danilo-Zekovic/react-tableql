@@ -7,6 +7,7 @@ import './Table.css'
 const Table: FC = () => {
   return (
     <table className={`TableQL`}>
+      {/* TODO caption should be customizable */}
       <caption className={`TableQL-caption`}>Statement Summary</caption>
       <thead className={`TableQL-thead`}>
         <TableHeader />

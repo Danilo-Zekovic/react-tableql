@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 
 import { TableProvider } from '../TableProvider'
 import { Table } from '../components/Table'
+import { Column, Data } from '../shared/types'
 
 import './TableQL.css'
 
@@ -9,9 +10,14 @@ const TableQL: FC = () => {
   return <Table />
 }
 
-const TableQLWithProvider: FC = ({ ...props }) => (
-  <TableProvider>
-    <TableQL {...props} />
+interface TableQLProps {
+  data: Data
+  columns?: Column[]
+}
+
+const TableQLWithProvider: FC<TableQLProps> = ({ data, columns }) => (
+  <TableProvider data={data} columns={columns}>
+    <TableQL />
   </TableProvider>
 )
 
