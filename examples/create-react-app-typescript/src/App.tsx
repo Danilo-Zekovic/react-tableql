@@ -51,10 +51,35 @@ function App() {
       </header>
       <Foo foo="bar" />
 
-      <div style={{ margin: '10rem' }}>
+      <div style={{ margin: '7rem' }}>
         <TableQL
           data={data}
-          columns={['author', 'title', 'yearWritten', 'price']}
+          columns={[
+            'author',
+            {
+              id: 'title',
+              label: 'Book Title',
+              component: (value) => <h6>{String(value).toUpperCase()}</h6>,
+            },
+            'yearWritten',
+            'price',
+            {
+              id: 'custom',
+              customColumn: true,
+              component: (data) => (
+                <button
+                  onClick={() =>
+                    console.log(
+                      'custom column button click, and here is the data:',
+                      data,
+                    )
+                  }
+                >
+                  Click me
+                </button>
+              ),
+            },
+          ]}
         />
       </div>
     </div>

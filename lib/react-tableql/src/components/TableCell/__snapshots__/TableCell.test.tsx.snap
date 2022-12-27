@@ -1,10 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<TableRows> default snapshot 1`] = `
+exports[`<TableCell> custom column snapshot 1`] = `
+<td
+  class="TableQL-td"
+  data-label="foo"
+>
+  <div>
+    Foo bar
+  </div>
+</td>
+`;
+
+exports[`<TableCell> default snapshot 1`] = `
 <td
   class="TableQL-td"
   data-label="foo"
 >
   Foo
+</td>
+`;
+
+exports[`<TableCell> pass component to column 1`] = `
+<td
+  class="TableQL-td"
+  data-label="foo"
+>
+  <h6>
+    FOO
+  </h6>
 </td>
 `;

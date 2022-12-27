@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 export interface TableQLThemeAdvanced {
   header?: {
     color?: string
@@ -35,7 +37,7 @@ export type Data = object[] | object | []
 export interface ColumnConfig {
   id: string
   label?: string
-  component?: (data: unknown) => void
+  component?: (data: unknown) => string | ReactNode
   customColumn?: boolean
   headerStyle?: string
   nodeStyle?: string | ((data: unknown) => void)

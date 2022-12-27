@@ -21,7 +21,8 @@ const TableRows: FC = () => {
               key={`TableCell${JSON.stringify(column)}${columnIndex}`}
               column={column}
               // styles={styles}
-              data={row[typeof column === 'string' ? column : column.id]}
+              // data={row[typeof column === 'string' ? column : column.id]}
+              data={row}
             />
           ))}
         </tr>
