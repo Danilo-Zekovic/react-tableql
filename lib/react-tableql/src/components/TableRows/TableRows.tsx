@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { Column } from '../../shared/types'
 
 import { useTableState } from '../../TableProvider'
+import { TableCell } from '../TableCell'
 
 const TableRows: FC = () => {
   const { data, dataKeys } = useTableState()
@@ -16,21 +17,12 @@ const TableRows: FC = () => {
           // onClick={onRowClick ? () => onRowClick(row) : undefined}
         >
           {dataKeys.map((column: Column, columnIndex: number) => (
-            // <TableCell
-            //   key={`TableCell${JSON.stringify(column)}`}
-            //   column={column}
-            //   styles={styles}
-            //   columnIndex={columnIndex}
-            //   data={data}
-            // />
-            <td
-              className={`TableQL-td`}
-              data-label={typeof column === 'string' ? column : column.id}
-              // TODO fix this mess
-              key={`${Math.random()}${columnIndex}`}
-            >
-              <>{row[typeof column === 'string' ? column : column.id]}</>
-            </td>
+            <TableCell
+              key={`TableCell${JSON.stringify(column)}${columnIndex}`}
+              column={column}
+              // styles={styles}
+              data={row[typeof column === 'string' ? column : column.id]}
+            />
           ))}
         </tr>
       ))}

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TableRows> default snapshot 1`] = `
+<td
+  class="TableQL-td"
+  data-label="foo"
+>
+  Foo
+</td>
+`;
