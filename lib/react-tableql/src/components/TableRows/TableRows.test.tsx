@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 
 import TableRows from './TableRows'
 import { TableProvider } from '../../TableProvider'
@@ -37,5 +37,26 @@ describe('<TableRows>', () => {
     )
 
     expect(container.firstChild).toMatchSnapshot()
+  })
+
+  it('when onRowClick passed', () => {
+    const thead = document.createElement('thead')
+
+    const mockFn = jest.fn()
+
+    render(
+      <TableProvider data={MOCK_DATA} onRowClick={mockFn}>
+        <TableRows />
+      </TableProvider>,
+      {
+        container: document.body.appendChild(thead),
+      },
+    )
+
+    const author = screen.getByText(MOCK_DATA[0].author)
+
+    fireEvent.click(author)
+    expect(author).toBeTruthy()
+    expect(mockFn).toHaveBeenCalledTimes(1)
   })
 })

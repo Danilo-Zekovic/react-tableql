@@ -5,7 +5,7 @@ import { useTableState } from '../../TableProvider'
 import { TableCell } from '../TableCell'
 
 const TableRows: FC = () => {
-  const { data, dataKeys } = useTableState()
+  const { data, dataKeys, onRowClick } = useTableState()
 
   return (
     <>
@@ -14,7 +14,7 @@ const TableRows: FC = () => {
           key={`TableQLRow${JSON.stringify(row)}`}
           // className={styles.tbodyTr || 'TableQL-tr'}
           className={`TableQL-tr`}
-          // onClick={onRowClick ? () => onRowClick(row) : undefined}
+          onClick={onRowClick ? (): void => onRowClick(row) : undefined}
         >
           {dataKeys.map((column: Column, columnIndex: number) => (
             <TableCell

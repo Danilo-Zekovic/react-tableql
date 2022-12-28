@@ -54,6 +54,9 @@ function App() {
       <div style={{ margin: '7rem' }}>
         <TableQL
           data={data}
+          onRowClick={(data: object) =>
+            console.log('ROW CLICKED, here is data: ', data)
+          }
           columns={[
             'author',
             {

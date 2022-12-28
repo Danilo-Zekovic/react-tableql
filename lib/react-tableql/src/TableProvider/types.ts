@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Column, Data, TableQLTheme } from '../shared/types'
+import { Column, Data, OnRowClick, TableQLTheme } from '../shared/types'
 
 interface TableQLProviderTheme {
   header: {
@@ -27,6 +27,7 @@ export interface State {
   theme: TableQLProviderTheme
   data: object[] | []
   dataKeys: Column[]
+  onRowClick?: OnRowClick
 }
 
 export type Action =
@@ -42,6 +43,7 @@ export type Dispatch = (action: Action) => void
 export interface TableProviderProps {
   data: Data
   columns?: Column[]
+  onRowClick?: OnRowClick
   theme?: TableQLTheme
   children?: ReactNode
 }

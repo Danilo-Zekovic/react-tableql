@@ -45,3 +45,5 @@ export interface ColumnConfig {
 }
 
 export type Column = string | ColumnConfig
+
+export type OnRowClick = (() => void) | ((data: object) => void)
