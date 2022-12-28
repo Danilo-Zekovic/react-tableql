@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { FC, ReactNode } from 'react'
 
 export interface TableQLThemeAdvanced {
   header?: {
@@ -47,3 +47,8 @@ export interface ColumnConfig {
 export type Column = string | ColumnConfig
 
 export type OnRowClick = (() => void) | ((data: object) => void)
+
+export interface FailSafe {
+  reason: string
+}
+export type OnEmpty = FC<FailSafe>

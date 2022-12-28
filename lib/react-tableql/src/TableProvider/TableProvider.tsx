@@ -37,6 +37,7 @@ const TableProvider: FC<TableProviderProps> = ({
   theme,
   columns,
   onRowClick,
+  onEmpty,
 }): ReactElement => {
   // TODO as of right now this is line makes it mandatory to have the TableQLProvider, but we do not want to force it onto users
   const { theme: globalTheme } = useTableQLState()
@@ -46,6 +47,7 @@ const TableProvider: FC<TableProviderProps> = ({
     // TODO this should probably be improved so that if global is not set either just don't use it
     theme: getFormattedTheme(theme || globalTheme),
     onRowClick,
+    onEmpty,
   })
 
   useEffect(() => {

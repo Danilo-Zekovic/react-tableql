@@ -7,6 +7,15 @@ import { TableCell } from '../TableCell'
 const TableRows: FC = () => {
   const { data, dataKeys, onRowClick } = useTableState()
 
+  // render if no data, but columns defined
+  if (!data.length) {
+    return (
+      <tr>
+        <TableCell column={'empty'} data={{ empty: 'No data found!' }} />
+      </tr>
+    )
+  }
+
   return (
     <>
       {data.map((row: object) => (

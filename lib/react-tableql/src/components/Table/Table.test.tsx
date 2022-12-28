@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { FC } from 'react'
 
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import Table from './Table'
 import { TableProvider } from '../../TableProvider'
@@ -14,6 +14,17 @@ describe('<Table>', () => {
       </TableProvider>,
     )
 
+    expect(container.firstChild).toMatchSnapshot()
+  })
+
+  it('pass onEmpty', () => {
+    const Empty: FC = () => <h3>I am empty</h3>
+    const { container } = render(
+      <TableProvider data={[]} onEmpty={Empty}>
+        <Table />)
+      </TableProvider>,
+    )
+    expect(screen.getByText('I am empty')).toBeTruthy()
     expect(container.firstChild).toMatchSnapshot()
   })
 })

@@ -579,3 +579,9 @@ exports[`<Table> default snapshot 1`] = `
   </tbody>
 </table>
 `;
+
+exports[`<Table> pass onEmpty 1`] = `
+<h3>
+  I am empty
+</h3>
+`;

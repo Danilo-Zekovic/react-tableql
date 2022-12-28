@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import { TableProvider } from '../TableProvider'
 import { Table } from '../components/Table'
-import { Column, Data, OnRowClick } from '../shared/types'
+import { Column, Data, OnEmpty, OnRowClick } from '../shared/types'
 
 import './TableQL.css'
 
@@ -14,14 +14,11 @@ interface TableQLProps {
   data: Data
   columns?: Column[]
   onRowClick?: OnRowClick
+  onEmpty?: OnEmpty
 }
 
-const TableQLWithProvider: FC<TableQLProps> = ({
-  data,
-  columns,
-  onRowClick,
-}) => (
-  <TableProvider data={data} columns={columns} onRowClick={onRowClick}>
+const TableQLWithProvider: FC<TableQLProps> = ({ ...props }) => (
+  <TableProvider {...props}>
     <TableQL />
   </TableProvider>
 )

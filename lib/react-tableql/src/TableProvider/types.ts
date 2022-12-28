@@ -1,5 +1,11 @@
 import { ReactNode } from 'react'
-import { Column, Data, OnRowClick, TableQLTheme } from '../shared/types'
+import {
+  Column,
+  Data,
+  OnEmpty,
+  OnRowClick,
+  TableQLTheme,
+} from '../shared/types'
 
 interface TableQLProviderTheme {
   header: {
@@ -28,6 +34,7 @@ export interface State {
   data: object[] | []
   dataKeys: Column[]
   onRowClick?: OnRowClick
+  onEmpty?: OnEmpty
 }
 
 export type Action =
@@ -44,6 +51,7 @@ export interface TableProviderProps {
   data: Data
   columns?: Column[]
   onRowClick?: OnRowClick
+  onEmpty?: OnEmpty
   theme?: TableQLTheme
   children?: ReactNode
 }
